@@ -7,6 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A074A52207EA31D00EEC84B /* ExamenPreguntaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A074A51207EA31D00EEC84B /* ExamenPreguntaTableViewCell.swift */; };
+		0A074A56207EA40700EEC84B /* ExamenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A074A55207EA40700EEC84B /* ExamenViewController.swift */; };
+		0A074A58207EC0A500EEC84B /* Alertas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A074A57207EC0A500EEC84B /* Alertas.swift */; };
+		0A074A5A207EC92E00EEC84B /* LeccionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A074A59207EC92E00EEC84B /* LeccionTableViewController.swift */; };
+		0A796B582059A11000E93812 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A796B572059A11000E93812 /* LoginViewController.swift */; };
+		0A796B5A2059A27D00E93812 /* RegistroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A796B592059A27D00E93812 /* RegistroViewController.swift */; };
+		0A796B5C2059A3F200E93812 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A796B5B2059A3F200E93812 /* Global.swift */; };
+		0A796B5E2059A72F00E93812 /* Met_DefinirTamanoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A796B5D2059A72F00E93812 /* Met_DefinirTamanoViewController.swift */; };
+		0A796B602059A74600E93812 /* Met_IngresarColumnasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A796B5F2059A74600E93812 /* Met_IngresarColumnasViewController.swift */; };
+		0A796B622059A76100E93812 /* Met_IngresarCostoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A796B612059A76100E93812 /* Met_IngresarCostoViewController.swift */; };
+		0A796B642059A78B00E93812 /* Met_IteracionDePasosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A796B632059A78B00E93812 /* Met_IteracionDePasosViewController.swift */; };
+		0A796B6A2059A91C00E93812 /* Menu_DocumentacionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A796B692059A91C00E93812 /* Menu_DocumentacionViewController.swift */; };
+		0A796B6C2059A99600E93812 /* Menu_ExamenesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A796B6B2059A99600E93812 /* Menu_ExamenesTableViewController.swift */; };
+		0A796B6E2059A9A200E93812 /* Menu_LeccionesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A796B6D2059A9A200E93812 /* Menu_LeccionesTableViewController.swift */; };
+		0A796B702059A9EC00E93812 /* Menu_ExamenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A796B6F2059A9EC00E93812 /* Menu_ExamenTableViewCell.swift */; };
+		0A796B722059A9F900E93812 /* Menu_LeccionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A796B712059A9F900E93812 /* Menu_LeccionTableViewCell.swift */; };
+		0A796B742059AA1A00E93812 /* Met_IngresarCostoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A796B732059AA1A00E93812 /* Met_IngresarCostoCollectionViewCell.swift */; };
+		0A796B762059AA8A00E93812 /* Met_IngresarColumnaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A796B752059AA8A00E93812 /* Met_IngresarColumnaTableViewCell.swift */; };
+		0A916FDB205C37B600400F87 /* Met_IteracionDePasosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A916FDA205C37B600400F87 /* Met_IteracionDePasosCollectionViewCell.swift */; };
+		0A916FDD205C4F1300400F87 /* Menu_DocumentoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A916FDC205C4F1300400F87 /* Menu_DocumentoTableViewCell.swift */; };
+		0A966C34206416D000C5561F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A966C33206416D000C5561F /* TabBarController.swift */; };
+		0A966C362064178300C5561F /* Menu_MaestroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A966C352064178300C5561F /* Menu_MaestroViewController.swift */; };
+		0A966C3920642E1200C5561F /* MuralArtist(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 0A966C3820642E1200C5561F /* MuralArtist(1).png */; };
+		0AA9C4B4207BC096009F55F9 /* Conexion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA9C4B3207BC096009F55F9 /* Conexion.swift */; };
+		0AA9C4B6207C0AAC009F55F9 /* candado-abierto.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AA9C4B5207C0AAC009F55F9 /* candado-abierto.png */; };
+		0AA9C4B8207C0AB5009F55F9 /* candado.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AA9C4B7207C0AB5009F55F9 /* candado.png */; };
+		0AA9C4BA207C0E66009F55F9 /* books-stack-of-three.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AA9C4B9207C0E66009F55F9 /* books-stack-of-three.png */; };
+		0AA9C4BC207C0E81009F55F9 /* books-stack-of-three (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 0AA9C4BB207C0E81009F55F9 /* books-stack-of-three (1).png */; };
+		0ACAE105207D74CA00585790 /* radioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACAE104207D74CA00585790 /* radioButton.swift */; };
+		0ACAE109207D75D000585790 /* rdbUn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACAE108207D75D000585790 /* rdbUn.png */; };
+		0ACAE10B207D75D900585790 /* rdbCh.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACAE10A207D75D900585790 /* rdbCh.png */; };
+		2EF1C3398D04302AB62F4831 /* Pods_AVE_DIDACTICO_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E1863CED22C84B9E5E23608 /* Pods_AVE_DIDACTICO_IOS.framework */; };
 		722920142050BED80074CB9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722920132050BED80074CB9E /* AppDelegate.swift */; };
 		722920162050BED80074CB9E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722920152050BED80074CB9E /* ViewController.swift */; };
 		722920192050BED80074CB9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 722920172050BED80074CB9E /* Main.storyboard */; };
@@ -15,6 +47,38 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A074A51207EA31D00EEC84B /* ExamenPreguntaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamenPreguntaTableViewCell.swift; sourceTree = "<group>"; };
+		0A074A55207EA40700EEC84B /* ExamenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamenViewController.swift; sourceTree = "<group>"; };
+		0A074A57207EC0A500EEC84B /* Alertas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertas.swift; sourceTree = "<group>"; };
+		0A074A59207EC92E00EEC84B /* LeccionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeccionTableViewController.swift; sourceTree = "<group>"; };
+		0A796B572059A11000E93812 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0A796B592059A27D00E93812 /* RegistroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistroViewController.swift; sourceTree = "<group>"; };
+		0A796B5B2059A3F200E93812 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		0A796B5D2059A72F00E93812 /* Met_DefinirTamanoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Met_DefinirTamanoViewController.swift; sourceTree = "<group>"; };
+		0A796B5F2059A74600E93812 /* Met_IngresarColumnasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Met_IngresarColumnasViewController.swift; sourceTree = "<group>"; };
+		0A796B612059A76100E93812 /* Met_IngresarCostoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Met_IngresarCostoViewController.swift; sourceTree = "<group>"; };
+		0A796B632059A78B00E93812 /* Met_IteracionDePasosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Met_IteracionDePasosViewController.swift; sourceTree = "<group>"; };
+		0A796B692059A91C00E93812 /* Menu_DocumentacionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_DocumentacionViewController.swift; sourceTree = "<group>"; };
+		0A796B6B2059A99600E93812 /* Menu_ExamenesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_ExamenesTableViewController.swift; sourceTree = "<group>"; };
+		0A796B6D2059A9A200E93812 /* Menu_LeccionesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_LeccionesTableViewController.swift; sourceTree = "<group>"; };
+		0A796B6F2059A9EC00E93812 /* Menu_ExamenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_ExamenTableViewCell.swift; sourceTree = "<group>"; };
+		0A796B712059A9F900E93812 /* Menu_LeccionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_LeccionTableViewCell.swift; sourceTree = "<group>"; };
+		0A796B732059AA1A00E93812 /* Met_IngresarCostoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Met_IngresarCostoCollectionViewCell.swift; sourceTree = "<group>"; };
+		0A796B752059AA8A00E93812 /* Met_IngresarColumnaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Met_IngresarColumnaTableViewCell.swift; sourceTree = "<group>"; };
+		0A916FDA205C37B600400F87 /* Met_IteracionDePasosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Met_IteracionDePasosCollectionViewCell.swift; sourceTree = "<group>"; };
+		0A916FDC205C4F1300400F87 /* Menu_DocumentoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_DocumentoTableViewCell.swift; sourceTree = "<group>"; };
+		0A966C33206416D000C5561F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		0A966C352064178300C5561F /* Menu_MaestroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_MaestroViewController.swift; sourceTree = "<group>"; };
+		0A966C3820642E1200C5561F /* MuralArtist(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MuralArtist(1).png"; sourceTree = "<group>"; };
+		0AA9C4B3207BC096009F55F9 /* Conexion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conexion.swift; sourceTree = "<group>"; };
+		0AA9C4B5207C0AAC009F55F9 /* candado-abierto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "candado-abierto.png"; sourceTree = "<group>"; };
+		0AA9C4B7207C0AB5009F55F9 /* candado.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candado.png; sourceTree = "<group>"; };
+		0AA9C4B9207C0E66009F55F9 /* books-stack-of-three.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "books-stack-of-three.png"; sourceTree = "<group>"; };
+		0AA9C4BB207C0E81009F55F9 /* books-stack-of-three (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "books-stack-of-three (1).png"; sourceTree = "<group>"; };
+		0ACAE104207D74CA00585790 /* radioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radioButton.swift; sourceTree = "<group>"; };
+		0ACAE108207D75D000585790 /* rdbUn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rdbUn.png; sourceTree = "<group>"; };
+		0ACAE10A207D75D900585790 /* rdbCh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rdbCh.png; sourceTree = "<group>"; };
+		1E1863CED22C84B9E5E23608 /* Pods_AVE_DIDACTICO_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AVE_DIDACTICO_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		722920102050BED80074CB9E /* AVE_DIDACTICO_IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVE_DIDACTICO_IOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		722920132050BED80074CB9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		722920152050BED80074CB9E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +86,8 @@
 		7229201A2050BED80074CB9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7229201D2050BED80074CB9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7229201F2050BED80074CB9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1D87C10095A91E705272E8B /* Pods-AVE_DIDACTICO_IOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AVE_DIDACTICO_IOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-AVE_DIDACTICO_IOS/Pods-AVE_DIDACTICO_IOS.release.xcconfig"; sourceTree = "<group>"; };
+		EA3DBE49DC47A400BADF0C1F /* Pods-AVE_DIDACTICO_IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AVE_DIDACTICO_IOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AVE_DIDACTICO_IOS/Pods-AVE_DIDACTICO_IOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +95,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EF1C3398D04302AB62F4831 /* Pods_AVE_DIDACTICO_IOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A966C3720642E0200C5561F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				0ACAE108207D75D000585790 /* rdbUn.png */,
+				0ACAE10A207D75D900585790 /* rdbCh.png */,
+				0AA9C4B5207C0AAC009F55F9 /* candado-abierto.png */,
+				0AA9C4B9207C0E66009F55F9 /* books-stack-of-three.png */,
+				0AA9C4BB207C0E81009F55F9 /* books-stack-of-three (1).png */,
+				0AA9C4B7207C0AB5009F55F9 /* candado.png */,
+				0A966C3820642E1200C5561F /* MuralArtist(1).png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		6AE3F7CB8E4B09F6A22D996A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1E1863CED22C84B9E5E23608 /* Pods_AVE_DIDACTICO_IOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		722920072050BED70074CB9E = {
 			isa = PBXGroup;
 			children = (
 				722920122050BED80074CB9E /* AVE_DIDACTICO_IOS */,
 				722920112050BED80074CB9E /* Products */,
+				8A45C05FE371732EDFFED003 /* Pods */,
+				6AE3F7CB8E4B09F6A22D996A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +145,48 @@
 		722920122050BED80074CB9E /* AVE_DIDACTICO_IOS */ = {
 			isa = PBXGroup;
 			children = (
+				0A966C3720642E0200C5561F /* Images */,
 				722920132050BED80074CB9E /* AppDelegate.swift */,
 				722920152050BED80074CB9E /* ViewController.swift */,
+				0A796B572059A11000E93812 /* LoginViewController.swift */,
 				722920172050BED80074CB9E /* Main.storyboard */,
 				7229201A2050BED80074CB9E /* Assets.xcassets */,
 				7229201C2050BED80074CB9E /* LaunchScreen.storyboard */,
 				7229201F2050BED80074CB9E /* Info.plist */,
+				0A796B5B2059A3F200E93812 /* Global.swift */,
+				0A796B592059A27D00E93812 /* RegistroViewController.swift */,
+				0A796B5D2059A72F00E93812 /* Met_DefinirTamanoViewController.swift */,
+				0A796B5F2059A74600E93812 /* Met_IngresarColumnasViewController.swift */,
+				0A796B752059AA8A00E93812 /* Met_IngresarColumnaTableViewCell.swift */,
+				0A796B612059A76100E93812 /* Met_IngresarCostoViewController.swift */,
+				0A796B732059AA1A00E93812 /* Met_IngresarCostoCollectionViewCell.swift */,
+				0A796B632059A78B00E93812 /* Met_IteracionDePasosViewController.swift */,
+				0A916FDA205C37B600400F87 /* Met_IteracionDePasosCollectionViewCell.swift */,
+				0A796B692059A91C00E93812 /* Menu_DocumentacionViewController.swift */,
+				0A796B6B2059A99600E93812 /* Menu_ExamenesTableViewController.swift */,
+				0A796B6F2059A9EC00E93812 /* Menu_ExamenTableViewCell.swift */,
+				0A796B6D2059A9A200E93812 /* Menu_LeccionesTableViewController.swift */,
+				0A796B712059A9F900E93812 /* Menu_LeccionTableViewCell.swift */,
+				0A916FDC205C4F1300400F87 /* Menu_DocumentoTableViewCell.swift */,
+				0A966C352064178300C5561F /* Menu_MaestroViewController.swift */,
+				0A966C33206416D000C5561F /* TabBarController.swift */,
+				0AA9C4B3207BC096009F55F9 /* Conexion.swift */,
+				0ACAE104207D74CA00585790 /* radioButton.swift */,
+				0A074A55207EA40700EEC84B /* ExamenViewController.swift */,
+				0A074A51207EA31D00EEC84B /* ExamenPreguntaTableViewCell.swift */,
+				0A074A57207EC0A500EEC84B /* Alertas.swift */,
+				0A074A59207EC92E00EEC84B /* LeccionTableViewController.swift */,
 			);
 			path = AVE_DIDACTICO_IOS;
+			sourceTree = "<group>";
+		};
+		8A45C05FE371732EDFFED003 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EA3DBE49DC47A400BADF0C1F /* Pods-AVE_DIDACTICO_IOS.debug.xcconfig */,
+				E1D87C10095A91E705272E8B /* Pods-AVE_DIDACTICO_IOS.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +196,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 722920222050BED80074CB9E /* Build configuration list for PBXNativeTarget "AVE_DIDACTICO_IOS" */;
 			buildPhases = (
+				5A2DB67CE640D7F0436568F8 /* [CP] Check Pods Manifest.lock */,
 				7229200C2050BED70074CB9E /* Sources */,
 				7229200D2050BED70074CB9E /* Frameworks */,
 				7229200E2050BED70074CB9E /* Resources */,
+				63DAD16031B0C9616D2E6747 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -124,20 +251,92 @@
 			buildActionMask = 2147483647;
 			files = (
 				7229201E2050BED80074CB9E /* LaunchScreen.storyboard in Resources */,
+				0ACAE109207D75D000585790 /* rdbUn.png in Resources */,
+				0AA9C4BC207C0E81009F55F9 /* books-stack-of-three (1).png in Resources */,
 				7229201B2050BED80074CB9E /* Assets.xcassets in Resources */,
+				0AA9C4BA207C0E66009F55F9 /* books-stack-of-three.png in Resources */,
+				0ACAE10B207D75D900585790 /* rdbCh.png in Resources */,
+				0AA9C4B8207C0AB5009F55F9 /* candado.png in Resources */,
 				722920192050BED80074CB9E /* Main.storyboard in Resources */,
+				0A966C3920642E1200C5561F /* MuralArtist(1).png in Resources */,
+				0AA9C4B6207C0AAC009F55F9 /* candado-abierto.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5A2DB67CE640D7F0436568F8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AVE_DIDACTICO_IOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63DAD16031B0C9616D2E6747 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AVE_DIDACTICO_IOS/Pods-AVE_DIDACTICO_IOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AVE_DIDACTICO_IOS/Pods-AVE_DIDACTICO_IOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7229200C2050BED70074CB9E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A074A52207EA31D00EEC84B /* ExamenPreguntaTableViewCell.swift in Sources */,
+				0A796B582059A11000E93812 /* LoginViewController.swift in Sources */,
+				0A916FDB205C37B600400F87 /* Met_IteracionDePasosCollectionViewCell.swift in Sources */,
+				0A796B642059A78B00E93812 /* Met_IteracionDePasosViewController.swift in Sources */,
+				0A916FDD205C4F1300400F87 /* Menu_DocumentoTableViewCell.swift in Sources */,
+				0A796B6E2059A9A200E93812 /* Menu_LeccionesTableViewController.swift in Sources */,
+				0AA9C4B4207BC096009F55F9 /* Conexion.swift in Sources */,
+				0A796B762059AA8A00E93812 /* Met_IngresarColumnaTableViewCell.swift in Sources */,
+				0A796B5A2059A27D00E93812 /* RegistroViewController.swift in Sources */,
+				0A796B602059A74600E93812 /* Met_IngresarColumnasViewController.swift in Sources */,
 				722920162050BED80074CB9E /* ViewController.swift in Sources */,
+				0A796B722059A9F900E93812 /* Menu_LeccionTableViewCell.swift in Sources */,
+				0A966C34206416D000C5561F /* TabBarController.swift in Sources */,
+				0A796B6A2059A91C00E93812 /* Menu_DocumentacionViewController.swift in Sources */,
+				0A796B6C2059A99600E93812 /* Menu_ExamenesTableViewController.swift in Sources */,
+				0A796B5E2059A72F00E93812 /* Met_DefinirTamanoViewController.swift in Sources */,
+				0A074A5A207EC92E00EEC84B /* LeccionTableViewController.swift in Sources */,
+				0A966C362064178300C5561F /* Menu_MaestroViewController.swift in Sources */,
+				0A796B5C2059A3F200E93812 /* Global.swift in Sources */,
+				0A074A56207EA40700EEC84B /* ExamenViewController.swift in Sources */,
 				722920142050BED80074CB9E /* AppDelegate.swift in Sources */,
+				0A074A58207EC0A500EEC84B /* Alertas.swift in Sources */,
+				0A796B622059A76100E93812 /* Met_IngresarCostoViewController.swift in Sources */,
+				0A796B742059AA1A00E93812 /* Met_IngresarCostoCollectionViewCell.swift in Sources */,
+				0A796B702059A9EC00E93812 /* Menu_ExamenTableViewCell.swift in Sources */,
+				0ACAE105207D74CA00585790 /* radioButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,10 +471,12 @@
 		};
 		722920232050BED80074CB9E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA3DBE49DC47A400BADF0C1F /* Pods-AVE_DIDACTICO_IOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AVE_DIDACTICO_IOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BryanMtz.AVE-DIDACTICO-IOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -286,10 +487,12 @@
 		};
 		722920242050BED80074CB9E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1D87C10095A91E705272E8B /* Pods-AVE_DIDACTICO_IOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AVE_DIDACTICO_IOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BryanMtz.AVE-DIDACTICO-IOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
