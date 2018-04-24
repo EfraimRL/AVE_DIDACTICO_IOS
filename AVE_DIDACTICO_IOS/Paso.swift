@@ -19,6 +19,7 @@ class Paso {
     var celdas:[Celda] = []
     var ofertas:[Double] = []
     var demandas:[Double] = []
+    var comentario:String = ""
     
     var index = 0
     init(filas:Int,columnas:Int) {
@@ -73,6 +74,9 @@ class Paso {
         for x in ofertas{offer = offer + x}
         for x in demand{demand = demand + x}
         self.final = "\(offer)/\(demand)"
+    }
+    func setComentario(comentario:String) {
+        self.comentario = comentario
     }
     func getCelda() -> Any{
         var cell = Any

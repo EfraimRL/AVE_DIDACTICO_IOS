@@ -8,19 +8,23 @@
 
 import Foundation
 
+//Datos que se usan para crear el objeto 'Paso'
 var cantColumnas:Int = 0
 var cantFilas:Int = 0
 
-var iteracionActual:Int = 0
-
+var arrMatriz:[[Double]] = []//Cambiar Double por Celda'
+var arrCostos:[Double] = []  //Quitar al usar Celda'
 var arrValores:[Double] = []
-var arrMatriz:[[Double]] = []
-var arrCostos:[Double] = []
-
-var listaPasos:[[Double]] = []
-
+    //Crear una copia auxiliar de estos dos precios
 var precioColumnas:[Double] = []
 var precioFilas:[Double] = []
+
+//Para otras cosas
+var iteracionActual:Int = 0
+
+//Guarda los Pasos ....Cambiar [[Double]] por [Paso]'
+var listaPasos:[[Double]] = []
+
 
 var maestro:Bool = false
 func esMaestro() -> Bool{
