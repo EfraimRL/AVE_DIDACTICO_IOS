@@ -36,7 +36,7 @@ class Met_DefinirTamanoViewController: UIViewController {
                 cantFilas = Filas
                 iteracionActual = 0
                 definirMatriz()
-                performSegue(withIdentifier: "segDefinirTamano-A-IngreColumnas", sender: nil)
+                performSegue(withIdentifier: "segDefinirTamano-A-IngreOfertasDemandas", sender: nil)
             } else {
                 print("Verifique que los valores sean enteros")
             }
@@ -58,7 +58,7 @@ class Met_DefinirTamanoViewController: UIViewController {
         
         if sender == nil
         {
-            var destino =  segue.destination as! Met_IngresarColumnasViewController
+            var destino =  segue.destination as! Met_IngresarOfertaDemandaViewController
         }
         
     }

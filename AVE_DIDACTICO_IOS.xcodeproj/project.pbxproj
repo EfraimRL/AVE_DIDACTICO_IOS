@@ -11,6 +11,7 @@
 		0A074A56207EA40700EEC84B /* ExamenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A074A55207EA40700EEC84B /* ExamenViewController.swift */; };
 		0A074A58207EC0A500EEC84B /* Alertas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A074A57207EC0A500EEC84B /* Alertas.swift */; };
 		0A074A5A207EC92E00EEC84B /* LeccionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A074A59207EC92E00EEC84B /* LeccionTableViewController.swift */; };
+		0A1F010D208FC91A000F1593 /* Paso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F010C208FC91A000F1593 /* Paso.swift */; };
 		0A33102C2087B92300A7BD8F /* NewTestJavaScriptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A33102B2087B92300A7BD8F /* NewTestJavaScriptViewController.swift */; };
 		0A3310302087BA9800A7BD8F /* jssource.js in Resources */ = {isa = PBXBuildFile; fileRef = 0A33102F2087BA9800A7BD8F /* jssource.js */; };
 		0A3310322087BCA600A7BD8F /* algoritmo.js in Resources */ = {isa = PBXBuildFile; fileRef = 0A3310312087BCA600A7BD8F /* algoritmo.js */; };
@@ -33,6 +34,9 @@
 		0A966C34206416D000C5561F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A966C33206416D000C5561F /* TabBarController.swift */; };
 		0A966C362064178300C5561F /* Menu_MaestroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A966C352064178300C5561F /* Menu_MaestroViewController.swift */; };
 		0A966C3920642E1200C5561F /* MuralArtist(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 0A966C3820642E1200C5561F /* MuralArtist(1).png */; };
+		0A9E579C208FB14900F1863B /* Met_IngresarOfertaDemandaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E579B208FB14900F1863B /* Met_IngresarOfertaDemandaViewController.swift */; };
+		0A9E579E208FB28000F1863B /* Met_IngresarDemandasTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E579D208FB28000F1863B /* Met_IngresarDemandasTableViewCell.swift */; };
+		0A9E57A0208FB29C00F1863B /* Met_IngresarOfertasCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9E579F208FB29C00F1863B /* Met_IngresarOfertasCollectionViewCell.swift */; };
 		0AA9C4B4207BC096009F55F9 /* Conexion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA9C4B3207BC096009F55F9 /* Conexion.swift */; };
 		0AA9C4B6207C0AAC009F55F9 /* candado-abierto.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AA9C4B5207C0AAC009F55F9 /* candado-abierto.png */; };
 		0AA9C4B8207C0AB5009F55F9 /* candado.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AA9C4B7207C0AB5009F55F9 /* candado.png */; };
@@ -54,6 +58,7 @@
 		0A074A55207EA40700EEC84B /* ExamenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamenViewController.swift; sourceTree = "<group>"; };
 		0A074A57207EC0A500EEC84B /* Alertas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertas.swift; sourceTree = "<group>"; };
 		0A074A59207EC92E00EEC84B /* LeccionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeccionTableViewController.swift; sourceTree = "<group>"; };
+		0A1F010C208FC91A000F1593 /* Paso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paso.swift; sourceTree = "<group>"; };
 		0A33102B2087B92300A7BD8F /* NewTestJavaScriptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTestJavaScriptViewController.swift; sourceTree = "<group>"; };
 		0A33102F2087BA9800A7BD8F /* jssource.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jssource.js; sourceTree = "<group>"; };
 		0A3310312087BCA600A7BD8F /* algoritmo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = algoritmo.js; sourceTree = "<group>"; };
@@ -76,6 +81,9 @@
 		0A966C33206416D000C5561F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		0A966C352064178300C5561F /* Menu_MaestroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_MaestroViewController.swift; sourceTree = "<group>"; };
 		0A966C3820642E1200C5561F /* MuralArtist(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MuralArtist(1).png"; sourceTree = "<group>"; };
+		0A9E579B208FB14900F1863B /* Met_IngresarOfertaDemandaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Met_IngresarOfertaDemandaViewController.swift; sourceTree = "<group>"; };
+		0A9E579D208FB28000F1863B /* Met_IngresarDemandasTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Met_IngresarDemandasTableViewCell.swift; sourceTree = "<group>"; };
+		0A9E579F208FB29C00F1863B /* Met_IngresarOfertasCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Met_IngresarOfertasCollectionViewCell.swift; sourceTree = "<group>"; };
 		0AA9C4B3207BC096009F55F9 /* Conexion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conexion.swift; sourceTree = "<group>"; };
 		0AA9C4B5207C0AAC009F55F9 /* candado-abierto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "candado-abierto.png"; sourceTree = "<group>"; };
 		0AA9C4B7207C0AB5009F55F9 /* candado.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candado.png; sourceTree = "<group>"; };
@@ -183,8 +191,12 @@
 				0A074A57207EC0A500EEC84B /* Alertas.swift */,
 				0A074A59207EC92E00EEC84B /* LeccionTableViewController.swift */,
 				0A33102B2087B92300A7BD8F /* NewTestJavaScriptViewController.swift */,
+				0A9E579B208FB14900F1863B /* Met_IngresarOfertaDemandaViewController.swift */,
+				0A9E579D208FB28000F1863B /* Met_IngresarDemandasTableViewCell.swift */,
+				0A9E579F208FB29C00F1863B /* Met_IngresarOfertasCollectionViewCell.swift */,
 				0A3310312087BCA600A7BD8F /* algoritmo.js */,
 				0A33102F2087BA9800A7BD8F /* jssource.js */,
+				0A1F010C208FC91A000F1593 /* Paso.swift */,
 			);
 			path = AVE_DIDACTICO_IOS;
 			sourceTree = "<group>";
@@ -323,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A074A52207EA31D00EEC84B /* ExamenPreguntaTableViewCell.swift in Sources */,
+				0A9E57A0208FB29C00F1863B /* Met_IngresarOfertasCollectionViewCell.swift in Sources */,
 				0A796B582059A11000E93812 /* LoginViewController.swift in Sources */,
 				0A916FDB205C37B600400F87 /* Met_IteracionDePasosCollectionViewCell.swift in Sources */,
 				0A796B642059A78B00E93812 /* Met_IteracionDePasosViewController.swift in Sources */,
@@ -336,6 +349,7 @@
 				0A796B722059A9F900E93812 /* Menu_LeccionTableViewCell.swift in Sources */,
 				0A966C34206416D000C5561F /* TabBarController.swift in Sources */,
 				0A796B6A2059A91C00E93812 /* Menu_DocumentacionViewController.swift in Sources */,
+				0A9E579C208FB14900F1863B /* Met_IngresarOfertaDemandaViewController.swift in Sources */,
 				0A796B6C2059A99600E93812 /* Menu_ExamenesTableViewController.swift in Sources */,
 				0A796B5E2059A72F00E93812 /* Met_DefinirTamanoViewController.swift in Sources */,
 				0A074A5A207EC92E00EEC84B /* LeccionTableViewController.swift in Sources */,
@@ -343,9 +357,11 @@
 				0A796B5C2059A3F200E93812 /* Global.swift in Sources */,
 				0A074A56207EA40700EEC84B /* ExamenViewController.swift in Sources */,
 				722920142050BED80074CB9E /* AppDelegate.swift in Sources */,
+				0A1F010D208FC91A000F1593 /* Paso.swift in Sources */,
 				0A33102C2087B92300A7BD8F /* NewTestJavaScriptViewController.swift in Sources */,
 				0A074A58207EC0A500EEC84B /* Alertas.swift in Sources */,
 				0A796B622059A76100E93812 /* Met_IngresarCostoViewController.swift in Sources */,
+				0A9E579E208FB28000F1863B /* Met_IngresarDemandasTableViewCell.swift in Sources */,
 				0A796B742059AA1A00E93812 /* Met_IngresarCostoCollectionViewCell.swift in Sources */,
 				0A796B702059A9EC00E93812 /* Menu_ExamenTableViewCell.swift in Sources */,
 				0ACAE105207D74CA00585790 /* radioButton.swift in Sources */,
@@ -487,10 +503,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GQD3QMDAE4;
 				INFOPLIST_FILE = AVE_DIDACTICO_IOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.BryanMtz.AVE-DIDACTICO-IOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.EfraimRL.AVE-DIDACTICO-IOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -503,10 +520,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GQD3QMDAE4;
 				INFOPLIST_FILE = AVE_DIDACTICO_IOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.BryanMtz.AVE-DIDACTICO-IOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.EfraimRL.AVE-DIDACTICO-IOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

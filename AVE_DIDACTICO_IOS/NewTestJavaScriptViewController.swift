@@ -57,7 +57,7 @@ class NewTestJavaScriptViewController: UIViewController {
             let object = array! as! [String:AnyObject]
             print(object)
             print("Object ",array!)
-            print(jh)
+            //print(jh)
             let array1 = variableHelloWorld.toString()
             print("String ",array1!)
             let str:String = array1!
