@@ -11,12 +11,14 @@ class Met_IteracionDePasosViewController: UIViewController,UICollectionViewDataS
 //Declaracion de variables
     var arrMostrarValaorActual: [Double] = []
     var arrMostrarCostoActual: [Double] = []
-//Metodos y botones simples
+    @IBOutlet weak var lblDescripcion: UILabel!
+    //Metodos y botones simples
     @IBOutlet weak var cvIteracionDePasos: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         cvIteracionDePasos.delegate = self
         cvIteracionDePasos.dataSource = self
+        lblDescripcion.text = pasos[iteracionActual].comentario
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -24,20 +26,42 @@ class Met_IteracionDePasosViewController: UIViewController,UICollectionViewDataS
     
 //Llenado del collectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cantFilas * cantColumnas
+        return (pasos[iteracionActual].filas + 2) * (pasos[iteracionActual].columnas + 2)
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellIteracion", for: indexPath) as! Met_IteracionDePasosCollectionViewCell
+        let dupla = pasos[iteracionActual].getCelda()
+        print(dupla.1)
+        if dupla.1 == 0{
+            cell.lblValor.text = (dupla.0 as! String)
+            if (Double(dupla.0 as! String) == nil){
+                cell.lblValor.backgroundColor = #colorLiteral(red: 0.5058823824, green: 0.3372549117, blue: 0.06666667014, alpha: 1)
+            }
+            else{
+                cell.lblValor.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            }
+            cell.lblPrecio.text = ""
+        }
+        else if dupla.1 == 1{
+            let paso = dupla.0 as! Celda
+            cell.lblValor.text = "\(paso.valor)"
+            cell.lblPrecio.text = "\(paso.costo)"
+            if paso.color == 0{
+                cell.lblValor.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            }
+        }
+        /*
         cell.lblValor.text = "\(listaPasos[iteracionActual][indexPath.row])"
         cell.lblPrecio.text = "\(arrCostos[indexPath.row])"
+        */
         return cell
     }
 //Tamaño de las celdas: largo, ancho, espacio...
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
-        let cellwidth:CGFloat = screenWidth / CGFloat(cantColumnas)
-        let cellHieght:CGFloat = screenWidth / CGFloat(cantFilas)
+        let cellwidth:CGFloat = screenWidth / CGFloat(pasos[iteracionActual].columnas + 2)
+        let cellHieght:CGFloat = screenWidth / CGFloat(pasos[iteracionActual].filas + 2)
         print("Aqui esta el tamaño")
         return CGSize(width: cellwidth, height: cellHieght)
     }
@@ -54,8 +78,9 @@ class Met_IteracionDePasosViewController: UIViewController,UICollectionViewDataS
     //Siguiente paso
     @IBAction func btnSiguiente(_ sender: Any) {
         //Asigna el elemento siguiente de la lista de pasos (Siguiene paso), a los arreglos 'arrMostrarValorActual' y 'arrMostrarCostoActual'
-        if iteracionActual < (listaPasos.count - 1){
+        if iteracionActual < (pasos.count - 1){
             iteracionActual = iteracionActual + 1
+            lblDescripcion.text = pasos[iteracionActual].comentario
             cvIteracionDePasos.reloadData()
         }
         //Recarga el Collection view
@@ -63,7 +88,8 @@ class Met_IteracionDePasosViewController: UIViewController,UICollectionViewDataS
     //Al resultado final
     @IBAction func btnFinal(_ sender: Any) {
         //Asigna el ultimo elemento de la lista de pasos (Ultimo paso) a los arreglos 'arrMostrarValorActual' y 'arrMostrarCostoActual'
-        iteracionActual = (listaPasos.count) - 1
+        iteracionActual = (pasos.count) - 1
+        lblDescripcion.text = pasos[iteracionActual].comentario
         cvIteracionDePasos.reloadData()
         //Recarga el Collection view
     }
@@ -72,6 +98,7 @@ class Met_IteracionDePasosViewController: UIViewController,UICollectionViewDataS
         //Asigna el elemento anterior de la lista de pasos (Paso anterior) a los arregos 'arrMostrarValorActual' y 'arrMostrarCostoActual'
         if iteracionActual > 0{
             iteracionActual = iteracionActual - 1
+            lblDescripcion.text = pasos[iteracionActual].comentario
             cvIteracionDePasos.reloadData()
         }
         //Recarga el Collection view

@@ -23,7 +23,12 @@ class Met_IngresarCostoViewController: UIViewController,UICollectionViewDelegate
         cvIngresarCostos.delegate = self
         cvIngresarCostos.dataSource = self
         posX.constant = -600
-        
+        arrValores = []
+        for x in 0..<cantFilas{
+            for y in 0..<cantColumnas{
+                arrValores.append(arrMatriz[x][y])
+            }
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -33,7 +38,20 @@ class Met_IngresarCostoViewController: UIViewController,UICollectionViewDelegate
         for iter in 0..<(cantFilas*cantColumnas){
             let cell = cvIngresarCostos.cellForItem(at: IndexPath(row: iter, section: 0)) as! Met_IngresarCostoCollectionViewCell
             let dob:String = cell.lblCosto.text!
-            arrCostos.append(Double(dob)!)
+            if (Double(dob) != nil){
+                arrCostos.append(Double(dob)!)
+            }
+            else{
+                arrCostos.append(0)
+            }
+            
+        }
+        var inde = 0
+        for x in 0..<cantFilas{
+            for y in 0..<cantColumnas{
+                arrMatriz[x][y].costo = arrCostos[inde]
+                inde = inde + 1
+            }
         }
         GenerarPasos(metodo: .ave)
         performSegue(withIdentifier: "segIngreCosto-A-Iteracion", sender: nil)
@@ -48,7 +66,7 @@ class Met_IngresarCostoViewController: UIViewController,UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellIngresarCosto", for: indexPath) as! Met_IngresarCostoCollectionViewCell
         
-        cell.lblValor.text = "\(arrValores[indexPath.row])"
+        cell.lblValor.text = "\(arrValores[indexPath.row].valor)"
         cell.lblCosto.text = "\(indexPath.section)"
         cell.frame.size.height = cvIngresarCostos.contentSize.height/CGFloat(cantFilas)
         cell.frame.size.width = cvIngresarCostos.contentSize.width/CGFloat(cantColumnas)

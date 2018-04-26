@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aE7-0C-sEb">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1315,9 +1315,9 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQV-uf-3Qp">
-                                <rect key="frame" x="0.0" y="44" width="320" height="68"/>
+                                <rect key="frame" x="0.0" y="54" width="320" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="MQV-uf-3Qp" secondAttribute="height" multiplier="80:17" id="KAO-WL-MFf"/>
+                                    <constraint firstAttribute="width" secondItem="MQV-uf-3Qp" secondAttribute="height" multiplier="80:15" id="KAO-WL-MFf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -1363,7 +1363,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gAm-1r-Rh4">
-                                <rect key="frame" x="0.0" y="112" width="320" height="324"/>
+                                <rect key="frame" x="0.0" y="114" width="320" height="322"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dKb-R7-18S">
                                     <size key="itemSize" width="81" height="81"/>
@@ -1382,6 +1382,12 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o26-vw-Hj7">
                                                     <rect key="frame" x="0.0" y="0.0" width="81" height="81"/>
                                                     <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYZ-O6-238">
+                                                            <rect key="frame" x="0.0" y="0.0" width="81" height="81"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5qa-Kn-Rii">
                                                             <rect key="frame" x="41" y="0.0" width="40" height="40"/>
                                                             <subviews>
@@ -1392,7 +1398,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="heQ-2M-1hy" secondAttribute="trailing" id="5B2-nr-X27"/>
                                                                 <constraint firstItem="heQ-2M-1hy" firstAttribute="leading" secondItem="5qa-Kn-Rii" secondAttribute="leading" id="5HB-UY-ij3"/>
@@ -1402,12 +1408,6 @@
                                                                 <constraint firstItem="heQ-2M-1hy" firstAttribute="top" secondItem="5qa-Kn-Rii" secondAttribute="top" id="krV-SM-73a"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYZ-O6-238">
-                                                            <rect key="frame" x="0.0" y="0.0" width="81" height="81"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -1451,7 +1451,7 @@
                             <constraint firstItem="i8e-O4-eS5" firstAttribute="trailing" secondItem="Ipz-v5-woj" secondAttribute="trailing" constant="14" id="KbC-1x-3aE"/>
                             <constraint firstItem="i8e-O4-eS5" firstAttribute="bottom" secondItem="Ipz-v5-woj" secondAttribute="bottom" constant="8" id="KlL-Ea-kK1"/>
                             <constraint firstItem="gAm-1r-Rh4" firstAttribute="top" secondItem="MQV-uf-3Qp" secondAttribute="bottom" id="NSA-1E-1RV"/>
-                            <constraint firstItem="MQV-uf-3Qp" firstAttribute="top" secondItem="e4N-vd-5Kn" secondAttribute="top" constant="44" id="RWr-DI-yvD"/>
+                            <constraint firstItem="MQV-uf-3Qp" firstAttribute="top" secondItem="e4N-vd-5Kn" secondAttribute="top" constant="54" id="RWr-DI-yvD"/>
                             <constraint firstItem="QkR-3R-hhc" firstAttribute="top" secondItem="gAm-1r-Rh4" secondAttribute="bottom" id="XPO-4v-HZP"/>
                             <constraint firstItem="Ipz-v5-woj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="e4N-vd-5Kn" secondAttribute="leading" constant="20" symbolic="YES" id="edH-Cr-JQs"/>
                             <constraint firstItem="gAm-1r-Rh4" firstAttribute="leading" secondItem="i8e-O4-eS5" secondAttribute="leading" id="pcU-sf-aJm"/>
@@ -1463,6 +1463,7 @@
                     </view>
                     <connections>
                         <outlet property="cvIteracionDePasos" destination="gAm-1r-Rh4" id="29l-k5-LQi"/>
+                        <outlet property="lblDescripcion" destination="MQV-uf-3Qp" id="ytn-wp-VKf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UEK-q9-wWv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1852,10 +1853,11 @@
         <image name="MuralArtist(1).png" width="500" height="500"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="KlQ-7S-53b"/>
         <segue reference="l6q-1n-AEt"/>
         <segue reference="XoG-B3-azd"/>
-        <segue reference="Dxg-fq-gmf"/>
-        <segue reference="rK4-SU-alD"/>
+        <segue reference="AqP-2X-yBD"/>
+        <segue reference="U4k-Un-Qt5"/>
         <segue reference="v0x-tM-f1f"/>
     </inferredMetricsTieBreakers>
 </document>

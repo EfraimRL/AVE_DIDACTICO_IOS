@@ -52,12 +52,15 @@ class Met_IngresarOfertaDemandaViewController: UIViewController,UITableViewDeleg
     
     @IBAction func btnSiguiente(_ sender: Any) {
         var correcto = true
+        var filas:[Double] = []
+        var columnas:[Double] = []
         let rowCount = tvDemandas.numberOfRows(inSection: 0)
         for row in 0 ..< rowCount {
             let cell = tvDemandas.cellForRow(at: IndexPath(row: row, section: 0)) as! Met_IngresarDemandasTableViewCell
             let dob:String = cell.txt.text!
             if let doble = Double(dob){
-                //Guardar doble en el arreglo
+//Inserta cantidad de demandas
+                filas.append(doble)
             }
             else{
                 correcto = false
@@ -69,7 +72,7 @@ class Met_IngresarOfertaDemandaViewController: UIViewController,UITableViewDeleg
             let cell = cvOfertas.cellForItem(at: IndexPath(row: row, section: 0)) as! Met_IngresarOfertasCollectionViewCell
             let dob:String = cell.txt.text!
             if let doble = Double(dob){
-                //Guardar doble en el arreglo
+                columnas.append(doble)
             }
             else{
                 correcto = false
@@ -77,7 +80,8 @@ class Met_IngresarOfertaDemandaViewController: UIViewController,UITableViewDeleg
             }
         }
         if correcto {
-            
+            precioFilas = filas
+            precioColumnas = columnas
             performSegue(withIdentifier: "segIngreOfertasDemandas-A-IngreColumnas", sender: nil)
         }
     }

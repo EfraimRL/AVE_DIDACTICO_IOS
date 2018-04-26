@@ -45,10 +45,10 @@ class Met_DefinirTamanoViewController: UIViewController {
         }
     }
     func definirMatriz(){
-        var renglones:[Double] = []
+        var renglones:[Celda] = []
         arrMatriz = []
         for _ in 0..<cantColumnas{
-            renglones.append(0)
+            renglones.append(Celda())
         }
         for _ in 0..<cantFilas{
             arrMatriz.append(renglones)
