@@ -126,11 +126,13 @@ func GenerarPasos(metodo: Metodo){
                 else{
                     if precioColumnas[y] > precioFilas[indexx]{
                         arrMatriz[indexx][y].valor = precioFilas[indexx]
-                        precioFilas[indexx] = 0
+			precioColumnas[y] = precioColumnas[y]-precioFilas[indexx]
+			precioFilas[indexx] = 0
                     }
                     else{
                         arrMatriz[indexx][y].valor = precioColumnas[y]
-                        precioColumnas[y] = 0
+			precioFilas[indexx] = precioFilas[indexx]-precioColumnas[y]
+			precioColumnas[y] = 0
                     }
                 }
                 
@@ -142,7 +144,20 @@ func GenerarPasos(metodo: Metodo){
     newPaso.setComentario(comentario: "Asignacion")
     newPaso.setCeldasValores(matrizValores: arrMatriz)
     pasos.append(newPaso)
+	
+    //Validacion de asignacion "#R + #C - 1 = Asignaciones"
+    var FilasMasColumnas = 0
+    for x in arrMatriz{
+    	for y in x{
+	     if (let val = Double(y.valor)) != nil{
+	     	FilasMasColumnas = FilasMasColumnas + 1
+	     }
+	}
+    }
+	//Si son iguales continia con el procedimiento
+    if ((cantFilas + cantColumnas) - 1) == FilasMasColumnas{
     
+    }
     
     /*
      var resultado:[[Double]] = []
