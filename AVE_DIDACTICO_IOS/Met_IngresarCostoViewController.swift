@@ -24,9 +24,22 @@ class Met_IngresarCostoViewController: UIViewController,UICollectionViewDelegate
         cvIngresarCostos.dataSource = self
         posX.constant = -600
         arrValores = []
+        Inicializar()
         for x in 0..<cantFilas{
             for y in 0..<cantColumnas{
                 arrValores.append(arrMatriz[x][y])
+            }
+        }
+    }
+    func Inicializar() {
+        let rowCount = cantFilas
+        //Ciclo para leer cada cuadro de texto de la tabla
+        for col in 0 ..< cantColumnas{
+            for row in 0 ..< rowCount {
+                var cel = Celda()
+                cel.valor = 0.0
+                arrMatriz[row][col] = cel
+                //cell.txtValor.text = ""
             }
         }
     }
@@ -70,7 +83,7 @@ class Met_IngresarCostoViewController: UIViewController,UICollectionViewDelegate
         cell.lblCosto.text = "\(indexPath.section)"
         cell.frame.size.height = cvIngresarCostos.contentSize.height/CGFloat(cantFilas)
         cell.frame.size.width = cvIngresarCostos.contentSize.width/CGFloat(cantColumnas)
-        print("View \(view.frame.size.height)x\(view.frame.size.width)")
+        //print("View \(view.frame.size.height)x\(view.frame.size.width)")
         return cell
     }
 //Tamaño de las celdas: largo, ancho, espacio...
@@ -79,7 +92,7 @@ class Met_IngresarCostoViewController: UIViewController,UICollectionViewDelegate
         let screenWidth = screenSize.width
         let cellwidth:CGFloat = screenWidth / CGFloat(cantColumnas)
         let cellHieght:CGFloat = screenWidth / CGFloat(cantFilas)
-        print("Aqui esta el tamaño")
+        //print("Aqui esta el tamaño")
         return CGSize(width: cellwidth, height: cellHieght)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -104,8 +117,8 @@ class Met_IngresarCostoViewController: UIViewController,UICollectionViewDelegate
         posX.constant = -600
         let cell = cvIngresarCostos.cellForItem(at: index!) as! Met_IngresarCostoCollectionViewCell
         cell.lblCosto.text = txtCosto.text
-        print("\(String(describing: index))")
-        txtCosto.text = ""
+        print("Describing(btnSalirPopUp): \(String(describing: index))")
+        txtCosto.text = "0"
     }
     
 }

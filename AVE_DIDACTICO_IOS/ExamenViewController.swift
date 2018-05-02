@@ -11,6 +11,7 @@ import UIKit
 class ExamenViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     var cantQuestions = 5
+    var quizz_id = -1
     var questions:[(Int,String)] = []
     var question_options:[[(Int,String)]] = []
     
@@ -19,6 +20,7 @@ class ExamenViewController: UIViewController,UITableViewDataSource,UITableViewDe
     @IBOutlet weak var tvExamenes: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("quizz id = \(quizz_id)")
         tvExamenes.dataSource = self
         tvExamenes.delegate = self
         TraerPreguntas()
@@ -45,6 +47,7 @@ class ExamenViewController: UIViewController,UITableViewDataSource,UITableViewDe
         return cell
     }
     func TraerPreguntas(){
+        
         questions = [(1,"Pregunta 1..?"),(2,"Pregunta 2..?"),(3,"Pregunta 3..?")]
         question_options = [
             [(0,"Si"), (1,"No"), (0,"Quiza"), (0,"No se")],
@@ -52,6 +55,7 @@ class ExamenViewController: UIViewController,UITableViewDataSource,UITableViewDe
             [(0,"Si"), (1,"No"), (0,"Quiza"), (0,"No se")],
             [(0,"Si"), (1,"No"), (0,"Quiza"), (0,"No se")]
         ]
+        
         cantQuestions = questions.count
     }
     @IBAction func RevisarExamen(_ sender: Any) {
@@ -66,5 +70,5 @@ class ExamenViewController: UIViewController,UITableViewDataSource,UITableViewDe
         // Pass the selected object to the new view controller.
     }
     */
-
+    
 }

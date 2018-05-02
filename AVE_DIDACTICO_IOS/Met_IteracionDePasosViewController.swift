@@ -31,7 +31,7 @@ class Met_IteracionDePasosViewController: UIViewController,UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellIteracion", for: indexPath) as! Met_IteracionDePasosCollectionViewCell
         let dupla = pasos[iteracionActual].getCelda()
-        print(dupla.1)
+        //print(dupla.1)
         if dupla.1 == 0{
             cell.lblValor.text = (dupla.0 as! String)
             if (Double(dupla.0 as! String) == nil){
@@ -62,7 +62,6 @@ class Met_IteracionDePasosViewController: UIViewController,UICollectionViewDataS
         let screenWidth = screenSize.width
         let cellwidth:CGFloat = screenWidth / CGFloat(pasos[iteracionActual].columnas + 2)
         let cellHieght:CGFloat = screenWidth / CGFloat(pasos[iteracionActual].filas + 2)
-        print("Aqui esta el tamaño")
         return CGSize(width: cellwidth, height: cellHieght)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

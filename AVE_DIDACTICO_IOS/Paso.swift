@@ -40,14 +40,14 @@ class Paso {
                 NombresColumnas.append("F/B")
             }
             else{
-                NombresColumnas.append("B\(i)")
+                NombresColumnas.append("C\(i)")
             }
         }
-        NombresColumnas.append("DEM")
+        NombresColumnas.append("Demandas")
         for i in 1 ... filas{
-            NombresFilas.append("F\(i)")
+            NombresFilas.append("R\(i)")
         }
-        NombresFilas.append("OF")
+        NombresFilas.append("Ofertas")
     }
     func setCeldasValores(matrizValores:[[Celda]]) {
         for x in matrizValores {
@@ -147,9 +147,9 @@ class Paso {
     }
 }
 
-class Celda {
+struct Celda {
     var valor:Double = 0
     var costo:Double = 0.0
     var color:Int = 0
-    var asignado:Bool = False
+    var asignado:Bool = false
 }

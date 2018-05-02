@@ -31,7 +31,7 @@ class Met_DefinirTamanoViewController: UIViewController {
         else{
             if let Filas = Int(txtCantidadFilas.text!), let Columnas = Int(txtCantidadColumnas.text!){
                 reiniciarDatos()
-                print("Yeah \(Filas), \(Columnas)")
+                //print("Yeah \(Filas), \(Columnas)")
                 cantColumnas = Columnas
                 cantFilas = Filas
                 iteracionActual = 0

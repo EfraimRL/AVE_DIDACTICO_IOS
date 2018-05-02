@@ -93,7 +93,7 @@ class Met_IngresarColumnasViewController: UIViewController,UITableViewDelegate, 
         let rowCount = tvIngresarColumna.numberOfRows(inSection: 0)
         //Ciclo para leer cada cuadro de texto de la tabla
         for row in 0 ..< rowCount {
-            let cel = Celda()
+            var cel = Celda()
             let cell = tvIngresarColumna.cellForRow(at: IndexPath(row: row, section: 0)) as! Met_IngresarColumnaTableViewCell
                 let dob:String = cell.txtValor.text!
             cel.valor = Double(dob)!

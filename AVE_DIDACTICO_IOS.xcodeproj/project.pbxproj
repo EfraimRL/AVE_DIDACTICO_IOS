@@ -167,7 +167,6 @@
 				7229201A2050BED80074CB9E /* Assets.xcassets */,
 				7229201C2050BED80074CB9E /* LaunchScreen.storyboard */,
 				7229201F2050BED80074CB9E /* Info.plist */,
-				0A796B5B2059A3F200E93812 /* Global.swift */,
 				0A796B592059A27D00E93812 /* RegistroViewController.swift */,
 				0A796B5D2059A72F00E93812 /* Met_DefinirTamanoViewController.swift */,
 				0A796B5F2059A74600E93812 /* Met_IngresarColumnasViewController.swift */,
@@ -184,7 +183,6 @@
 				0A916FDC205C4F1300400F87 /* Menu_DocumentoTableViewCell.swift */,
 				0A966C352064178300C5561F /* Menu_MaestroViewController.swift */,
 				0A966C33206416D000C5561F /* TabBarController.swift */,
-				0AA9C4B3207BC096009F55F9 /* Conexion.swift */,
 				0ACAE104207D74CA00585790 /* radioButton.swift */,
 				0A074A55207EA40700EEC84B /* ExamenViewController.swift */,
 				0A074A51207EA31D00EEC84B /* ExamenPreguntaTableViewCell.swift */,
@@ -197,6 +195,8 @@
 				0A3310312087BCA600A7BD8F /* algoritmo.js */,
 				0A33102F2087BA9800A7BD8F /* jssource.js */,
 				0A1F010C208FC91A000F1593 /* Paso.swift */,
+				0AA9C4B3207BC096009F55F9 /* Conexion.swift */,
+				0A796B5B2059A3F200E93812 /* Global.swift */,
 			);
 			path = AVE_DIDACTICO_IOS;
 			sourceTree = "<group>";

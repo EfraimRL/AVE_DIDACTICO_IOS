@@ -127,3 +127,29 @@ class conexion {
     "updated_at":"2018-03-22T20:44:21.000Z",
     "url":"http://localhost:3000/quizzes/1.json"}
  */
+func Examenes() -> [[Any]]{//Page es un enumerator
+    var listaElementos:[[Any]] = []
+    Alamofire.request("\(localhost)/\(page)", headers: user_headers).responseJSON{ response in
+        if response.result.value != nil {
+            let json = JSON(response.result.value!)
+            if json == JSON.null {
+                let result = json["message"]
+                print(result)
+                //Mandar mensaje de Error.
+            }
+            else{
+                if let jsonArray = json.array
+                {
+                    //it is an array, each array contains a dictionary
+                    for item in jsonArray
+                    {
+                        if let jsonDict = item.dictionary //jsonDict : [String : JSON]?
+                        {
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return [[0]]
+}

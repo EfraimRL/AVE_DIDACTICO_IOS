@@ -12,7 +12,7 @@ class Menu_ExamenTableViewCell: UITableViewCell {
 
     @IBOutlet weak var imgLock: UIImageView!
     @IBOutlet weak var lblNombre: UILabel!
-    var id = 0
+    var id:Int = 0
     var descripcion = ""
     var approved = 0
     var available = false

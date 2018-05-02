@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aE7-0C-sEb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1110,7 +1110,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jTX-nI-zMp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="gTG-NW-3Xu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4196" y="-424"/>
+            <point key="canvasLocation" x="4191" y="-438"/>
         </scene>
         <!--Met Ingresar Costo View Controller-->
         <scene sceneID="bdp-Vc-tpu">
@@ -1129,7 +1129,7 @@
                                     <navigationItem title="Metodo" id="Qm2-or-afY">
                                         <barButtonItem key="leftBarButtonItem" title="&lt;" id="fJX-yk-zio">
                                             <connections>
-                                                <segue destination="U0Y-2f-xwb" kind="show" id="U4k-Un-Qt5"/>
+                                                <segue destination="N4U-YW-S6W" kind="unwind" unwindAction="unwindTo_MenuMetodoWithSegue:" id="pN0-cH-3oG"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -1286,6 +1286,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GPO-Cu-sy6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="N4U-YW-S6W" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4922" y="-426"/>
         </scene>
@@ -1667,7 +1668,7 @@
                     <connections>
                         <outlet property="cvOfertas" destination="bJZ-1o-s7O" id="Z9D-Pb-eRN"/>
                         <outlet property="tvDemandas" destination="iXd-BB-jKy" id="hzI-ZM-sx5"/>
-                        <segue destination="U0Y-2f-xwb" kind="show" identifier="segIngreOfertasDemandas-A-IngreColumnas" id="rK4-SU-alD"/>
+                        <segue destination="IZp-4y-dfa" kind="show" identifier="segIngreOfertasDemandas-A-IngreColumnas" id="cfy-Wa-g1v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VNz-OG-7ML" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1853,11 +1854,9 @@
         <image name="MuralArtist(1).png" width="500" height="500"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KlQ-7S-53b"/>
-        <segue reference="l6q-1n-AEt"/>
+        <segue reference="T1e-Qa-DW5"/>
         <segue reference="XoG-B3-azd"/>
-        <segue reference="AqP-2X-yBD"/>
-        <segue reference="U4k-Un-Qt5"/>
+        <segue reference="Dxg-fq-gmf"/>
         <segue reference="v0x-tM-f1f"/>
     </inferredMetricsTieBreakers>
 </document>
