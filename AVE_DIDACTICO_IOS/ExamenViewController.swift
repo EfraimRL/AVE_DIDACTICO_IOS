@@ -10,10 +10,10 @@ import UIKit
 
 class ExamenViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
-    var cantQuestions = 5
+    var cantQuestions = 0
     var quizz_id = -1
-    var questions:[(Int,String)] = []
-    var question_options:[[(Int,String)]] = []
+    var questions:[Preguntas] = []
+    var question_options:[[Respuesta]] = []
     
     
 
@@ -47,15 +47,22 @@ class ExamenViewController: UIViewController,UITableViewDataSource,UITableViewDe
         return cell
     }
     func TraerPreguntas(){
-        
+        //devuelve todas las preguntas del quiz = quizz_id
+        questions = getPreguntas(quiz_id:quizz_id)
+        print(questions)
+        //Por cada pregunta agregara un arreglo de 4 respuestas al arreglo de question_options
+        for x in questions{
+            question_options.append(getRespuestas(question_id:x.id))
+        }
+        /*
         questions = [(1,"Pregunta 1..?"),(2,"Pregunta 2..?"),(3,"Pregunta 3..?")]
-        question_options = [
+        question_optdions = [
             [(0,"Si"), (1,"No"), (0,"Quiza"), (0,"No se")],
             [(0,"Si"), (1,"No"), (0,"Quiza"), (0,"No se")],
             [(0,"Si"), (1,"No"), (0,"Quiza"), (0,"No se")],
             [(0,"Si"), (1,"No"), (0,"Quiza"), (0,"No se")]
         ]
-        
+        */
         cantQuestions = questions.count
     }
     @IBAction func RevisarExamen(_ sender: Any) {
