@@ -14,6 +14,8 @@ class ExamenPreguntaTableViewCell: UITableViewCell {
     
     @IBOutlet weak var txtPregunta: UILabel!
     var pregunta_Id:Int = -1
+    var pregunta = Pregunta()
+    var respuestas:[Respuesta] = []
     @IBOutlet weak var btn1Img: UIButton!
     @IBOutlet weak var btn2Img: UIButton!
     @IBOutlet weak var btn3Img: UIButton!
@@ -101,14 +103,15 @@ class ExamenPreguntaTableViewCell: UITableViewCell {
         }
     }
 
-    func llenarPreguntaYRespuestas(pregunta: (Int,String), respuestas:[(Int,String)]){
-        txtPregunta.text = pregunta.1
-        pregunta_Id = pregunta.0
+    func llenarPreguntaYRespuestas(pregunta: Pregunta, respuestas:[Respuesta]){
+        self.pregunta = pregunta
+        self.respuestas = respuestas
+        txtPregunta.text = pregunta.id
         
-        lblAns1.text = respuestas[0].1
-        lblAns2.text = respuestas[1].1
-        lblAns3.text = respuestas[2].1
-        lblAns4.text = respuestas[3].1
+        lblAns1.text = respuestas[0].description
+        lblAns2.text = respuestas[1].description
+        lblAns3.text = respuestas[2].description
+        lblAns4.text = respuestas[3].description
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
