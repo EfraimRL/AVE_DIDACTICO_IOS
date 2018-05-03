@@ -127,8 +127,8 @@ class conexion {
     "updated_at":"2018-03-22T20:44:21.000Z",
     "url":"http://localhost:3000/quizzes/1.json"}
  */
-func getPreguntas(quiz_id:Int) -> [[Any]]{//Page es un enumerator
-    var listaElementos:[[Any]] = []
+func getPreguntas(quiz_id:Int) -> [Pregunta]{//Page es un enumerator
+    var listaElementos:[Pregunta] = []
     Alamofire.request("\(localhost)/preguntas/\(quiz_id)", headers: user_headers).responseJSON{ response in
         if response.result.value != nil {
             let json = JSON(response.result.value!)
@@ -145,12 +145,12 @@ func getPreguntas(quiz_id:Int) -> [[Any]]{//Page es un enumerator
                     {
                         if let jsonDict = item.dictionary //jsonDict : [String : JSON]?
                         {
-                            var elemento:[Any] = [0 ,"" ,false ,"" ]
+                            var question:Pregunta = Pregunta()
                             
-                            elemento[0] = jsonDict["id"]?.intValue as Any
-                            elemento[1] = jsonDict["description"]?.stringValue as Any
+                            question.id = jsonDict["id"]?.intValue as Any
+                            question.description = jsonDict["description"]?.stringValue as Any
                             
-                            listaElementos.append(elemento)
+                            listaElementos.append(question)
                         }
                     }
                 }
@@ -160,7 +160,7 @@ func getPreguntas(quiz_id:Int) -> [[Any]]{//Page es un enumerator
     return listaElementos
 }
 
-func getRespuestas(question_id:Int) -> [[Any]]{//Page es un enumerator
+func getRespuestas(question_id:Int) -> [Respuesta]{//Page es un enumerator
     var listaElementos:[[Any]] = []
     Alamofire.request("\(localhost)/respuestas/\(question_id)", headers: user_headers).responseJSON{ response in
         if response.result.value != nil {
@@ -178,13 +178,13 @@ func getRespuestas(question_id:Int) -> [[Any]]{//Page es un enumerator
                     {
                         if let jsonDict = item.dictionary //jsonDict : [String : JSON]?
                         {
-                            var elemento:[Any] = [0 ,"" ,false ,"" ]
+                            var question_option:Respuesta = Respuesta()
                             
-                            elemento[0] = jsonDict["id"]?.intValue as Any
-                            elemento[1] = jsonDict["description"]?.stringValue as Any
-                            elemento[2] = jsonDict["value"]?.intValue as Any
+                            question_option.id = jsonDict["id"]?.intValue as Any
+                            question_option.description = jsonDict["description"]?.stringValue as Any
+                            question_option.value = jsonDict["value"]?.intValue as Any
                             
-                            listaElementos.append(elemento)
+                            listaElementos.append(question_option)
                         }
                     }
                 }
@@ -192,4 +192,14 @@ func getRespuestas(question_id:Int) -> [[Any]]{//Page es un enumerator
         }
     }
     return listaElementos
+}
+
+class Pregunta{
+    var id:Int = -1
+    var description:String = ""
+}
+class Respuesta{
+    var id:Int = -1
+    var description:String = ""
+    var value:Int = -1
 }
