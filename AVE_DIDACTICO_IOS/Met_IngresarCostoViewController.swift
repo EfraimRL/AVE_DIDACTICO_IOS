@@ -79,7 +79,7 @@ class Met_IngresarCostoViewController: UIViewController,UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellIngresarCosto", for: indexPath) as! Met_IngresarCostoCollectionViewCell
         
-        cell.lblValor.text = "\(arrValores[indexPath.row].valor)"
+        cell.lblValor.text = ""//"\(arrValores[indexPath.row].valor)"
         cell.lblCosto.text = "\(indexPath.section)"
         cell.frame.size.height = cvIngresarCostos.contentSize.height/CGFloat(cantFilas)
         cell.frame.size.width = cvIngresarCostos.contentSize.width/CGFloat(cantColumnas)
@@ -118,7 +118,7 @@ class Met_IngresarCostoViewController: UIViewController,UICollectionViewDelegate
         let cell = cvIngresarCostos.cellForItem(at: index!) as! Met_IngresarCostoCollectionViewCell
         cell.lblCosto.text = txtCosto.text
         print("Describing(btnSalirPopUp): \(String(describing: index))")
-        txtCosto.text = "0"
+        txtCosto.text = ""
     }
     
 }

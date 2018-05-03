@@ -36,6 +36,7 @@ class Met_IteracionDePasosViewController: UIViewController,UICollectionViewDataS
             cell.lblValor.text = (dupla.0 as! String)
             if (Double(dupla.0 as! String) == nil){
                 cell.lblValor.backgroundColor = #colorLiteral(red: 0.5058823824, green: 0.3372549117, blue: 0.06666667014, alpha: 1)
+                cell.lblValor.adjustsFontSizeToFitWidth = true
             }
             else{
                 cell.lblValor.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -44,11 +45,17 @@ class Met_IteracionDePasosViewController: UIViewController,UICollectionViewDataS
         }
         else if dupla.1 == 1{
             let paso = dupla.0 as! Celda
-            cell.lblValor.text = "\(paso.valor)"
             cell.lblPrecio.text = "\(paso.costo)"
+            if paso.asignado{
+                cell.lblValor.text = "\(paso.valor)"
+            }
+            else{
+                cell.lblValor.text = ""
+            }
             if paso.color == 0{
                 cell.lblValor.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             }
+            cell.lblPrecio.tintColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
         }
         /*
         cell.lblValor.text = "\(listaPasos[iteracionActual][indexPath.row])"

@@ -95,7 +95,7 @@ class Paso {
         //Titulos de las columnas
         if index <= (columnas+1) {
             indexNomCol = indexNomCol+1
-            print("Titulo: [\(indexNomCol-1)]")
+            //print("Titulo: [\(indexNomCol-1)]")
             self.index = self.index + 1
             return (NombresColumnas[indexNomCol-1],0)
         }
@@ -103,27 +103,27 @@ class Paso {
         else if esMultiplo(i: index, y: 0){
             indexNomFil = indexNomFil+1
             self.index = self.index + 1
-            print("Nombre filas: \(NombresFilas[indexNomFil-1])")
+            //print("Nombre filas: \(NombresFilas[indexNomFil-1])")
             return (NombresFilas[indexNomFil-1],0)
         }
         //Valores de las demandas
         else if esMultiplo(i: index, y: 1){
             indexDemandas = indexDemandas + 1
             self.index = self.index + 1
-            print("Demanda: \(demandas[indexDemandas-1])")
+            //print("Demanda: \(demandas[indexDemandas-1])")
             return ("\(demandas[indexDemandas-1])",0)
         }
         //Valores de las ofertas
         else if esUltimoRenglon(i: index){
             indexOfertas = indexOfertas+1
             self.index = self.index + 1
-            print("Oferta: \(ofertas[indexOfertas-1])")
+            //print("Oferta: \(ofertas[indexOfertas-1])")
             return ("\(ofertas[indexOfertas-1])",0)
         }
         //Ultima casilla
         else if index == (totalDeCasillas - 1){
             self.index = self.index + 1
-            print("Celda final: \(final)")
+            //print("Celda final: \(final)")
             return (final,0)
         }
         //Si se pasa reinicia los index
@@ -134,14 +134,14 @@ class Paso {
             indexDemandas = 0
             indexOfertas = 0
             indexCeldas = 0
-            print("Titulo: [\(indexNomCol-1)]")
+            //print("Titulo: [\(indexNomCol-1)]")
             return (NombresColumnas[indexNomCol-1],0)
         }
         //Celda de valores
         else{
             indexCeldas = indexCeldas + 1
             self.index = self.index + 1
-            print("celda \(indexCeldas-1)")
+            //print("celda \(indexCeldas-1)")
             return (celdas[indexCeldas-1],1)
         }
     }

@@ -106,7 +106,7 @@ class ExamenPreguntaTableViewCell: UITableViewCell {
     func llenarPreguntaYRespuestas(pregunta: Pregunta, respuestas:[Respuesta]){
         self.pregunta = pregunta
         self.respuestas = respuestas
-        txtPregunta.text = pregunta.id
+        txtPregunta.text = "\(pregunta.id)"
         
         lblAns1.text = respuestas[0].description
         lblAns2.text = respuestas[1].description
