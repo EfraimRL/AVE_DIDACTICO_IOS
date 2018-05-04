@@ -177,7 +177,7 @@ func GenerarPasos(metodo: Metodo){
                     pasos.append(paso)
                     
                     if precioColumnas[y] > 0 {
-                        comentario = "Aun queda oferta por lo que se busca el siguiente renglon con demanda mayor a 0 y costo menor."
+                        comentario = "Aun queda oferta por lo que se busca el siguiente renglon con demanda mayor a 0 y costo menor.\n"
                     }
                     else{comentario = ""}
                 }
@@ -250,46 +250,47 @@ func GenerarPasos(metodo: Metodo){
                 index = index + 1
             }
             //Prueba while
-            var aux = false
+            var aux = false//Verifica que no quede alguno sin despejar
+            
             repeat {
-            //Despeja las R# que pueda
-            for i in 0 ..< RN.count{
-                if RN[i] == -999{
-                    var index2 = 0
-                    for j in arrMatriz[i]{
-                        if RN[i] != -999{break}
-                        if j.asignado && CN[index2] != -999{
-                            RN[i] = DespejarX(n: CN[index2], costo: j.costo)
-                            comentario = comentario + "R\(i+1) se Obtiene despejando: R\(i+1) + C\(index2+1) + \(j.costo) = 0. Resultado = \(RN[i])\n"
-                            break
-                        }
-                        index2 = index2 + 1
-                    }
-                }
-            }
-            //Despeja las C# que pueda
-            for i in 0 ..< CN.count{
-                if CN[i] == -999{
-                    for j in 0 ..< arrMatriz.count{
-                        if CN[i] != -999{break}
-                        if arrMatriz[j][i].asignado && RN[j] != -999{
-                            CN[i] = DespejarX(n: RN[j], costo: arrMatriz[j][i].costo)
-                            comentario = comentario + "C\(i+1) se Obtiene despejando: R\(j+1) + C\(i+1) + \(arrMatriz[j][i].costo) = 0. Resultado = \(CN[i])\n"
-                            break
+                //Despeja las R# que pueda
+                for i in 0 ..< RN.count{
+                    if RN[i] == -999{
+                        var index2 = 0
+                        for j in arrMatriz[i]{
+                            if RN[i] != -999{break}
+                            if j.asignado && CN[index2] != -999{
+                                RN[i] = DespejarX(n: CN[index2], costo: j.costo)
+                                comentario = comentario + "R\(i+1) se Obtiene despejando: R\(i+1) + C\(index2+1) + \(j.costo) = 0. Resultado = \(RN[i])\n"
+                                break
+                            }
+                            index2 = index2 + 1
                         }
                     }
                 }
-            }
-                //Validacion
+                //Despeja las C# que pueda
+                for i in 0 ..< CN.count{
+                    if CN[i] == -999{
+                        for j in 0 ..< arrMatriz.count{
+                            if CN[i] != -999{break}
+                            if arrMatriz[j][i].asignado && RN[j] != -999{
+                                CN[i] = DespejarX(n: RN[j], costo: arrMatriz[j][i].costo)
+                                comentario = comentario + "C\(i+1) se Obtiene despejando: R\(j+1) + C\(i+1) + \(arrMatriz[j][i].costo) = 0. Resultado = \(CN[i])\n"
+                                break
+                            }
+                        }
+                    }
+                }
+                    //Validacion
                 for x in RN{
-                    if x == -999{
-                        aux = true
-                    }
+                        if x == -999{
+                            aux = true
+                        }
                 }
                 for x in CN{
-                    if x == -999{
-                        aux = true
-                    }
+                        if x == -999{
+                            aux = true
+                        }
                 }
             }while(aux)
             //Termina prueba while
@@ -309,6 +310,7 @@ func GenerarPasos(metodo: Metodo){
                 newPaso.setCeldasValores(matrizValores: arMa)
                 pasos.append(newPaso)
             }
+            //Verificar que no quede algun numero negativo
             print(comentario)
         }
         //Si no, debe ser una columna. Se supone su valor como 0
@@ -412,9 +414,6 @@ func GenerarPasos(metodo: Metodo){
     listaPasos = resultado
      */
     iteracionActual = 0
-}
-func Despejar(rn:Double,cn:Double,costo:Double) -> (Double,Int){
-    return (0.0,0)
 }
 func DespejarX(n:Double,costo:Double) -> Double{
     if n == 0.0 && costo == 0.0{

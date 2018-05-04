@@ -66,16 +66,33 @@ class Menu_LeccionesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellLeccion", for: indexPath) as! Menu_LeccionTableViewCell
         let cell_data = lista[indexPath.row]
         
-        cell.LlenarCelda(id:cell_data[0] as! Int,name:cell_data[1] as! String, available:cell_data[2] as! Int, price:cell_data[3] as! Double)
+        cell.LlenarCelda(id:cell_data[0] as! Int,name:cell_data[1] as! String, available:cell_data[2] as! Bool, price:cell_data[3] as! Double)
 
         return cell
     }
+    //Al seleccionar una leccion se manda el id y muestra la informacion
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "cellMenu_Lecciones-A-Leccion", sender: indexPath.row)
+        let cell = tableView.cellForRow(at: indexPath) as! Menu_LeccionTableViewCell
+        if cell.available {
+            performSegue(withIdentifier: "cellMenu_Lecciones-A-Leccion", sender: cell.id)
+        }
+        else{
+            //Alert
+            print("No esta disponible")
+        }
+        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //segue.destination =
+        print("A \(sender.debugDescription)")
+        let value = sender.unsafelyUnwrapped
+        if Int("\(value)") != nil{
+            let destino = segue.destination as! LeccionTableViewController
+            destino.session_id = sender as! Int
+        }
     }
+    //Salir
+    @IBAction func unWindTo_LeccionesList(segue:UIStoryboardSegue!){}
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

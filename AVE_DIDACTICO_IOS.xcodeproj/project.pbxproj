@@ -12,6 +12,7 @@
 		0A074A58207EC0A500EEC84B /* Alertas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A074A57207EC0A500EEC84B /* Alertas.swift */; };
 		0A074A5A207EC92E00EEC84B /* LeccionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A074A59207EC92E00EEC84B /* LeccionTableViewController.swift */; };
 		0A1F010D208FC91A000F1593 /* Paso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F010C208FC91A000F1593 /* Paso.swift */; };
+		0A2E10DD209CD60700AE1D8B /* LeccionDetalleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2E10DC209CD60700AE1D8B /* LeccionDetalleTableViewCell.swift */; };
 		0A33102C2087B92300A7BD8F /* NewTestJavaScriptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A33102B2087B92300A7BD8F /* NewTestJavaScriptViewController.swift */; };
 		0A3310302087BA9800A7BD8F /* jssource.js in Resources */ = {isa = PBXBuildFile; fileRef = 0A33102F2087BA9800A7BD8F /* jssource.js */; };
 		0A3310322087BCA600A7BD8F /* algoritmo.js in Resources */ = {isa = PBXBuildFile; fileRef = 0A3310312087BCA600A7BD8F /* algoritmo.js */; };
@@ -59,6 +60,7 @@
 		0A074A57207EC0A500EEC84B /* Alertas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertas.swift; sourceTree = "<group>"; };
 		0A074A59207EC92E00EEC84B /* LeccionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeccionTableViewController.swift; sourceTree = "<group>"; };
 		0A1F010C208FC91A000F1593 /* Paso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paso.swift; sourceTree = "<group>"; };
+		0A2E10DC209CD60700AE1D8B /* LeccionDetalleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeccionDetalleTableViewCell.swift; sourceTree = "<group>"; };
 		0A33102B2087B92300A7BD8F /* NewTestJavaScriptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTestJavaScriptViewController.swift; sourceTree = "<group>"; };
 		0A33102F2087BA9800A7BD8F /* jssource.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jssource.js; sourceTree = "<group>"; };
 		0A3310312087BCA600A7BD8F /* algoritmo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = algoritmo.js; sourceTree = "<group>"; };
@@ -178,25 +180,26 @@
 				0A796B692059A91C00E93812 /* Menu_DocumentacionViewController.swift */,
 				0A796B6B2059A99600E93812 /* Menu_ExamenesTableViewController.swift */,
 				0A796B6F2059A9EC00E93812 /* Menu_ExamenTableViewCell.swift */,
-				0A796B6D2059A9A200E93812 /* Menu_LeccionesTableViewController.swift */,
-				0A796B712059A9F900E93812 /* Menu_LeccionTableViewCell.swift */,
-				0A916FDC205C4F1300400F87 /* Menu_DocumentoTableViewCell.swift */,
-				0A966C352064178300C5561F /* Menu_MaestroViewController.swift */,
-				0A966C33206416D000C5561F /* TabBarController.swift */,
-				0ACAE104207D74CA00585790 /* radioButton.swift */,
 				0A074A55207EA40700EEC84B /* ExamenViewController.swift */,
 				0A074A51207EA31D00EEC84B /* ExamenPreguntaTableViewCell.swift */,
-				0A074A57207EC0A500EEC84B /* Alertas.swift */,
+				0A796B6D2059A9A200E93812 /* Menu_LeccionesTableViewController.swift */,
+				0A796B712059A9F900E93812 /* Menu_LeccionTableViewCell.swift */,
 				0A074A59207EC92E00EEC84B /* LeccionTableViewController.swift */,
-				0A33102B2087B92300A7BD8F /* NewTestJavaScriptViewController.swift */,
+				0A916FDC205C4F1300400F87 /* Menu_DocumentoTableViewCell.swift */,
+				0A966C352064178300C5561F /* Menu_MaestroViewController.swift */,
 				0A9E579B208FB14900F1863B /* Met_IngresarOfertaDemandaViewController.swift */,
 				0A9E579D208FB28000F1863B /* Met_IngresarDemandasTableViewCell.swift */,
 				0A9E579F208FB29C00F1863B /* Met_IngresarOfertasCollectionViewCell.swift */,
+				0A33102B2087B92300A7BD8F /* NewTestJavaScriptViewController.swift */,
+				0ACAE104207D74CA00585790 /* radioButton.swift */,
+				0A966C33206416D000C5561F /* TabBarController.swift */,
+				0A074A57207EC0A500EEC84B /* Alertas.swift */,
 				0A3310312087BCA600A7BD8F /* algoritmo.js */,
 				0A33102F2087BA9800A7BD8F /* jssource.js */,
 				0A1F010C208FC91A000F1593 /* Paso.swift */,
 				0AA9C4B3207BC096009F55F9 /* Conexion.swift */,
 				0A796B5B2059A3F200E93812 /* Global.swift */,
+				0A2E10DC209CD60700AE1D8B /* LeccionDetalleTableViewCell.swift */,
 			);
 			path = AVE_DIDACTICO_IOS;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				0A796B582059A11000E93812 /* LoginViewController.swift in Sources */,
 				0A916FDB205C37B600400F87 /* Met_IteracionDePasosCollectionViewCell.swift in Sources */,
 				0A796B642059A78B00E93812 /* Met_IteracionDePasosViewController.swift in Sources */,
+				0A2E10DD209CD60700AE1D8B /* LeccionDetalleTableViewCell.swift in Sources */,
 				0A916FDD205C4F1300400F87 /* Menu_DocumentoTableViewCell.swift in Sources */,
 				0A796B6E2059A9A200E93812 /* Menu_LeccionesTableViewController.swift in Sources */,
 				0AA9C4B4207BC096009F55F9 /* Conexion.swift in Sources */,

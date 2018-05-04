@@ -86,8 +86,9 @@ class ExamenViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 let json = JSON(response.result.value!)
                 if json == JSON.null {
                     let result = json["message"]
+                    
+                    alerta(titulo:"Informaciòn",mensaje:json["message"].stringValue,cantidad_Botones:1,estilo_controller:.alert,estilo_boton:.default, sender: self)
                     print(result)
-                    //Mandar mensaje de Error.
                 }
                 else{
                     if let jsonArray = json.array
@@ -128,8 +129,8 @@ class ExamenViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 let json = JSON(response.result.value!)
                 if json == JSON.null {
                     let result = json["message"]
+                alerta(titulo:"Informaciòn",mensaje:json["message"].stringValue,cantidad_Botones:1,estilo_controller:.alert,estilo_boton:.default, sender: self)
                     print(result)
-                    //Mandar mensaje de Error.
                 }
                 else{
                     if let jsonArray = json.array

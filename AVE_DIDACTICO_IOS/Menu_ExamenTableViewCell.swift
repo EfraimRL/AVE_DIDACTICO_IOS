@@ -15,13 +15,13 @@ class Menu_ExamenTableViewCell: UITableViewCell {
     var id:Int = 0
     var descripcion = ""
     var approved = 0
-    var available = false
-    func LlenarCelda(id:Int,descripcion:String, approved:Int, available:Bool) -> Void {
+    var available = 0
+    func LlenarCelda(id:Int,descripcion:String, approved:Int, available:Int) -> Void {
         self.id = id
         lblNombre.text = descripcion
         self.approved = approved
         self.available = available
-        if available {
+        if available == 1 {
             imgLock.image = UIImage(named: "Unlock")//Use unlock image
         }
         else {

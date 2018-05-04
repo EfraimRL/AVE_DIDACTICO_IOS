@@ -65,7 +65,7 @@ class Menu_ExamenesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellExamen", for: indexPath) as! Menu_ExamenTableViewCell
         //Validar que este desbloqueada y asignar la imagen
         let cell_data = lista[indexPath.row]
-        cell.LlenarCelda(id:cell_data[0] as! Int,descripcion:cell_data[1] as! String, approved:cell_data[2] as! Int, available:cell_data[3] as! Bool)
+        cell.LlenarCelda(id:cell_data[0] as! Int,descripcion:cell_data[1] as! String, approved:cell_data[2] as! Int, available:cell_data[3] as! Int)
 
         return cell
     }
@@ -73,8 +73,14 @@ class Menu_ExamenesTableViewController: UITableViewController {
 //Al seleccionar un examen
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! Menu_ExamenTableViewCell
-        print(cell.id)
-        performSegue(withIdentifier: "Menu_Examenes-A-Examen", sender:cell.id )
+        if cell.available == 1{
+            print(cell.id)
+            performSegue(withIdentifier: "Menu_Examenes-A-Examen", sender:cell.id )
+        }
+        else{
+            //Alert
+            print("No esta disponible")
+        }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destino = segue.destination as! ExamenViewController

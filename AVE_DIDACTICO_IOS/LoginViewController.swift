@@ -31,6 +31,7 @@ class LoginViewController: UIViewController {
             Log_in(dataSend: userInfo)
         }
         else{
+        alerta(titulo:"Campos vacions",mensaje:"No deje los campos vacios",cantidad_Botones:1,estilo_controller:.alert,estilo_boton:.default, sender: self)
             print("No deje campos vacios")
         }
     }
@@ -54,6 +55,7 @@ class LoginViewController: UIViewController {
                 let json = JSON(response.result.value!)
                 print(json)
                 if json["message"].exists() {
+                    alerta(titulo:"Mensaje",mensaje:json["message"].string!,cantidad_Botones:1,estilo_controller:.alert,estilo_boton:.default, sender: self)
                     print("Nulo: ",json["message"].string!)
                 }	
                 else{
@@ -74,7 +76,7 @@ class LoginViewController: UIViewController {
                 }
             }
             else{
-                //alerta(titulo: "Error", mensaje: "No hubo resultados del servidor\n\nno hay conexiòn", cantidad_Botones: 1, estilo_controller: UIAlertControllerStyle.alert, estilo_boton: UIAlertActionStyle.default, sender: self)
+                alerta(titulo: "Error", mensaje: "No hubo resultados del servidor\n\nNo hay conexiòn", cantidad_Botones: 1, estilo_controller: UIAlertControllerStyle.alert, estilo_boton: UIAlertActionStyle.default, sender: self)
                 print("No hay respuesta del servidor")
             }
             //alerta(titulo: "-", mensaje: "No hay conexiòn", cantidad_Botones: 1, estilo_controller: UIAlertControllerStyle.alert, estilo_boton: UIAlertActionStyle.default, sender: self)

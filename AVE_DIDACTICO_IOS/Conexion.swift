@@ -54,13 +54,13 @@ class conexion {
                                 case 1://Lecciones
                                     elemento[0] = jsonDict["id"]?.intValue as Any
                                     elemento[1] = jsonDict["name"]?.stringValue as Any
-                                    elemento[2] = jsonDict["avaible"]?.intValue as Any
+                                    elemento[2] = jsonDict["avaible"]?.boolValue as Any
                                     elemento[3] = jsonDict["price"]?.double as Any
                                 case 2://Examenes
                                     elemento[0] = jsonDict["id"]?.intValue as Any
                                     elemento[1] = jsonDict["description"]?.stringValue as Any
                                     elemento[2] = jsonDict["approved"]?.intValue as Any
-                                    elemento[3] = jsonDict["avaible"]?.boolValue as Any
+                                    elemento[3] = jsonDict["avaible"]?.intValue as Any
                                 case 3://Documentos
                                     elemento[0] = jsonDict["id"]?.intValue as Any
                                     elemento[1] = jsonDict["books"]?.stringValue as Any

@@ -11,6 +11,11 @@ class Met_IteracionDePasosViewController: UIViewController,UICollectionViewDataS
 //Declaracion de variables
     var arrMostrarValaorActual: [Double] = []
     var arrMostrarCostoActual: [Double] = []
+    
+    @IBAction func btnDescripcion(_ sender: Any) {
+        
+        alerta(titulo:"Descripcion", mensaje:lblDescripcion.text!, cantidad_Botones:1, estilo_controller:.alert, estilo_boton:.default, sender: self)
+    }
     @IBOutlet weak var lblDescripcion: UILabel!
     //Metodos y botones simples
     @IBOutlet weak var cvIteracionDePasos: UICollectionView!
