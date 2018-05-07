@@ -148,8 +148,9 @@ class Paso {
 }
 
 struct Celda {
-    var valor:Double = 0
+    var valor:Double = 0.0
     var costo:Double = 0.0
     var color:Int = 0
     var asignado:Bool = false
+    var signo:Int = 0
 }

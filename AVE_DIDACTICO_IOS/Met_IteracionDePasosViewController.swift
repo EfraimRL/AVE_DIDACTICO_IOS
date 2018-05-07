@@ -60,6 +60,12 @@ class Met_IteracionDePasosViewController: UIViewController,UICollectionViewDataS
             if paso.color == 0{
                 cell.lblValor.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             }
+            if paso.signo == 1{
+                cell.lblValor.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+            }
+            if paso.signo == -1{
+                cell.lblValor.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+            }
             cell.lblPrecio.tintColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
         }
         /*
