@@ -63,329 +63,30 @@ func establecerValores() {
 }
 
 //Llamado a los metodos de solucion
+
+var RN:[Double] = []
+var CN:[Double] = []
+var celdasAsignadas = 0
+
 func GenerarPasos(metodo: Metodo){
-//Agrega el paso inicial
-    if true{
-        let nuevoPaso = Paso(filas: cantFilas, columnas: cantColumnas)
-        precioFilasConstante = precioFilas
-        precioColumnasConstante = precioColumnas
-        nuevoPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-        nuevoPaso.setComentario(comentario: "Datos ingresados, antes de hacer ajustes")
-        nuevoPaso.setCeldasValores(matrizValores: arrMatriz)
-        pasos.append(nuevoPaso)
-    }
+    //Agega columna o renglon
+    balance()
+    //Realiza la asingacion de valores con el metodo AVE
+    asignacionAVE()
     
-//Continua con la validacion de oferta/demanda
-    var totalDemandas = 0.0
-    var totalOfertas = 0.0
-    for x in precioColumnas {
-        totalOfertas = totalOfertas + x
-    }
-    for y in precioFilas {
-        totalDemandas = totalDemandas + y
-    }
-    
-    if totalDemandas > totalOfertas {
-        cantColumnas = cantColumnas + 1
-        let pasox = Paso(filas: cantFilas, columnas: cantColumnas)
-        precioColumnas.append((totalDemandas-totalOfertas))
-        precioColumnasConstante = precioColumnas
-        //Agrega la columna
-        for x in 0 ..< cantFilas{
-            arrMatriz[x].append(Celda())
-        }
-        //Añade el paso a la lista de pasos
-        
-        let arMa = arrMatriz
-        
-        pasox.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-        pasox.setComentario(comentario: "La suma de las demandas es mayor, por lo que se agrega una columna")
-        pasox.setCeldasValores(matrizValores: arMa)
-        pasos.append(pasox)
-        
-    }
-    else if totalOfertas > totalDemandas{
-        cantFilas = cantFilas + 1
-        let paso = Paso(filas: cantFilas, columnas: cantColumnas)
-        precioFilas.append((totalOfertas-totalDemandas))
-        precioFilasConstante = precioFilas
-        //Agrega el renglon
-        var nuevaFila:[Celda] = []
-        for _ in 0 ..< cantColumnas{
-            nuevaFila.append(Celda())
-        }
-        arrMatriz.append(nuevaFila)
-        //Añade el paso a la lista de pasos
-        
-        let arMa = arrMatriz
-        
-        paso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-        paso.setComentario(comentario: "La suma de las ofertas es mayor, por lo que se agrega un renglon")
-        paso.setCeldasValores(matrizValores: arMa)
-        pasos.append(paso)
-    }
-    else{
-        let paso2 = Paso(filas: cantFilas, columnas: cantColumnas)
-        paso2.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-        paso2.setComentario(comentario: "No se hace ajuste debido a que son iguales los totales de ofertas y de las demandas (\(paso2.final)).")
-        paso2.setCeldasValores(matrizValores: arrMatriz)
-        pasos.append(paso2)
-    }
-    //Asignacion
-    for y in 0..<cantColumnas{
-      
-        var comentario = ""
-            //print("[\(y),n]")
-            while precioColumnas[y] > 0.0{
-                let indexx = buscarMenorCosto(columna: y)
-                let cl:String = (pasos.last?.NombresColumnas[y+1])!
-                let fl:String = (pasos.last?.NombresFilas[indexx])!
-                
-                comentario = comentario + "Como la oferta de la columna \(cl) es mayor a 0"
-                //print("n = \(indexx)")
-                if -1 == indexx{
-                    //Error
-                }
-                else{
-                    
-                    //print("if \(precioColumnas[y]) > \(precioFilas[indexx])")
-                    if precioColumnas[y] > precioFilas[indexx]{
-                        comentario = comentario + " y este es mayor al de la demanda \(fl), se asigna el de la demanda a la celda [\(fl),\(cl)]"
-                        //Asignacion true
-                        arrMatriz[indexx][y].valor = precioFilas[indexx]
-                        arrMatriz[indexx][y].asignado = true
-                        //print("precioColumnas(\(precioColumnas[y])) = \(precioColumnas[y]) - \(precioFilas[indexx])")
-                        precioColumnas[y] = precioColumnas[y] - precioFilas[indexx]
-                        precioFilas[indexx] = 0
-                    }
-                    else{
-                        comentario = comentario + " y este es menor o igual al de la demanda \(fl), se asigna el valor de la oferta a la celda [\(fl),\(cl)]"
-                        arrMatriz[indexx][y].valor = precioColumnas[y]
-                        arrMatriz[indexx][y].asignado = true
-                        //print("precioFilas(\(precioFilas[indexx])) = \(precioColumnas[y]) - \(precioFilas[indexx])")
-                        precioFilas[indexx] = precioFilas[indexx]-precioColumnas[y]
-                        precioColumnas[y] = 0
-                    }
-                    //Guarda paso de asignacion
-                    let paso = Paso(filas: cantFilas, columnas: cantColumnas)
-                    let pFil = precioFilas
-                    let pCol = precioColumnas
-                    let arMa = arrMatriz
-                    paso.setOfertaYDemanda(ofertas: pCol, demandas: pFil)
-                    paso.setComentario(comentario: comentario)
-                    paso.setCeldasValores(matrizValores: arMa)
-                    pasos.append(paso)
-                    
-                    if precioColumnas[y] > 0 {
-                        comentario = "Aun queda oferta por lo que se busca el siguiente renglon con demanda mayor a 0 y costo menor.\n"
-                    }
-                    else{comentario = ""}
-                }
-                
-            }
-        
-    }
-    if true {
-        let arMa = arrMatriz
-        let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
-        newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-        newPaso.setComentario(comentario: "Asignacion terminada. Se prosigue a verificar las asignaciones ´#R + #C - 1 = Celdas asignadas´")
-        newPaso.setCeldasValores(matrizValores: arMa)
-        pasos.append(newPaso)
-    }
-	
-//Validacion de asignacion "#R + #C - 1 = Asignaciones"
-    var arrCeldas:[(Int,Int)] = []
-    var celdasAsignadas = 0
-    var x = 0
-    var y = 0
-    //Busca cada celda asignada
-    for row in arrMatriz{
-    	for celda in row{
-            if celda.asignado {
-                celdasAsignadas = celdasAsignadas + 1
-                print("celda:[\(x),\(y)], \(pasos.last?.NombresFilas[x]), \(pasos.last?.NombresColumnas[y+1])")
-                arrCeldas.append((x,y))
-            }
-            y = y + 1
-        }
-        x = x + 1
-        y = 0
-    }
-    var RN:[Double] = []
-    var CN:[Double] = []
-    for _ in 0 ..< cantColumnas {RN.append(-999)}
-    for _ in 0 ..< cantFilas {CN.append(-999)}
-    
-	//Si son iguales continua con el procedimiento
-    print("\(cantFilas) + \(cantColumnas) - 1 = \(celdasAsignadas)")
-    //Agrega la tabla antes para validar la comparacion
-    if true {
-        let arMa = arrMatriz
-        let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
-        newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-        newPaso.setComentario(comentario: "´#R + #C - 1 = Celdas asignadas´\n\(cantFilas) + \(cantColumnas) - 1 = \(celdasAsignadas)")
-        newPaso.setCeldasValores(matrizValores: arMa)
-        pasos.append(newPaso)
-    }
+    //Cuenta cuantas celdas estan asignadas
+    contarAsignaciones()
     
 //Si la cantidad de celdas asignadas es igual a la de `R + C -1`
     if ((cantFilas + cantColumnas) - 1) == celdasAsignadas{
 //Aqui busca los valores de cada nombre de columna o fila, para buscar un numero negativo R + C + CCA
-        var comentario:String = "Para la optimizaciòn, se busca el renglon(R#) o columna(C#) con mayor asignaciones, y se le da el valor de 0.\n"
-        //Primero se busca cual columna o renglon tiene mas celdas asignadas, para suponer el valor de este como 0; y hacer el despeje de los demas valores
-        let primerAsignacion = cualAsignar0()
+        var comentario:String = ""
         
-        //Si es un Renglon el que tiene mayor cantidad de celdas asignadas, se supone como 0
-        if primerAsignacion.1 == 1{
-            RN[primerAsignacion.0] = 0
-            comentario = comentario + "R\(primerAsignacion.0+1) = 0\n"
-            //Se despeja cada C del renglon R(primeraAsignacion.0)
-            var index = 0
-            for i in arrMatriz[primerAsignacion.0]{
-                if i.asignado{
-                    CN[index] = DespejarX(n: RN[primerAsignacion.0], costo: i.costo)
-                    comentario = comentario + "C\(index+1) se Obtiene despejando: R\(primerAsignacion.0+1) + C\(index+1) + \(i.costo) = 0. Resultado = \(CN[index])\n"
-                }
-                index = index + 1
-            }
-            //Prueba while
-            var aux = false//Verifica que no quede alguno sin despejar
-            
-            repeat {
-                //Despeja las R# que pueda
-                for i in 0 ..< RN.count{
-                    if RN[i] == -999{
-                        var index2 = 0
-                        for j in arrMatriz[i]{
-                            if RN[i] != -999{break}
-                            if j.asignado && CN[index2] != -999{
-                                RN[i] = DespejarX(n: CN[index2], costo: j.costo)
-                                comentario = comentario + "R\(i+1) se Obtiene despejando: R\(i+1) + C\(index2+1) + \(j.costo) = 0. Resultado = \(RN[i])\n"
-                                break
-                            }
-                            index2 = index2 + 1
-                        }
-                    }
-                }
-                //Despeja las C# que pueda
-                for i in 0 ..< CN.count{
-                    if CN[i] == -999{
-                        for j in 0 ..< arrMatriz.count{
-                            if CN[i] != -999{break}
-                            if arrMatriz[j][i].asignado && RN[j] != -999{
-                                CN[i] = DespejarX(n: RN[j], costo: arrMatriz[j][i].costo)
-                                comentario = comentario + "C\(i+1) se Obtiene despejando: R\(j+1) + C\(i+1) + \(arrMatriz[j][i].costo) = 0. Resultado = \(CN[i])\n"
-                                break
-                            }
-                        }
-                    }
-                }
-                    //Validacion
-                for x in RN{
-                        if x == -999{
-                            aux = true
-                        }
-                }
-                for x in CN{
-                        if x == -999{
-                            aux = true
-                        }
-                }
-            }while(aux)
-            //Termina prueba while
-            //Imprime resultados
-            for i in RN{
-                print("R\(i)")
-            }
-            for i in CN{
-                print("C\(i)")
-            }
-            //Guarda paso en la lista de pasos
-            if true {
-                let arMa = arrMatriz
-                let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
-                newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-                newPaso.setComentario(comentario: comentario)
-                newPaso.setCeldasValores(matrizValores: arMa)
-                pasos.append(newPaso)
-            }
-            //Verificar que no quede algun numero negativo
-            print(comentario)
-        }
-        //Si no, debe ser una columna. Se supone su valor como 0
-        else if primerAsignacion.1 == 0{
-            CN[primerAsignacion.0] = 0
-            comentario = comentario + "C\(primerAsignacion.0+1) = \(CN[primerAsignacion.0])\n"
-            //Se despeja cada R de la columna C(primeraAsignacion.0)
-            for i in 0 ..< arrMatriz.count{
-                if arrMatriz[i][primerAsignacion.0].asignado{
-                    RN[i] = DespejarX(n: CN[primerAsignacion.0], costo: arrMatriz[i][primerAsignacion.0].costo)
-                    comentario = comentario + "R\(i+1) se Obtiene despejando: R\(i+1) + C\(primerAsignacion.0+1) + \(arrMatriz[i][primerAsignacion.0].costo) = 0. Resultado = \(RN[i])\n"
-                }
-            }
-            //Prueba while
-            var aux = false
-            repeat {
-                //Despeja las C# que pueda
-                for i in 0 ..< CN.count{
-                    if CN[i] == -999{
-                        for j in 0 ..< arrMatriz.count{
-                            if CN[i] != -999{break}
-                            if arrMatriz[j][i].asignado && RN[j] != -999{
-                                CN[i] = DespejarX(n: RN[j], costo: arrMatriz[j][i].costo)
-                                comentario = comentario + "C\(i+1) se Obtiene despejando: R\(j+1) + C\(i+1) + \(arrMatriz[j][i].costo) = 0. Resultado = \(CN[i])\n"
-                                break
-                            }
-                        }
-                    }
-                }
-                //Despeja las R# que pueda
-                for i in 0 ..< RN.count{
-                    if RN[i] == -999{
-                        var index2 = 0
-                        for j in arrMatriz[i]{
-                            if RN[i] != -999{break}
-                            if j.asignado && CN[index2] != -999{
-                                RN[i] = DespejarX(n: CN[index2], costo: j.costo)
-                                comentario = comentario + "R\(i+1) se Obtiene despejando: R\(i+1) + C\(index2+1) + \(j.costo) = 0. Resultado = \(RN[i])\n"
-                                break
-                            }
-                            index2 = index2 + 1
-                        }
-                    }
-                }
-                //Validacion
-                for x in RN{
-                    if x == -999{
-                        aux = true
-                    }
-                }
-                for x in CN{
-                    if x == -999{
-                        aux = true
-                    }
-                }
-            }while(aux)
-            //Imprime resultados
-            for i in RN{
-                print("R\(i)")
-            }
-            for i in CN{
-                print("C\(i)")
-            }
-            print(comentario)
-            //Guarda el paso en la lista de pasos
-            if true {
-                let arMa = arrMatriz
-                let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
-                newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-                newPaso.setComentario(comentario: comentario)
-                newPaso.setCeldasValores(matrizValores: arMa)
-                pasos.append(newPaso)
-            }
-        }
-//Busqueda de las celdas vacias y resultado de R + C + CCV
+        DespejeRyC()
+        
+        
+        
+        //Busqueda de las celdas vacias y resultado de R + C + CCV
         if true {
             let arMa = arrMatriz
             let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
@@ -709,4 +410,330 @@ func MetodoAVE() -> [[Double]]{
         arrPasos.append(arrPaso)
 	}
     return arrPasos
+}
+//Balance
+func balance(){
+    //Agrega el paso inicial
+    if true{
+        let nuevoPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+        precioFilasConstante = precioFilas
+        precioColumnasConstante = precioColumnas
+        nuevoPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+        nuevoPaso.setComentario(comentario: "Datos ingresados, antes de hacer ajustes")
+        nuevoPaso.setCeldasValores(matrizValores: arrMatriz)
+        pasos.append(nuevoPaso)
+    }
+    
+    //Continua con la validacion de oferta/demanda
+    var totalDemandas = 0.0
+    var totalOfertas = 0.0
+    for x in precioColumnas {
+        totalOfertas = totalOfertas + x
+    }
+    for y in precioFilas {
+        totalDemandas = totalDemandas + y
+    }
+    
+    if totalDemandas > totalOfertas {
+        cantColumnas = cantColumnas + 1
+        let pasox = Paso(filas: cantFilas, columnas: cantColumnas)
+        precioColumnas.append((totalDemandas-totalOfertas))
+        precioColumnasConstante = precioColumnas
+        //Agrega la columna
+        for x in 0 ..< cantFilas{
+            arrMatriz[x].append(Celda())
+        }
+        //Añade el paso a la lista de pasos
+        
+        let arMa = arrMatriz
+        
+        pasox.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+        pasox.setComentario(comentario: "La suma de las demandas es mayor, por lo que se agrega una columna")
+        pasox.setCeldasValores(matrizValores: arMa)
+        pasos.append(pasox)
+        
+    }
+    else if totalOfertas > totalDemandas{
+        cantFilas = cantFilas + 1
+        let paso = Paso(filas: cantFilas, columnas: cantColumnas)
+        precioFilas.append((totalOfertas-totalDemandas))
+        precioFilasConstante = precioFilas
+        //Agrega el renglon
+        var nuevaFila:[Celda] = []
+        for _ in 0 ..< cantColumnas{
+            nuevaFila.append(Celda())
+        }
+        arrMatriz.append(nuevaFila)
+        //Añade el paso a la lista de pasos
+        
+        let arMa = arrMatriz
+        
+        paso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+        paso.setComentario(comentario: "La suma de las ofertas es mayor, por lo que se agrega un renglon")
+        paso.setCeldasValores(matrizValores: arMa)
+        pasos.append(paso)
+    }
+    else{
+        let paso2 = Paso(filas: cantFilas, columnas: cantColumnas)
+        paso2.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+        paso2.setComentario(comentario: "No se hace ajuste debido a que son iguales los totales de ofertas y de las demandas (\(paso2.final)).")
+        paso2.setCeldasValores(matrizValores: arrMatriz)
+        pasos.append(paso2)
+    }
+}
+func asignacionAVE(){
+    //Asignacion
+    for y in 0..<cantColumnas{
+        
+        var comentario = ""
+        //print("[\(y),n]")
+        while precioColumnas[y] > 0.0{
+            let indexx = buscarMenorCosto(columna: y)
+            let cl:String = (pasos.last?.NombresColumnas[y+1])!
+            let fl:String = (pasos.last?.NombresFilas[indexx])!
+            
+            comentario = comentario + "Como la oferta de la columna \(cl) es mayor a 0"
+            //print("n = \(indexx)")
+            if -1 == indexx{
+                //Error
+            }
+            else{
+                
+                //print("if \(precioColumnas[y]) > \(precioFilas[indexx])")
+                if precioColumnas[y] > precioFilas[indexx]{
+                    comentario = comentario + " y este es mayor al de la demanda \(fl), se asigna el de la demanda a la celda [\(fl),\(cl)]"
+                    //Asignacion true
+                    arrMatriz[indexx][y].valor = precioFilas[indexx]
+                    arrMatriz[indexx][y].asignado = true
+                    //print("precioColumnas(\(precioColumnas[y])) = \(precioColumnas[y]) - \(precioFilas[indexx])")
+                    precioColumnas[y] = precioColumnas[y] - precioFilas[indexx]
+                    precioFilas[indexx] = 0
+                }
+                else{
+                    comentario = comentario + " y este es menor o igual al de la demanda \(fl), se asigna el valor de la oferta a la celda [\(fl),\(cl)]"
+                    arrMatriz[indexx][y].valor = precioColumnas[y]
+                    arrMatriz[indexx][y].asignado = true
+                    //print("precioFilas(\(precioFilas[indexx])) = \(precioColumnas[y]) - \(precioFilas[indexx])")
+                    precioFilas[indexx] = precioFilas[indexx]-precioColumnas[y]
+                    precioColumnas[y] = 0
+                }
+                //Guarda paso de asignacion
+                let paso = Paso(filas: cantFilas, columnas: cantColumnas)
+                let pFil = precioFilas
+                let pCol = precioColumnas
+                let arMa = arrMatriz
+                paso.setOfertaYDemanda(ofertas: pCol, demandas: pFil)
+                paso.setComentario(comentario: comentario)
+                paso.setCeldasValores(matrizValores: arMa)
+                pasos.append(paso)
+                
+                if precioColumnas[y] > 0 {
+                    comentario = "Aun queda oferta por lo que se busca el siguiente renglon con demanda mayor a 0 y costo menor.\n"
+                }
+                else{comentario = ""}
+            }
+            
+        }
+        
+    }
+    if true {
+        let arMa = arrMatriz
+        let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+        newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+        newPaso.setComentario(comentario: "Asignacion terminada. \nSe prosigue a verificar las asignaciones ´#R + #C - 1 = Celdas asignadas´")
+        newPaso.setCeldasValores(matrizValores: arMa)
+        pasos.append(newPaso)
+    }
+    
+}
+func contarAsignaciones(){
+    var arrCeldas:[(Int,Int)] = []
+    celdasAsignadas = 0
+    var x = 0
+    var y = 0
+    //Busca cada celda asignada
+    for row in arrMatriz{
+        for celda in row{
+            if celda.asignado {
+                celdasAsignadas = celdasAsignadas + 1
+                print("celda:[\(x),\(y)], \(pasos.last?.NombresFilas[x]), \(pasos.last?.NombresColumnas[y+1])")
+                arrCeldas.append((x,y))
+            }
+            y = y + 1
+        }
+        x = x + 1
+        y = 0
+    }
+    RN = []
+    CN = []
+    for _ in 0 ..< cantColumnas {RN.append(-999)}
+    for _ in 0 ..< cantFilas {CN.append(-999)}
+    
+    //Agrega la tabla antes para validar la comparacion
+    if true {
+        let arMa = arrMatriz
+        let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+        newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+        newPaso.setComentario(comentario: "´#R + #C - 1 = Celdas asignadas´\n\(cantFilas) + \(cantColumnas) - 1 = \(celdasAsignadas)")
+        newPaso.setCeldasValores(matrizValores: arMa)
+        pasos.append(newPaso)
+    }
+}
+func DespejeRyC(){
+    var comentario = "Para la optimizaciòn, se busca el renglon(R#) o columna(C#) con mayor asignaciones, y se le da el valor de 0.\n"
+    //Primero se busca cual columna o renglon tiene mas celdas asignadas, para suponer el valor de este como 0; y hacer el despeje de los demas valores
+    let primerAsignacion = cualAsignar0()
+    
+    //Si es un Renglon el que tiene mayor cantidad de celdas asignadas, se supone como 0
+    if primerAsignacion.1 == 1{
+        RN[primerAsignacion.0] = 0
+        comentario = comentario + "R\(primerAsignacion.0+1) = 0\n"
+        //Se despeja cada C del renglon R(primeraAsignacion.0)
+        var index = 0
+        for i in arrMatriz[primerAsignacion.0]{
+            if i.asignado{
+                CN[index] = DespejarX(n: RN[primerAsignacion.0], costo: i.costo)
+                comentario = comentario + "C\(index+1) se Obtiene despejando: R\(primerAsignacion.0+1) + C\(index+1) + \(i.costo) = 0. Resultado = \(CN[index])\n"
+            }
+            index = index + 1
+        }
+        //Prueba while
+        var aux = false//Verifica que no quede alguno sin despejar
+        
+        repeat {
+            //Despeja las R# que pueda
+            for i in 0 ..< RN.count{
+                if RN[i] == -999{
+                    var index2 = 0
+                    for j in arrMatriz[i]{
+                        if RN[i] != -999{break}
+                        if j.asignado && CN[index2] != -999{
+                            RN[i] = DespejarX(n: CN[index2], costo: j.costo)
+                            comentario = comentario + "R\(i+1) se Obtiene despejando: R\(i+1) + C\(index2+1) + \(j.costo) = 0. Resultado = \(RN[i])\n"
+                            break
+                        }
+                        index2 = index2 + 1
+                    }
+                }
+            }
+            //Despeja las C# que pueda
+            for i in 0 ..< CN.count{
+                if CN[i] == -999{
+                    for j in 0 ..< arrMatriz.count{
+                        if CN[i] != -999{break}
+                        if arrMatriz[j][i].asignado && RN[j] != -999{
+                            CN[i] = DespejarX(n: RN[j], costo: arrMatriz[j][i].costo)
+                            comentario = comentario + "C\(i+1) se Obtiene despejando: R\(j+1) + C\(i+1) + \(arrMatriz[j][i].costo) = 0. Resultado = \(CN[i])\n"
+                            break
+                        }
+                    }
+                }
+            }
+            aux = false
+            //Validacion
+            for x in RN{
+                if x == -999{
+                    aux = true
+                }
+            }
+            for x in CN{
+                if x == -999{
+                    aux = true
+                }
+            }
+        }while(aux)
+        //Termina prueba while
+        //Imprime resultados
+        for i in RN{
+            print("R\(i)")
+        }
+        for i in CN{
+            print("C\(i)")
+        }
+        //Guarda paso en la lista de pasos
+        if true {
+            let arMa = arrMatriz
+            let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+            newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+            newPaso.setComentario(comentario: comentario)
+            newPaso.setCeldasValores(matrizValores: arMa)
+            pasos.append(newPaso)
+        }
+        //Verificar que no quede algun numero negativo
+        print(comentario)
+    }
+        //Si no, debe ser una columna. Se supone su valor como 0
+    else if primerAsignacion.1 == 0{
+        CN[primerAsignacion.0] = 0
+        comentario = comentario + "C\(primerAsignacion.0+1) = \(CN[primerAsignacion.0])\n"
+        //Se despeja cada R de la columna C(primeraAsignacion.0)
+        for i in 0 ..< arrMatriz.count{
+            if arrMatriz[i][primerAsignacion.0].asignado{
+                RN[i] = DespejarX(n: CN[primerAsignacion.0], costo: arrMatriz[i][primerAsignacion.0].costo)
+                comentario = comentario + "R\(i+1) se Obtiene despejando: R\(i+1) + C\(primerAsignacion.0+1) + \(arrMatriz[i][primerAsignacion.0].costo) = 0. Resultado = \(RN[i])\n"
+            }
+        }
+        //Prueba while
+        var aux = false
+        repeat {
+            //Despeja las C# que pueda
+            for i in 0 ..< CN.count{
+                if CN[i] == -999{
+                    for j in 0 ..< arrMatriz.count{
+                        if CN[i] != -999{break}
+                        if arrMatriz[j][i].asignado && RN[j] != -999{
+                            CN[i] = DespejarX(n: RN[j], costo: arrMatriz[j][i].costo)
+                            comentario = comentario + "C\(i+1) se Obtiene despejando: R\(j+1) + C\(i+1) + \(arrMatriz[j][i].costo) = 0. Resultado = \(CN[i])\n"
+                            break
+                        }
+                    }
+                }
+            }
+            //Despeja las R# que pueda
+            for i in 0 ..< RN.count{
+                if RN[i] == -999{
+                    var index2 = 0
+                    for j in arrMatriz[i]{
+                        if RN[i] != -999{break}
+                        if j.asignado && CN[index2] != -999{
+                            RN[i] = DespejarX(n: CN[index2], costo: j.costo)
+                            comentario = comentario + "R\(i+1) se Obtiene despejando: R\(i+1) + C\(index2+1) + \(j.costo) = 0. Resultado = \(RN[i])\n"
+                            break
+                        }
+                        index2 = index2 + 1
+                    }
+                }
+            }
+            aux = false
+            //Validacion
+            for x in RN{
+                if x == -999{
+                    aux = true
+                }
+            }
+            for x in CN{
+                if x == -999{
+                    aux = true
+                }
+            }
+        }while(aux)
+        //Imprime resultados
+        for i in RN{
+            print("R\(i)")
+        }
+        for i in CN{
+            print("C\(i)")
+        }
+        print(comentario)
+        //Guarda el paso en la lista de pasos
+        if true {
+            let arMa = arrMatriz
+            let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+            newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+            newPaso.setComentario(comentario: comentario)
+            newPaso.setCeldasValores(matrizValores: arMa)
+            pasos.append(newPaso)
+        }
+    }
+
 }
