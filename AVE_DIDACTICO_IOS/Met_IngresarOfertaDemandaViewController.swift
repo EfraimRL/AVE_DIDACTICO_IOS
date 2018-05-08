@@ -12,6 +12,10 @@ class Met_IngresarOfertaDemandaViewController: UIViewController,UITableViewDeleg
     @IBOutlet weak var tvDemandas: UITableView!
     @IBOutlet weak var cvOfertas: UICollectionView!
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cantFilas
     }
@@ -25,6 +29,9 @@ class Met_IngresarOfertaDemandaViewController: UIViewController,UITableViewDeleg
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 89
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.view.endEditing(true)
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cantColumnas
     }
@@ -34,7 +41,10 @@ class Met_IngresarOfertaDemandaViewController: UIViewController,UITableViewDeleg
         cell.lblNombre.text = "Columna \(indexPath.row + 1)"
         return cell
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = cvOfertas.cellForItem(at: IndexPath(row: indexPath.row, section: 0)) as! Met_IngresarOfertasCollectionViewCell
+        cell.txt.text = "a"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +64,21 @@ class Met_IngresarOfertaDemandaViewController: UIViewController,UITableViewDeleg
         var correcto = true
         var filas:[Double] = []
         var columnas:[Double] = []
+        
+        let itemCount = cvOfertas.numberOfItems(inSection: 0)
+        for row in 0 ..< itemCount {
+            let cell = cvOfertas.cellForItem(at: IndexPath(row: row, section: 0)) as! Met_IngresarOfertasCollectionViewCell
+            let dob:String = cell.txt.text!
+            if let doble = Double(dob){
+                columnas.append(doble)
+            }
+            else{
+                correcto = false
+                cell.txt.becomeFirstResponder()
+                break
+            }
+        }
+        
         let rowCount = tvDemandas.numberOfRows(inSection: 0)
         for row in 0 ..< rowCount {
             let cell = tvDemandas.cellForRow(at: IndexPath(row: row, section: 0)) as! Met_IngresarDemandasTableViewCell
@@ -64,18 +89,7 @@ class Met_IngresarOfertaDemandaViewController: UIViewController,UITableViewDeleg
             }
             else{
                 correcto = false
-                break
-            }
-        }
-        let itemCount = cvOfertas.numberOfItems(inSection: 0)
-        for row in 0 ..< itemCount {
-            let cell = cvOfertas.cellForItem(at: IndexPath(row: row, section: 0)) as! Met_IngresarOfertasCollectionViewCell
-            let dob:String = cell.txt.text!
-            if let doble = Double(dob){
-                columnas.append(doble)
-            }
-            else{
-                correcto = false
+                cell.txt.becomeFirstResponder()
                 break
             }
         }
@@ -86,6 +100,53 @@ class Met_IngresarOfertaDemandaViewController: UIViewController,UITableViewDeleg
         }
     }
     func balance(){
+        
+    }
+    @IBAction func btnSiguienteTextBox(_ sender: Any) {
+        var asignada = true
+        let itemCount = cvOfertas.numberOfItems(inSection: 0)
+        let rowCount = tvDemandas.numberOfRows(inSection: 0)
+        
+        if asignada{
+            for row in 1 ..< rowCount {
+                let cell = tvDemandas.cellForRow(at: IndexPath(row: row-1, section: 0)) as! Met_IngresarDemandasTableViewCell
+                
+                if cell.txt.isFirstResponder {
+                    let cell1 = tvDemandas.cellForRow(at: IndexPath(row: row, section: 0)) as! Met_IngresarDemandasTableViewCell
+                    cell1.txt.becomeFirstResponder()
+                    asignada = false
+                    break
+                }
+            }
+        }
+        
+        
+        if asignada{
+            for row in 1 ..< itemCount {
+                let cell = cvOfertas.cellForItem(at: IndexPath(row: row-1, section: 0)) as! Met_IngresarOfertasCollectionViewCell
+                if cell.txt.isFirstResponder{
+                    let cell1 = cvOfertas.cellForItem(at: IndexPath(row: row, section: 0)) as! Met_IngresarOfertasCollectionViewCell
+                    cell1.txt.becomeFirstResponder()
+                    asignada = false
+                    break
+                }
+            }
+            
+        }
+        
+        if asignada {
+            let cell = tvDemandas.cellForRow(at: IndexPath(row: rowCount-1, section: 0)) as! Met_IngresarDemandasTableViewCell
+            
+            if cell.txt.isFirstResponder{
+                let cell = cvOfertas.cellForItem(at: IndexPath(row: 0, section: 0)) as! Met_IngresarOfertasCollectionViewCell
+                cell.txt.becomeFirstResponder()
+                asignada = false
+            }
+        }
+        if asignada {
+            let cell = tvDemandas.cellForRow(at: IndexPath(row: 0, section: 0)) as! Met_IngresarDemandasTableViewCell
+                cell.txt.becomeFirstResponder()
+            }
         
     }
     /*

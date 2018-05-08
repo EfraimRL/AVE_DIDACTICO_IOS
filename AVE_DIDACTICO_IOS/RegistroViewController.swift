@@ -44,9 +44,28 @@ class RegistroViewController: UIViewController {
             return false
         }
         else{
-            //Hace la consulta, si se hace el registro devuelve true para mandar al menu
-            return true
+            let usuario = setUsuario()
+            return registrarUsuario(usuario: usuario)
+            
         }
+    }
+    func setUsuario() -> Usuario{
+        var user = Usuario()
+        
+        user.email = txtCorreo.text!
+        user.password = txtContrasena1.text!
+        user.password_confirmation = txtContrasena2.text!
+        user.name = txtNombre.text!
+        user.names = txtNombre.text!
+        user.lastnames = txtApellido.text!
+        user.control_number = txtNumControl.text!
+        if swTipoUsuario.isOn{
+            user.rol = "teacher"
+        }
+        else{
+            user.rol = "student"
+        }
+        return user
     }
     func campoVacioOIncorrecto() -> Bool {
         if txtNombre.text == "" || txtCorreo.text == "" || txtContrasena1.text == "" || txtContrasena2.text == "" || txtNumControl.text == "" {
@@ -54,5 +73,9 @@ class RegistroViewController: UIViewController {
             return true
         }
         return true
+    }
+    func registrarUsuario(usuario:Usuario) -> Bool{
+        
+        return false
     }
 }

@@ -328,6 +328,7 @@ func MetodoAVE() -> [[Double]]{
 }
 //Balance
 func balance(){
+    print("--------------------Balance-------------------")
     //Agrega el paso inicial
     if true{
         let nuevoPaso = Paso(filas: cantFilas, columnas: cantColumnas)
@@ -397,6 +398,7 @@ func balance(){
     }
 }
 func asignacionAVE(){
+    print("--------------------Asignacion-------------------")
     //Asignacion
     for y in 0..<cantColumnas{
         
@@ -462,6 +464,7 @@ func asignacionAVE(){
     
 }
 func contarAsignaciones(){
+    print("--------------------contar asignaciones-------------------")
     var arrCeldas:[(Int,Int)] = []
     celdasAsignadas = 0
     var x = 0
@@ -495,6 +498,7 @@ func contarAsignaciones(){
     }
 }
 func DespejeRyC(){
+    print("--------------------Despeje R y C-------------------")
     var comentario = "Para la optimizaciòn, se buscan los valores de cada R y cada C. \nFormula: 'R + C + costo de celda asignada'\nPrimero buscando el renglon(R#) o columna(C#) con mayor asignaciones, y se le da el valor de 0.\n"
     //Primero se busca cual columna o renglon tiene mas celdas asignadas, para suponer el valor de este como 0; y hacer el despeje de los demas valores
     let primerAsignacion = cualAsignar0()
@@ -653,6 +657,7 @@ func DespejeRyC(){
 
 }
 func celdasVacias() -> [((Int,Int),Double)]{
+    print("--------------------Celdas vacias-------------------")
     //(coordenadas,valorResultado)
     var arrCeldasVacias:[((Int,Int),Double)] = []
     //Busqueda de las celdas vacias y resultado de R + C + CCV
@@ -690,6 +695,7 @@ func celdasVacias() -> [((Int,Int),Double)]{
     return arrCeldasVacias
 }
 func hacerRecorrido(coordenadasNegativo:(Int,Int)){
+    print("--------------------Hacer Recorrido-------------------")
     var comentario = ""
     //Comienza la busqueda del recorrido (Recorrido, es las celdas que se van a modificar al sumar o restar un valor. Donde se hara el ajuste.)
     

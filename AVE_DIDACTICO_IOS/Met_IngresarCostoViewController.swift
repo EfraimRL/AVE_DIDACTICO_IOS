@@ -15,6 +15,10 @@ class Met_IngresarCostoViewController: UIViewController,UICollectionViewDelegate
     //index permite saber que celda fue la seleccionada
     var index:IndexPath? = nil
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @IBOutlet weak var cvIngresarCostos: UICollectionView!
 //Metodos y botones con funciones simples..Inicializadores, botones de continuar, etc.
     override func viewDidLoad() {

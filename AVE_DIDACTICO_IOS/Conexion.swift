@@ -26,6 +26,7 @@ enum Page :String{
     case Lecciones = "sessions.json"
     case Examenes = "quizzes.json"
     case Documentos = "consultations.json"
+    case sign_up = "users.json"
 }
 //https://learnappdevelopment.com/uncategorized/how-to-observe-changes-in-variables-with-swift-3-and-ios-10/
 var page:[String] = ["users/sign_in.json","lessons.json","tests.json"]
@@ -90,6 +91,21 @@ class conexion {
         
         return listaElementos
     }
+}
+class Usuario{
+    var email = ""
+    var password = ""
+    var password_confirmation = ""
+    var names = ""
+    var lastnames = ""
+    var name = ""
+    var control_number = ""
+    var carrer = ""
+    var grade = ""
+    var algorithm_level = ""
+    var course_level = ""
+    var score = ""
+    var rol = ""
 }
 //Trae la lista de Lecciones, Examenes y Documentos.
 

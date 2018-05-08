@@ -21,7 +21,9 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         txtContrasena.text = ""
     }
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     @IBAction func btnLogIn(_ sender: Any) {
         let email:String = txtUsuario.text!
         let password:String = txtContrasena.text!
