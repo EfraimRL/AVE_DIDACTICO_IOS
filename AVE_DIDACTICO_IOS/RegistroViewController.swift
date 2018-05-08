@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class RegistroViewController: UIViewController {
 
@@ -25,27 +27,27 @@ class RegistroViewController: UIViewController {
         super.viewDidLoad()
         swTipoUsuario.setOn(false, animated: false)
     }
-
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
     @IBAction func btnRegistrar(_ sender: Any) {
-        if Registro() {
-            performSegue(withIdentifier: "segRegAMenu", sender: nil)
-        }
-        else{
-            //Alert
-        }
+        print("Registro")
+        Registro()
     }
     
-    func Registro() -> Bool{
+    func Registro(){
         if campoVacioOIncorrecto(){
-            return false
+            
         }
         else{
             let usuario = setUsuario()
-            return registrarUsuario(usuario: usuario)
+            registrarUsuario(usuario: usuario)
             
         }
     }
@@ -58,6 +60,8 @@ class RegistroViewController: UIViewController {
         user.name = txtNombre.text!
         user.names = txtNombre.text!
         user.lastnames = txtApellido.text!
+        user.carrer = txtNombreDeMaestro.text!
+        user.grade = txtEdad.text!
         user.control_number = txtNumControl.text!
         if swTipoUsuario.isOn{
             user.rol = "teacher"
@@ -68,14 +72,48 @@ class RegistroViewController: UIViewController {
         return user
     }
     func campoVacioOIncorrecto() -> Bool {
-        if txtNombre.text == "" || txtCorreo.text == "" || txtContrasena1.text == "" || txtContrasena2.text == "" || txtNumControl.text == "" {
+        if (txtNombre.text?.isEmpty)! || (txtCorreo.text?.isEmpty)! || (txtContrasena1.text?.isEmpty)! || (txtContrasena2.text?.isEmpty)! || (txtNumControl.text?.isEmpty)! {
+            alerta(titulo: "Advertencia", mensaje: "No deje campos vacios", cantidad_Botones: 1, estilo_controller: .alert, estilo_boton: .default, sender: self)
             print("Campos vacios")
             return true
         }
-        return true
-    }
-    func registrarUsuario(usuario:Usuario) -> Bool{
-        
         return false
+    }
+    func registrarUsuario(usuario:Usuario){
+        let dataSend = ["user":[ "email":usuario.email, "password": usuario.password,"password_confirmation":usuario.password_confirmation,"names":usuario.names,"lastnames":usuario.lastnames,"name":usuario.name,"control_number":usuario.control_number,"carrer":usuario.carrer,"grade":usuario.grade,"algorithm_level":usuario.algorithm_level,"course_level":usuario.course_level,"rol":usuario.rol]] as [String:Any]
+        print(dataSend)
+        Alamofire.request("\(localhost)/users.json",method: .post, parameters: dataSend, encoding: JSONEncoding(options: [])).responseJSON{ response in
+            print(response)
+            if response.result.value != nil {
+                let json = JSON(response.result.value!)
+                print(json)
+                if json == JSON.null {
+                    let result = json["message"].stringValue
+                    alerta(titulo: "No se pudo hacer el registro", mensaje: result, cantidad_Botones: 1, estilo_controller: .alert, estilo_boton: .default, sender: self)
+                    print("Nulo: ",result)
+                }
+                else{
+                    if json["errors"].exists(){
+                        let doct = json["errors"].dictionaryValue
+                        let json2 = json["errors"]
+                        var message = ""
+                        for ele in doct{
+                            message = message + "\n\n" + "\(ele.key): \(json2[ele.key][0].description)"
+                        }
+                        alerta(titulo: "Error en el registro", mensaje: message, cantidad_Botones: 1, estilo_controller: .alert, estilo_boton: .default, sender: self)
+                    }
+                    if json["id"].exists(){
+                        alerta(titulo: "Exito", mensaje: "Registro realizado satisfactoriamente", cantidad_Botones: 1, estilo_controller: .alert, estilo_boton: .default, sender: self)
+                        self.performSegue(withIdentifier: "segRegAMenu", sender: nil)
+                    }
+                    
+                    
+                }
+            }
+            else{
+                alerta(titulo: "Error", mensaje: "No hubo resultados del servidor o no hay conexiòn", cantidad_Botones: 1, estilo_controller: UIAlertControllerStyle.alert, estilo_boton: UIAlertActionStyle.default, sender: self)
+                print("No hay respuesta del Web Service")
+            }
+        }
     }
 }
