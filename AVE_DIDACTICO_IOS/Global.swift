@@ -68,152 +68,66 @@ var RN:[Double] = []
 var CN:[Double] = []
 var celdasAsignadas = 0
 
+//Funcion principal, manda a llamar las demas para dar la solucion optima.
 func GenerarPasos(metodo: Metodo){
     //Agega columna o renglon
     balance()
     //Realiza la asingacion de valores con el metodo AVE
     asignacionAVE()
-    
+    var hayNegativos = false
+    repeat{
     //Cuenta cuantas celdas estan asignadas
     contarAsignaciones()
-    
 //Si la cantidad de celdas asignadas es igual a la de `R + C -1`
     if ((cantFilas + cantColumnas) - 1) == celdasAsignadas{
 //Aqui busca los valores de cada nombre de columna o fila, para buscar un numero negativo R + C + CCA
         var comentario:String = ""
-        
         DespejeRyC()
-        
-        
-        
-        //Busqueda de las celdas vacias y resultado de R + C + CCV
-        if true {
-            let arMa = arrMatriz
-            let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
-            newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-            newPaso.setComentario(comentario: "El siguiente paso es realizar la formula ´R + C + Costo de celda vacia = 0´")
-            newPaso.setCeldasValores(matrizValores: arMa)
-            pasos.append(newPaso)
-        }
         //(coordenadas,valorResultado)
-        var arrCeldasVacias:[((Int,Int),Double)] = []
-        comentario = "El arreglo de las celdas vacias y el resultado son: \n\n"
-        for x in 0 ..< arrMatriz.count{
-            for y in 0 ..< arrMatriz[0].count{
-                if !arrMatriz[x][y].asignado{
-                    let costo:Double = arrMatriz[x][y].costo
-                    let resultado:Double = RN[x] + CN[y] + costo
-                    comentario = comentario + "R\(x+1) C\(y+1) => R\(x+1)(\(RN[x])) + C\(y+1)(\(CN[y])) + C.C.V.(\(arrMatriz[x][y].costo)) = \(resultado)\n"
-//Print
-                    print("R\(x+1) C\(y+1) => R\(x+1)(\(RN[x])) + C\(y+1)(\(CN[y])) + C.C.V.(\(arrMatriz[x][y].costo) = \(resultado)\n")
-                    arrCeldasVacias.append(((x,y),resultado))
-                }
-            }
-        }
-        comentario = comentario + "\nSi hay negativos, se toma el mayor negativo."
-        if true {
-            let arMa = arrMatriz
-            let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
-            newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-            newPaso.setComentario(comentario: comentario)
-            newPaso.setCeldasValores(matrizValores: arMa)
-            pasos.append(newPaso)
-        }
+        var arrCeldasVacias:[((Int,Int),Double)] = celdasVacias()
 //Se verifica que no haya valores negativos
         recorrido = [] //Se limpia el recorrido
         var valorMasNegativo:Double = 0.0
         var coordenadasNegativo:(Int,Int) = (-1,-1)
+        hayNegativos = false
         for x in arrCeldasVacias{
+            print("celdas vacias = \(x.1):\(valorMasNegativo)")
             if x.1 < valorMasNegativo{
                 coordenadasNegativo = x.0
                 valorMasNegativo = x.1
+                hayNegativos = true
 //Print
                 print("Nuevo Negativo: (\(coordenadasNegativo)), \(valorMasNegativo)")
             }
         }
-//Comienza la busqueda del recorrido
-        if valorMasNegativo < 0 {
-            comentario = "Hay al menos un valor negativo, se busca un recorrido y se hace el ajuste"
-            recorrido.append(coordenadasNegativo)
-            if BuscarRecorrido(coordIni: coordenadasNegativo, vertical: true, positivo: true, coordActual: coordenadasNegativo, contador: 1){
-                comentario = "Encontro un recorrido"
-            }
-            else if BuscarRecorrido(coordIni: coordenadasNegativo, vertical: false, positivo: true, coordActual: coordenadasNegativo, contador: 1){
-                comentario = "Encontro un recorrido"
-            }
-            else{
-                comentario = "No encontro un recorrido"
-                recorrido.popLast()
-            }
-            if comentario != "No encontro un recorrido"{
-                var auxBool = true
-                var newArrMatriz = arrMatriz
-                for pos in recorrido{
-                    if auxBool{
-                        newArrMatriz[pos.0][pos.1].signo = 1
-                    }
-                    if !auxBool{
-                        newArrMatriz[pos.0][pos.1].signo = -1
-                    }
-                    auxBool = !auxBool
-                }
-                comentario = comentario + "A las celdas de color verde se les va a sumar el valor mas bajo de las celdas en rojo y a las celdas en rojo se les suma este mismo valor"
-                if true {
-                    
-                    let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
-                    newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-                    newPaso.setComentario(comentario: comentario)
-                    newPaso.setCeldasValores(matrizValores: newArrMatriz)
-                    pasos.append(newPaso)
-                }
-    //Busqueda de la celda negativa con menor valor
-                var minValor = 999999999.9
-                for x in 0 ..< arrMatriz.count{
-                    for y in 0 ..< arrMatriz[0].count{
-                        if newArrMatriz[x][y].signo == -1{
-                            if newArrMatriz[x][y].valor < minValor{
-                                minValor = newArrMatriz[x][y].valor
-                            }
-                        }
-                    }
-                }
-                //Cambio de los valores a la matriz, suma y resta
-                for x in 0 ..< arrMatriz.count{
-                    for y in 0 ..< arrMatriz[0].count{
-                        if newArrMatriz[x][y].signo == -1{
-                            arrMatriz[x][y].valor = arrMatriz[x][y].valor - minValor
-                            if arrMatriz[x][y].valor == 0.0{
-                                arrMatriz[x][y].asignado = false
-                            }
-                            else{
-                                arrMatriz[x][y].asignado = true
-                            }
-                        }
-                        if newArrMatriz[x][y].signo == 1{
-                            arrMatriz[x][y].valor = arrMatriz[x][y].valor + minValor
-                            if arrMatriz[x][y].valor == 0.0{
-                                arrMatriz[x][y].asignado = false
-                            }
-                            else{
-                                arrMatriz[x][y].asignado = true
-                            }
-                        }
-                    }
-                }
-                if true {
-                    let arMa = arrMatriz
-                    let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
-                    newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-                    newPaso.setComentario(comentario: "Tabla despues de hacer las sumas y restas")
-                    newPaso.setCeldasValores(matrizValores: arMa)
-                    pasos.append(newPaso)
-                }
+        if hayNegativos{
+            hacerRecorrido(coordenadasNegativo: coordenadasNegativo)
+            
+            //Se va a repetir el proceso
+            if true {
+                let arMa = arrMatriz
+                let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+                newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+                newPaso.setComentario(comentario: "Se repite el proceso desde el conteo de asignaciones")
+                newPaso.setCeldasValores(matrizValores: arMa)
+                pasos.append(newPaso)
             }
         }
-//Termina la busqueda del recorrido
-
+        else{
+            //Imprime tabla final
+            if true {
+                let arMa = arrMatriz
+                let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+                newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+                newPaso.setComentario(comentario: "Ya no hay valores negativos, es optimo.")
+                newPaso.setCeldasValores(matrizValores: arMa)
+                pasos.append(newPaso)
+            }
+        }
+        
     }
     else{
+        //No se puede continuar
         if true {
             let arMa = arrMatriz
             let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
@@ -223,7 +137,8 @@ func GenerarPasos(metodo: Metodo){
             pasos.append(newPaso)
         }
     }
-    
+        
+    }while(hayNegativos)
     iteracionActual = 0
 }
 var recorrido:[(Int,Int)] = []
@@ -448,7 +363,7 @@ func balance(){
         let arMa = arrMatriz
         
         pasox.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-        pasox.setComentario(comentario: "La suma de las demandas es mayor, por lo que se agrega una columna")
+        pasox.setComentario(comentario: "La suma de las demandas es mayor que la suma de las ofertas, por lo que se agrega una columna con la diferencia")
         pasox.setCeldasValores(matrizValores: arMa)
         pasos.append(pasox)
         
@@ -469,7 +384,7 @@ func balance(){
         let arMa = arrMatriz
         
         paso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-        paso.setComentario(comentario: "La suma de las ofertas es mayor, por lo que se agrega un renglon")
+        paso.setComentario(comentario: "La suma de las ofertas es mayor que la suma de las demandas, por lo que se agrega un renglon con la diferencia")
         paso.setCeldasValores(matrizValores: arMa)
         pasos.append(paso)
     }
@@ -501,7 +416,7 @@ func asignacionAVE(){
                 
                 //print("if \(precioColumnas[y]) > \(precioFilas[indexx])")
                 if precioColumnas[y] > precioFilas[indexx]{
-                    comentario = comentario + " y este es mayor al de la demanda \(fl), se asigna el de la demanda a la celda [\(fl),\(cl)]"
+                    comentario = comentario + " y este es mayor al de la demanda \(fl) y esta celda tiene el menor costo de la columna, se asigna el de la demanda a la celda [\(fl),\(cl)]"
                     //Asignacion true
                     arrMatriz[indexx][y].valor = precioFilas[indexx]
                     arrMatriz[indexx][y].asignado = true
@@ -510,7 +425,7 @@ func asignacionAVE(){
                     precioFilas[indexx] = 0
                 }
                 else{
-                    comentario = comentario + " y este es menor o igual al de la demanda \(fl), se asigna el valor de la oferta a la celda [\(fl),\(cl)]"
+                    comentario = comentario + " y este es menor o igual al de la demanda \(fl) y esta celda tiene el menor costo de la columna, se asigna el valor de la oferta a la celda [\(fl),\(cl)]"
                     arrMatriz[indexx][y].valor = precioColumnas[y]
                     arrMatriz[indexx][y].asignado = true
                     //print("precioFilas(\(precioFilas[indexx])) = \(precioColumnas[y]) - \(precioFilas[indexx])")
@@ -528,7 +443,7 @@ func asignacionAVE(){
                 pasos.append(paso)
                 
                 if precioColumnas[y] > 0 {
-                    comentario = "Aun queda oferta por lo que se busca el siguiente renglon con demanda mayor a 0 y costo menor.\n"
+                    comentario = "Aùn queda oferta por lo que se busca el siguiente renglon con demanda mayor a 0 y costo menor.\n"
                 }
                 else{comentario = ""}
             }
@@ -540,7 +455,7 @@ func asignacionAVE(){
         let arMa = arrMatriz
         let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
         newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-        newPaso.setComentario(comentario: "Asignacion terminada. \nSe prosigue a verificar las asignaciones ´#R + #C - 1 = Celdas asignadas´")
+        newPaso.setComentario(comentario: "Asignaciòn terminada. \nSe prosigue a verificar las asignaciones '#R + #C - 1 = Celdas asignadas'")
         newPaso.setCeldasValores(matrizValores: arMa)
         pasos.append(newPaso)
     }
@@ -574,26 +489,26 @@ func contarAsignaciones(){
         let arMa = arrMatriz
         let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
         newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-        newPaso.setComentario(comentario: "´#R + #C - 1 = Celdas asignadas´\n\(cantFilas) + \(cantColumnas) - 1 = \(celdasAsignadas)")
+        newPaso.setComentario(comentario: "'#R + #C - 1 = Celdas asignadas'\n\(cantFilas) + \(cantColumnas) - 1 = \(celdasAsignadas)")
         newPaso.setCeldasValores(matrizValores: arMa)
         pasos.append(newPaso)
     }
 }
 func DespejeRyC(){
-    var comentario = "Para la optimizaciòn, se busca el renglon(R#) o columna(C#) con mayor asignaciones, y se le da el valor de 0.\n"
+    var comentario = "Para la optimizaciòn, se buscan los valores de cada R y cada C. \nFormula: 'R + C + costo de celda asignada'\nPrimero buscando el renglon(R#) o columna(C#) con mayor asignaciones, y se le da el valor de 0.\n"
     //Primero se busca cual columna o renglon tiene mas celdas asignadas, para suponer el valor de este como 0; y hacer el despeje de los demas valores
     let primerAsignacion = cualAsignar0()
     
     //Si es un Renglon el que tiene mayor cantidad de celdas asignadas, se supone como 0
     if primerAsignacion.1 == 1{
         RN[primerAsignacion.0] = 0
-        comentario = comentario + "R\(primerAsignacion.0+1) = 0\n"
+        comentario = comentario + "R\(primerAsignacion.0+1) = 0\n\n"
         //Se despeja cada C del renglon R(primeraAsignacion.0)
         var index = 0
         for i in arrMatriz[primerAsignacion.0]{
             if i.asignado{
                 CN[index] = DespejarX(n: RN[primerAsignacion.0], costo: i.costo)
-                comentario = comentario + "C\(index+1) se Obtiene despejando: R\(primerAsignacion.0+1) + C\(index+1) + \(i.costo) = 0. Resultado = \(CN[index])\n"
+                comentario = comentario + "C\(index+1) => R\(primerAsignacion.0+1)(\(RN[primerAsignacion.0])) + C\(index+1) + C.C.A.(\(i.costo)) = 0. Resultado = \(CN[index])\n"
             }
             index = index + 1
         }
@@ -609,7 +524,7 @@ func DespejeRyC(){
                         if RN[i] != -999{break}
                         if j.asignado && CN[index2] != -999{
                             RN[i] = DespejarX(n: CN[index2], costo: j.costo)
-                            comentario = comentario + "R\(i+1) se Obtiene despejando: R\(i+1) + C\(index2+1) + \(j.costo) = 0. Resultado = \(RN[i])\n"
+                            comentario = comentario + "R\(i+1) => R\(i+1) + C\(index2+1)(\(CN[index2])) + C.C.A.(\(j.costo)) = 0. Resultado = \(RN[i])\n"
                             break
                         }
                         index2 = index2 + 1
@@ -623,7 +538,7 @@ func DespejeRyC(){
                         if CN[i] != -999{break}
                         if arrMatriz[j][i].asignado && RN[j] != -999{
                             CN[i] = DespejarX(n: RN[j], costo: arrMatriz[j][i].costo)
-                            comentario = comentario + "C\(i+1) se Obtiene despejando: R\(j+1) + C\(i+1) + \(arrMatriz[j][i].costo) = 0. Resultado = \(CN[i])\n"
+                            comentario = comentario + "C\(i+1) => R\(j+1)(\(RN[j])) + C\(i+1) + C.C.A.(\(arrMatriz[j][i].costo)) = 0. Resultado: \(CN[i])\n"
                             break
                         }
                     }
@@ -670,7 +585,7 @@ func DespejeRyC(){
         for i in 0 ..< arrMatriz.count{
             if arrMatriz[i][primerAsignacion.0].asignado{
                 RN[i] = DespejarX(n: CN[primerAsignacion.0], costo: arrMatriz[i][primerAsignacion.0].costo)
-                comentario = comentario + "R\(i+1) se Obtiene despejando: R\(i+1) + C\(primerAsignacion.0+1) + \(arrMatriz[i][primerAsignacion.0].costo) = 0. Resultado = \(RN[i])\n"
+                comentario = comentario + "R\(i+1) => R\(i+1) + C\(primerAsignacion.0+1)(\(CN[primerAsignacion.0])) + C.C.A.(\(arrMatriz[i][primerAsignacion.0].costo)) = 0. Resultado = \(RN[i])\n"
             }
         }
         //Prueba while
@@ -683,7 +598,7 @@ func DespejeRyC(){
                         if CN[i] != -999{break}
                         if arrMatriz[j][i].asignado && RN[j] != -999{
                             CN[i] = DespejarX(n: RN[j], costo: arrMatriz[j][i].costo)
-                            comentario = comentario + "C\(i+1) se Obtiene despejando: R\(j+1) + C\(i+1) + \(arrMatriz[j][i].costo) = 0. Resultado = \(CN[i])\n"
+                            comentario = comentario + "C\(i+1) => R\(j+1)(\(RN[j])) + C\(i+1) + C.C.A.(\(arrMatriz[j][i].costo)) = 0. Resultado = \(CN[i])\n"
                             break
                         }
                     }
@@ -697,7 +612,7 @@ func DespejeRyC(){
                         if RN[i] != -999{break}
                         if j.asignado && CN[index2] != -999{
                             RN[i] = DespejarX(n: CN[index2], costo: j.costo)
-                            comentario = comentario + "R\(i+1) se Obtiene despejando: R\(i+1) + C\(index2+1) + \(j.costo) = 0. Resultado = \(RN[i])\n"
+                            comentario = comentario + "R\(i+1) => R\(i+1) + C\(index2+1)(\(CN[index2])) + C.C.A.(\(j.costo)) = 0. Resultado = \(RN[i])\n"
                             break
                         }
                         index2 = index2 + 1
@@ -735,5 +650,136 @@ func DespejeRyC(){
             pasos.append(newPaso)
         }
     }
+
+}
+func celdasVacias() -> [((Int,Int),Double)]{
+    //(coordenadas,valorResultado)
+    var arrCeldasVacias:[((Int,Int),Double)] = []
+    //Busqueda de las celdas vacias y resultado de R + C + CCV
+    if true {
+        let arMa = arrMatriz
+        let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+        newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+        newPaso.setComentario(comentario: "El siguiente paso es realizar la formula: \n'R + C + Costo de celda vacia = 0'")
+        newPaso.setCeldasValores(matrizValores: arMa)
+        pasos.append(newPaso)
+    }
+    
+    var comentario = "El arreglo de las celdas vacias y el resultado son: \n\n"
+    for x in 0 ..< arrMatriz.count{
+        for y in 0 ..< arrMatriz[0].count{
+            if !arrMatriz[x][y].asignado{
+                let costo:Double = arrMatriz[x][y].costo
+                let resultado:Double = RN[x] + CN[y] + costo
+                comentario = comentario + "R\(x+1) C\(y+1) => R\(x+1)(\(RN[x])) + C\(y+1)(\(CN[y])) + C.C.V.(\(arrMatriz[x][y].costo)) = \(resultado)\n"
+                //Print
+                print("R\(x+1) C\(y+1) => R\(x+1)(\(RN[x])) + C\(y+1)(\(CN[y])) + C.C.V.(\(arrMatriz[x][y].costo) = \(resultado)\n")
+                arrCeldasVacias.append(((x,y),resultado))
+            }
+        }
+    }
+    comentario = comentario + "\nSi hay negativos, se toma el mayor negativo.\nSino se considera una solucion optima"
+    if true {
+        let arMa = arrMatriz
+        let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+        newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+        newPaso.setComentario(comentario: comentario)
+        newPaso.setCeldasValores(matrizValores: arMa)
+        pasos.append(newPaso)
+    }
+    return arrCeldasVacias
+}
+func hacerRecorrido(coordenadasNegativo:(Int,Int)){
+    var comentario = ""
+    //Comienza la busqueda del recorrido (Recorrido, es las celdas que se van a modificar al sumar o restar un valor. Donde se hara el ajuste.)
+    
+        comentario = "Hay al menos un valor negativo, se busca un recorrido y se hace el ajuste"
+        recorrido.append(coordenadasNegativo)
+        if BuscarRecorrido(coordIni: coordenadasNegativo, vertical: true, positivo: true, coordActual: coordenadasNegativo, contador: 1){
+            comentario = "Encontro un recorrido"
+        }
+        else if BuscarRecorrido(coordIni: coordenadasNegativo, vertical: false, positivo: true, coordActual: coordenadasNegativo, contador: 1){
+            comentario = "Encontro un recorrido"
+        }
+        else{
+            comentario = "No encontro un recorrido"
+            recorrido.popLast()
+        }
+        if comentario == "No encontro un recorrido"{
+            let arMa = arrMatriz
+            let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+            newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+            newPaso.setComentario(comentario: "No se pudo encontrar un recorrido. \nNo cierra el ciclo.")
+            newPaso.setCeldasValores(matrizValores: arMa)
+            pasos.append(newPaso)
+        }
+        else{
+            var auxBool = true
+            var newArrMatriz = arrMatriz
+            //Asigna a la matriz auxiliar ´newArrMatriz´, si las celdas tienen asignacion positiva o negativa
+            for pos in recorrido{
+                if auxBool{
+                    newArrMatriz[pos.0][pos.1].signo = 1
+                }
+                if !auxBool{
+                    newArrMatriz[pos.0][pos.1].signo = -1
+                }
+                auxBool = !auxBool
+            }
+            comentario = comentario + "\nA las celdas de color verde se les va a sumar el valor mas bajo de las celdas en rojo y a las celdas en rojo se les suma este mismo valor"
+            if true {
+                
+                let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+                newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+                newPaso.setComentario(comentario: comentario)
+                newPaso.setCeldasValores(matrizValores: newArrMatriz)
+                pasos.append(newPaso)
+            }
+            //Busqueda de la celda negativa con menor valor
+            var minValor = 999999999.9
+            for x in 0 ..< arrMatriz.count{
+                for y in 0 ..< arrMatriz[0].count{
+                    if newArrMatriz[x][y].signo == -1{
+                        if newArrMatriz[x][y].valor < minValor{
+                            minValor = newArrMatriz[x][y].valor
+                        }
+                    }
+                }
+            }
+            //Cambio de los valores a la matriz, suma y resta
+            for x in 0 ..< arrMatriz.count{
+                for y in 0 ..< arrMatriz[0].count{
+                    if newArrMatriz[x][y].signo == -1{
+                        arrMatriz[x][y].valor = arrMatriz[x][y].valor - minValor
+                        if arrMatriz[x][y].valor == 0.0{
+                            arrMatriz[x][y].asignado = false
+                        }
+                        else{
+                            arrMatriz[x][y].asignado = true
+                        }
+                    }
+                    if newArrMatriz[x][y].signo == 1{
+                        arrMatriz[x][y].valor = arrMatriz[x][y].valor + minValor
+                        if arrMatriz[x][y].valor == 0.0{
+                            arrMatriz[x][y].asignado = false
+                        }
+                        else{
+                            arrMatriz[x][y].asignado = true
+                        }
+                    }
+                }
+            }
+            //Guarda el paso
+            if true {
+                let arMa = arrMatriz
+                let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+                newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+                newPaso.setComentario(comentario: "Tabla despues de hacer las sumas y restas")
+                newPaso.setCeldasValores(matrizValores: arMa)
+                pasos.append(newPaso)
+            }
+        }
+    
+    //Termina la busqueda del recorrido
 
 }
