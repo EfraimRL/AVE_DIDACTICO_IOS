@@ -16,12 +16,13 @@ class ExamenViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var quizz_id = -1
     var questions:[Pregunta] = []
     var question_options:[[Respuesta]] = []
-    
+    var cells:[UITableViewCell] = []
     
 
     @IBOutlet weak var tvExamenes: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        runTimer()
         tvExamenes.dataSource = self
         tvExamenes.delegate = self
         TraerPreguntas()
@@ -37,14 +38,23 @@ class ExamenViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        cells = []
+        for _ in 0 ..< cantQuestions{
+            cells.append(UITableViewCell())
+        }
         return cantQuestions
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellExamenPregunta", for: indexPath) as! ExamenPreguntaTableViewCell
-        
+        print("questions = \(questions.count),questions_options = \(question_options.count)")
+        if questions.count != question_options.count{
+            tableView.reloadData()
+        }
+        else{
         cell.llenarPreguntaYRespuestas(pregunta: questions[indexPath.row],respuestas: question_options[indexPath.row])
-        
+        cells[indexPath.row] = cell
+        }
         return cell
     }
     func TraerPreguntas(){
@@ -62,11 +72,51 @@ class ExamenViewController: UIViewController,UITableViewDataSource,UITableViewDe
             [(0,"Si"), (1,"No"), (0,"Quiza"), (0,"No se")]
         ]
         */
-        cantQuestions = questions.count
     }
     @IBAction func RevisarExamen(_ sender: Any) {
         
+        revisar()
     }
+    func revisar(){
+        var suma = 0
+        if timerRunning{
+            timer.invalidate()
+            timerRunning = false
+        }
+        let rowCount = tvExamenes.numberOfRows(inSection: 0)
+        let sectionCount = tvExamenes.numberOfSections
+        print("sections \(sectionCount)")
+        //Ciclo para leer cada cuadro de texto de la tabla
+        print("RowCount:\(rowCount)")
+        
+        
+        for cc in cells{
+            let cell1 = cc as! ExamenPreguntaTableViewCell
+            suma = suma + cell1.getCheched()
+        }
+        alerta(titulo: "Terminado", mensaje: "Calificaciòn: \(suma)", cantidad_Botones: 1, estilo_controller: .alert, estilo_boton: .default, sender: self,i:1)
+        
+    }
+    func unWind(){
+        performSegue(withIdentifier: "unWindTo_ExamenesListWithSegue", sender: nil)
+    }
+    /////////
+    var seconds = 0 //This variable will hold a starting value of seconds. It could be any amount above 0.
+    var timer = Timer()
+    var timerRunning = false
+    func runTimer() {
+        timerRunning = true
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(ExamenViewController.contador)), userInfo: nil, repeats: true)
+    }
+    @objc func contador(){
+        print("\(timer.timeInterval)")
+        if seconds == 10 {
+            timer.invalidate()
+            revisar()
+        }
+        seconds = seconds + 1
+    }
+    //////////
     /*
     // MARK: - Navigation
 

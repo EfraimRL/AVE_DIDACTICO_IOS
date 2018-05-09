@@ -83,9 +83,14 @@ class Menu_ExamenesTableViewController: UITableViewController {
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destino = segue.destination as! ExamenViewController
-        print(sender)
-        destino.quizz_id = sender as! Int
+        print("A \(sender.debugDescription)")
+        let value = sender.unsafelyUnwrapped
+        if Int("\(value)") != nil{
+            let destino = segue.destination as! ExamenViewController
+            print(sender)
+            destino.quizz_id = sender as! Int
+        }
+        
     }
 //Salir
     @IBAction func unWindTo_ExamenesList(segue:UIStoryboardSegue!){}

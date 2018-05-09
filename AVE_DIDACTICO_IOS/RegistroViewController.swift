@@ -52,7 +52,7 @@ class RegistroViewController: UIViewController {
         }
     }
     func setUsuario() -> Usuario{
-        var user = Usuario()
+        let user = Usuario()
         
         user.email = txtCorreo.text!
         user.password = txtContrasena1.text!
@@ -79,6 +79,9 @@ class RegistroViewController: UIViewController {
         }
         return false
     }
+    func unWind(){
+        self.performSegue(withIdentifier: "unWindTo_LogInSegue", sender: nil)
+    }
     func registrarUsuario(usuario:Usuario){
         let dataSend = ["user":[ "email":usuario.email, "password": usuario.password,"password_confirmation":usuario.password_confirmation,"names":usuario.names,"lastnames":usuario.lastnames,"name":usuario.name,"control_number":usuario.control_number,"carrer":usuario.carrer,"grade":usuario.grade,"algorithm_level":usuario.algorithm_level,"course_level":usuario.course_level,"rol":usuario.rol]] as [String:Any]
         print(dataSend)
@@ -104,14 +107,12 @@ class RegistroViewController: UIViewController {
                     }
                     if json["id"].exists(){
                         alerta(titulo: "Exito", mensaje: "Registro realizado satisfactoriamente", cantidad_Botones: 1, estilo_controller: .alert, estilo_boton: .default, sender: self)
-                        self.performSegue(withIdentifier: "segRegAMenu", sender: nil)
+                        
                     }
-                    
-                    
                 }
             }
             else{
-                alerta(titulo: "Error", mensaje: "No hubo resultados del servidor o no hay conexiòn", cantidad_Botones: 1, estilo_controller: UIAlertControllerStyle.alert, estilo_boton: UIAlertActionStyle.default, sender: self)
+                alerta(titulo: "Error", mensaje: "No hubo resultados del servidor o no hay conexiòn", cantidad_Botones: 1, estilo_controller: UIAlertControllerStyle.alert, estilo_boton: UIAlertActionStyle.default, sender: self,i:1)
                 print("No hay respuesta del Web Service")
             }
         }
