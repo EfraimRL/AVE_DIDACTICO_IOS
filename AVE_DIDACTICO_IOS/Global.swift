@@ -21,6 +21,7 @@ var precioFilas:[Double] = []
 var precioColumnasConstante:[Double] = []
 var precioFilasConstante:[Double] = []
 
+var maximizar = false
 //Para otras cosas
 var iteracionActual:Int = 0
 
@@ -67,77 +68,100 @@ func establecerValores() {
 var RN:[Double] = []
 var CN:[Double] = []
 var celdasAsignadas = 0
-
+func imprimir(){
+    var impr = ""
+    for linea in arrMatriz{
+        impr = ""
+        for objeto in linea{
+            impr = impr + "\(objeto.valor)-\(objeto.costo)-\(objeto.asignado)"
+        }
+        print(impr)
+    }
+}
 //Funcion principal, manda a llamar las demas para dar la solucion optima.
 func GenerarPasos(metodo: Metodo){
+    minimizarOmaximizar()
     //Agega columna o renglon
     balance()
     //Realiza la asingacion de valores con el metodo AVE
     asignacionAVE()
+    print("asignacion")
+    imprimir()
     var hayNegativos = false
     repeat{
-    //Cuenta cuantas celdas estan asignadas
-    contarAsignaciones()
+        //Cuenta cuantas celdas estan asignadas
+        contarAsignaciones()
 //Si la cantidad de celdas asignadas es igual a la de `R + C -1`
-    if ((cantFilas + cantColumnas) - 1) == celdasAsignadas{
-//Aqui busca los valores de cada nombre de columna o fila, para buscar un numero negativo R + C + CCA
-        var comentario:String = ""
-        DespejeRyC()
-        //(coordenadas,valorResultado)
-        var arrCeldasVacias:[((Int,Int),Double)] = celdasVacias()
-//Se verifica que no haya valores negativos
-        recorrido = [] //Se limpia el recorrido
-        var valorMasNegativo:Double = 0.0
-        var coordenadasNegativo:(Int,Int) = (-1,-1)
-        hayNegativos = false
-        for x in arrCeldasVacias{
-            print("celdas vacias = \(x.1):\(valorMasNegativo)")
-            if x.1 < valorMasNegativo{
-                coordenadasNegativo = x.0
-                valorMasNegativo = x.1
-                hayNegativos = true
-//Print
-                print("Nuevo Negativo: (\(coordenadasNegativo)), \(valorMasNegativo)")
-            }
-        }
-        if hayNegativos{
-            hacerRecorrido(coordenadasNegativo: coordenadasNegativo)
+        while(celdasAsignadas < ((cantFilas + cantColumnas) - 1)){
+            //Se agregan 0
+            var posicion = buscarMenorCostoParaAsignar0(x:(pasos.first?.filas)!, y:(pasos.first?.columnas)!)
+            arrMatriz[posicion.0][posicion.1].asignado = true
+            arrMatriz[posicion.0][posicion.1].valor = 0
+            var coment = "Mientras las asignaciones sean menor a la cantidad de columnas + cantidad de filas - 1, se agrega un 0 a la celda con menor costo que no este asignada."
             
-            //Se va a repetir el proceso
             if true {
                 let arMa = arrMatriz
                 let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
                 newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-                newPaso.setComentario(comentario: "Se repite el proceso desde el conteo de asignaciones")
+                newPaso.setComentario(comentario: coment)
                 newPaso.setCeldasValores(matrizValores: arMa)
                 pasos.append(newPaso)
             }
+            print("Ajuste asignacion")
+            imprimir()
+            //Cuenta cuantas celdas estan asignadas
+            contarAsignaciones()
+            
         }
-        else{
-            //Imprime tabla final
-            if true {
-                let arMa = arrMatriz
-                let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
-                newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-                newPaso.setComentario(comentario: "Ya no hay valores negativos, es optimo.")
-                newPaso.setCeldasValores(matrizValores: arMa)
-                pasos.append(newPaso)
+        if ((cantFilas + cantColumnas) - 1) == celdasAsignadas{
+//Aqui busca los valores de cada nombre de columna o fila, para buscar un numero negativo R + C + CCA
+            var comentario:String = ""
+            print("Despeje")
+            imprimir()
+            DespejeRyC()
+            //(coordenadas,valorResultado)
+            var arrCeldasVacias:[((Int,Int),Double)] = celdasVacias()
+//Se verifica que no haya valores negativos
+            recorrido = [] //Se limpia el recorrido
+            var valorMasNegativo:Double = 0.0
+            var coordenadasNegativo:(Int,Int) = (-1,-1)
+            hayNegativos = false
+            for x in arrCeldasVacias{
+                print("celdas vacias = \(x.1):\(valorMasNegativo)")
+                if x.1 < valorMasNegativo{
+                    coordenadasNegativo = x.0
+                    valorMasNegativo = x.1
+                    hayNegativos = true
+//Print
+                    print("Nuevo Negativo: (\(coordenadasNegativo)), \(valorMasNegativo)")
+                }
             }
-        }
+            if hayNegativos{
+                hacerRecorrido(coordenadasNegativo: coordenadasNegativo)
+                
+                //Se va a repetir el proceso
+                if true {
+                    let arMa = arrMatriz
+                    let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+                    newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+                    newPaso.setComentario(comentario: "Se repite el proceso desde el conteo de asignaciones")
+                    newPaso.setCeldasValores(matrizValores: arMa)
+                    pasos.append(newPaso)
+                }
+            }
+            else{
+                //Imprime tabla final
+                if true {
+                    let arMa = arrMatriz
+                    let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+                    newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+                    newPaso.setComentario(comentario: "Ya no hay valores negativos, es optimo.")
+                    newPaso.setCeldasValores(matrizValores: arMa)
+                    pasos.append(newPaso)
+                }
+            }
         
-    }
-    else{
-        //No se puede continuar
-        if true {
-            let arMa = arrMatriz
-            let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
-            newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-            newPaso.setComentario(comentario: "No se puede continuar porque son distintos")
-            newPaso.setCeldasValores(matrizValores: arMa)
-            pasos.append(newPaso)
         }
-    }
-        
     }while(hayNegativos)
     iteracionActual = 0
 }
@@ -160,16 +184,22 @@ func BuscarRecorrido(coordIni:(Int,Int),vertical:Bool,positivo:Bool,coordActual:
             if arrMatriz[x][coordActual.1].asignado{
                 recorrido.append((x,coordActual.1))
                 if contador > 2{
-                    if x == coordIni.0 || coordIni.1 == coordActual.1{
-                        for j in recorrido{
-//Print
-                            //print("Recorrido\(j)")
+                    if coordIni.1 == recorrido[1].1{
+                        if x == coordIni.0{
+                            for j in recorrido{
+                                //Print
+                                //print("Recorrido\(j)")
+                            }
+                            return true
                         }
-                        return true
                     }
+                    
                 }
                 if BuscarRecorrido(coordIni: coordIni, vertical: !vertical, positivo: !positivo, coordActual: (x,coordActual.1), contador: contador+1){
                     return true
+                }
+                else{
+                    recorrido.popLast()
                 }
             }
         }
@@ -185,16 +215,21 @@ func BuscarRecorrido(coordIni:(Int,Int),vertical:Bool,positivo:Bool,coordActual:
                 recorrido.append((x,coordActual.1))
                 if contador > 2{
                     print("contador \(contador)")
-                    if x == coordIni.0 || coordIni.1 == coordActual.1{
-                        for j in recorrido{
-//Print
-                            //print("Recorrido\(j)")
+                    if coordIni.1 == recorrido[1].1{
+                        if x == coordIni.0{
+                            for j in recorrido{
+                                //Print
+                                //print("Recorrido\(j)")
+                            }
+                            return true
                         }
-                        return true
                     }
                 }
                 if BuscarRecorrido(coordIni: coordIni, vertical: !vertical, positivo: !positivo, coordActual: (x,coordActual.1), contador: contador+1){
                     return true
+                }
+                else{
+                    recorrido.popLast()
                 }
             }
         }
@@ -211,16 +246,23 @@ func BuscarRecorrido(coordIni:(Int,Int),vertical:Bool,positivo:Bool,coordActual:
             if arrMatriz[coordActual.0][y].asignado{
                 recorrido.append((coordActual.0,y))
                 if contador > 2{
-                    if coordActual.0 == coordIni.0 || coordIni.1 == y{
-                        for j in recorrido{
-//print
-                            //print("Recorrido\(j)")
+                    if coordIni.0 == recorrido[1].0{
+                        if coordIni.1 == y{
+                            for j in recorrido{
+                                //print
+                                //print("Recorrido\(j)")
+                            }
+                            return true
                         }
-                        return true
                     }
+                    
+                    
                 }
                 if BuscarRecorrido(coordIni: coordIni, vertical: !vertical, positivo: !positivo, coordActual: (coordActual.0,y), contador: contador+1){
                     return true
+                }
+                else{
+                    recorrido.popLast()
                 }
             }
         }
@@ -235,16 +277,21 @@ func BuscarRecorrido(coordIni:(Int,Int),vertical:Bool,positivo:Bool,coordActual:
             if arrMatriz[coordActual.0][y].asignado{
                 recorrido.append((coordActual.0,y))
                 if contador > 2{
-                    if coordActual.0 == coordIni.0 || coordIni.1 == y{
-                        for j in recorrido{
-//Print
-                            //print("Recorrido\(j)")
+                    if coordIni.0 == recorrido[1].0{
+                        if coordIni.1 == y{
+                            for j in recorrido{
+                                //print
+                                //print("Recorrido\(j)")
+                            }
+                            return true
                         }
-                        return true
                     }
                 }
                 if BuscarRecorrido(coordIni: coordIni, vertical: !vertical, positivo: !positivo, coordActual: (coordActual.0,y), contador: contador+1){
                     return true
+                }
+                else{
+                    recorrido.popLast()
                 }
             }
         }
@@ -259,7 +306,26 @@ func DespejarX(n:Double,costo:Double) -> Double{
     }
     return -(n+costo)
 }
-
+func minimizarOmaximizar(){
+    
+    if maximizar{
+        for i in 0 ..< arrMatriz.count {
+            for j in 0 ..< arrMatriz[0].count {
+                if arrMatriz[i][j].costo != 0.0{
+                    arrMatriz[i][j].costo = -(arrMatriz[i][j].costo)
+                }
+            }
+        }
+    }
+    if true {
+        let arMa = arrMatriz
+        let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+        newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+        newPaso.setComentario(comentario: "Al ser un problema de maximizaciòn, cada costo se multiplica por menos. \nEjemplo: -(costo)")
+        newPaso.setCeldasValores(matrizValores: arMa)
+        pasos.append(newPaso)
+    }
+}
 //Devuelve (posicion, si es R devuelve 1 y si es C devuelve 0)
 func cualAsignar0() -> (Int,Int){
     var posicion = -1
@@ -311,21 +377,45 @@ func buscarMenorCosto(columna:Int) -> Int{
     }
     return returnIndex
 }
-//Metodos de soluciones
-    //Metodo temporal.....Cambiar por el verdadero
-func MetodoAVE() -> [[Double]]{
-    var arrPasos : [[Double]] = []
-    for index in 1...7 {
-        var arrPaso:[Double] = []
-    	for x in 0..<cantFilas {
-    		for y in 0..<cantColumnas {
-    			//arrPaso.append(arrMatriz[x][y] + Double(index))
-			}
-		}
-        arrPasos.append(arrPaso)
-	}
-    return arrPasos
+//Busca el costo menor que no estè asignado, para igualar la formula #F + #C - 1 = asignaciones
+func buscarMenorCostoParaAsignar0(x:Int,y:Int) -> (Int,Int){
+    var posx = 0
+    var posy = 0
+    var costo = 999999999.9
+    if x < (pasos.last?.filas)!{
+        for i in 0 ..< x {
+            for j in 0 ..< y {
+                if !arrMatriz[i][j].asignado {
+                    if arrMatriz[i][j].costo < costo{
+                        print("i y j: \(i),\(j)")
+                        posx = i
+                        posy = j
+                        costo = arrMatriz[i][j].costo
+                    }
+                }
+            }
+        }
+    }
+    else if (y < (pasos.last?.columnas)!) || ((x == (pasos.last?.filas)!) && (y == (pasos.last?.columnas)!)){
+        for j in 0 ..< y {
+            for i in 0 ..< x {
+                if !arrMatriz[i][j].asignado {
+                    if arrMatriz[i][j].costo < costo{
+                        print("i y j: \(i),\(j)")
+                        posx = i
+                        posy = j
+                        costo = arrMatriz[i][j].costo
+                    }
+                }
+            }
+        }
+    }
+    
+    return (posx,posy)
 }
+
+//Metodos de soluciones
+
 //Balance
 func balance(){
     print("--------------------Balance-------------------")
@@ -474,7 +564,7 @@ func contarAsignaciones(){
         for celda in row{
             if celda.asignado {
                 celdasAsignadas = celdasAsignadas + 1
-                print("celda:[\(x),\(y)], \(pasos.last?.NombresFilas[x]), \(pasos.last?.NombresColumnas[y+1])")
+                print("celda:[\(x),\(y)], \(String(describing: pasos.last?.NombresFilas[x])), \(String(describing: pasos.last?.NombresColumnas[y+1]))")
                 arrCeldas.append((x,y))
             }
             y = y + 1
@@ -723,7 +813,9 @@ func hacerRecorrido(coordenadasNegativo:(Int,Int)){
             var auxBool = true
             var newArrMatriz = arrMatriz
             //Asigna a la matriz auxiliar ´newArrMatriz´, si las celdas tienen asignacion positiva o negativa
+            print("Paso de recorrido")
             for pos in recorrido{
+                print(pos)
                 if auxBool{
                     newArrMatriz[pos.0][pos.1].signo = 1
                 }
@@ -757,7 +849,7 @@ func hacerRecorrido(coordenadasNegativo:(Int,Int)){
                 for y in 0 ..< arrMatriz[0].count{
                     if newArrMatriz[x][y].signo == -1{
                         arrMatriz[x][y].valor = arrMatriz[x][y].valor - minValor
-                        if arrMatriz[x][y].valor == 0.0{
+                        if (arrMatriz[x][y].valor == 0.0) || (arrMatriz[x][y].valor == -0.0){
                             arrMatriz[x][y].asignado = false
                         }
                         else{
@@ -766,7 +858,7 @@ func hacerRecorrido(coordenadasNegativo:(Int,Int)){
                     }
                     if newArrMatriz[x][y].signo == 1{
                         arrMatriz[x][y].valor = arrMatriz[x][y].valor + minValor
-                        if arrMatriz[x][y].valor == 0.0{
+                        if (arrMatriz[x][y].valor == 0.0) || (arrMatriz[x][y].valor == -0.0){
                             arrMatriz[x][y].asignado = false
                         }
                         else{

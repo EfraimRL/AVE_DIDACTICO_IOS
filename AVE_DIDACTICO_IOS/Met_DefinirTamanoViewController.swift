@@ -27,6 +27,12 @@ class Met_DefinirTamanoViewController: UIViewController {
         self.view.endEditing(true)
     }
     @IBAction func btnContinuar(_ sender: Any) {
+        if swTipoMaxMin.isOn{
+            maximizar = false
+        }
+        else{
+            maximizar = true
+        }
         if txtCantidadFilas.text == "" || txtCantidadColumnas.text == "" {
             alerta(titulo:"Infromacion",mensaje:"Favor de ingresar la cantidad de filas y la cantidad de columnas (Fabricas y Bodegas)",cantidad_Botones:1,estilo_controller:.alert,estilo_boton:.default, sender: self)
             print("Favor de ingresar la cantidad de filas y la cantidad de columnas (Fabricas y Bodegas)")
