@@ -78,8 +78,14 @@ class Met_IteracionDePasosViewController: UIViewController,UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
+        let screenHeight = screenSize.height - 100
         let cellwidth:CGFloat = screenWidth / CGFloat(pasos[iteracionActual].columnas + 2)
-        let cellHieght:CGFloat = screenWidth / CGFloat(pasos[iteracionActual].filas + 2)
+        let cellHieght:CGFloat = screenHeight / CGFloat(pasos[iteracionActual].filas + 2)
+        if ((pasos[iteracionActual].columnas + 2) > 7) || ((pasos[iteracionActual].filas + 2) > 7){
+            let cellwidth1:CGFloat = screenWidth / CGFloat(5)
+            let cellHieght1:CGFloat = screenHeight / CGFloat(5)
+            return CGSize(width: cellwidth1, height: cellHieght1)
+        }
         return CGSize(width: cellwidth, height: cellHieght)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

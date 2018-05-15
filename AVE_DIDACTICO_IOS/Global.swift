@@ -46,7 +46,6 @@ func reiniciarDatos(){
     cantFilas = 0
     iteracionActual = 0
     indexllenadoDeValores = 0
-    arrValores = []
     arrMatriz = []
     arrCostos = []
     listaPasos = []
@@ -155,10 +154,12 @@ func GenerarPasos(metodo: Metodo){
                     let arMa = arrMatriz
                     let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
                     newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-                    newPaso.setComentario(comentario: "Ya no hay valores negativos, es optimo.")
+                    newPaso.setComentario(comentario: "Ya no hay valores negativos, es óptimo.")
                     newPaso.setCeldasValores(matrizValores: arMa)
                     pasos.append(newPaso)
                 }
+                //Imprime Z
+                obtenerZ()
             }
         
         }
@@ -316,15 +317,16 @@ func minimizarOmaximizar(){
                 }
             }
         }
+        if true {
+            let arMa = arrMatriz
+            let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+            newPaso.setOfertaYDemanda(ofertas: precioColumnas, demandas: precioFilas)
+            newPaso.setComentario(comentario: "Al ser un problema de maximización, cada costo se multiplica por menos. \nEjemplo: -(costo)")
+            newPaso.setCeldasValores(matrizValores: arMa)
+            pasos.append(newPaso)
+        }
     }
-    if true {
-        let arMa = arrMatriz
-        let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
-        newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-        newPaso.setComentario(comentario: "Al ser un problema de maximizaciòn, cada costo se multiplica por menos. \nEjemplo: -(costo)")
-        newPaso.setCeldasValores(matrizValores: arMa)
-        pasos.append(newPaso)
-    }
+    
 }
 //Devuelve (posicion, si es R devuelve 1 y si es C devuelve 0)
 func cualAsignar0() -> (Int,Int){
@@ -535,7 +537,7 @@ func asignacionAVE(){
                 pasos.append(paso)
                 
                 if precioColumnas[y] > 0 {
-                    comentario = "Aùn queda oferta por lo que se busca el siguiente renglon con demanda mayor a 0 y costo menor.\n"
+                    comentario = "Aún queda oferta por lo que se busca el siguiente renglon con demanda mayor a 0 y costo menor.\n"
                 }
                 else{comentario = ""}
             }
@@ -547,7 +549,7 @@ func asignacionAVE(){
         let arMa = arrMatriz
         let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
         newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-        newPaso.setComentario(comentario: "Asignaciòn terminada. \nSe prosigue a verificar las asignaciones '#R + #C - 1 = Celdas asignadas'")
+        newPaso.setComentario(comentario: "Asignación terminada. \nSe prosigue a verificar las asignaciones '#R + #C - 1 = Celdas asignadas'")
         newPaso.setCeldasValores(matrizValores: arMa)
         pasos.append(newPaso)
     }
@@ -589,7 +591,7 @@ func contarAsignaciones(){
 }
 func DespejeRyC(){
     print("--------------------Despeje R y C-------------------")
-    var comentario = "Para la optimizaciòn, se buscan los valores de cada R y cada C. \nFormula: 'R + C + costo de celda asignada'\nPrimero buscando el renglon(R#) o columna(C#) con mayor asignaciones, y se le da el valor de 0.\n"
+    var comentario = "Para la optimización, se buscan los valores de cada R y cada C. \nFormula: 'R + C + costo de celda asignada'\nPrimero buscando el renglon(R#) o columna(C#) con mayor asignaciones, y se le da el valor de 0.\n"
     //Primero se busca cual columna o renglon tiene mas celdas asignadas, para suponer el valor de este como 0; y hacer el despeje de los demas valores
     let primerAsignacion = cualAsignar0()
     
@@ -773,7 +775,7 @@ func celdasVacias() -> [((Int,Int),Double)]{
             }
         }
     }
-    comentario = comentario + "\nSi hay negativos, se toma el mayor negativo.\nSino se considera una solucion optima"
+    comentario = comentario + "\nSi hay negativos, se toma el mayor negativo.\nSino se considera una solucion óptima"
     if true {
         let arMa = arrMatriz
         let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
@@ -792,10 +794,10 @@ func hacerRecorrido(coordenadasNegativo:(Int,Int)){
         comentario = "Hay al menos un valor negativo, se busca un recorrido y se hace el ajuste"
         recorrido.append(coordenadasNegativo)
         if BuscarRecorrido(coordIni: coordenadasNegativo, vertical: true, positivo: true, coordActual: coordenadasNegativo, contador: 1){
-            comentario = "Encontro un recorrido"
+            comentario = ""
         }
         else if BuscarRecorrido(coordIni: coordenadasNegativo, vertical: false, positivo: true, coordActual: coordenadasNegativo, contador: 1){
-            comentario = "Encontro un recorrido"
+            comentario = ""
         }
         else{
             comentario = "No encontro un recorrido"
@@ -872,7 +874,7 @@ func hacerRecorrido(coordenadasNegativo:(Int,Int)){
                 let arMa = arrMatriz
                 let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
                 newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-                newPaso.setComentario(comentario: "Tabla despues de hacer las sumas y restas")
+                newPaso.setComentario(comentario: "Tabla despues de hacer el ajuste, las sumas y restas")
                 newPaso.setCeldasValores(matrizValores: arMa)
                 pasos.append(newPaso)
             }
@@ -880,4 +882,39 @@ func hacerRecorrido(coordenadasNegativo:(Int,Int)){
     
     //Termina la busqueda del recorrido
 
+}
+func obtenerZ(){
+    print("--------------------Obtener Z-------------------")
+    var celdasAsign = 0
+    var x = 0
+    var y = 0
+    var z = 0.0
+    var coment = "El costo total es la sumatoria del valor de cada celda asignada por su costo: Z = "
+    //Busca cada celda asignada
+    for row in arrMatriz{
+        for celda in row{
+            if celda.asignado {
+                if celdasAsign != 0{
+                    coment = coment + "+ "
+                }
+                celdasAsign = celdasAsign + 1
+                coment = coment + "\(celda.valor)(\(celda.costo)) "
+                z = z + (celda.valor * celda.costo)
+                
+            }
+            y = y + 1
+        }
+        x = x + 1
+        y = 0
+    }
+    coment = coment + "\n\n Z = \(z)"
+    //Agrega la tabla antes para validar la comparacion
+    if true {
+        let arMa = arrMatriz
+        let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+        newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+        newPaso.setComentario(comentario: coment)
+        newPaso.setCeldasValores(matrizValores: arMa)
+        pasos.append(newPaso)
+    }
 }

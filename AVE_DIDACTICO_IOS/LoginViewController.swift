@@ -14,15 +14,24 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var txtUsuario: UITextField!
     @IBOutlet weak var txtContrasena: UITextField!
-    
+    @IBOutlet weak var view2: UIView!
+    @IBOutlet weak var scrVw: UIScrollView!
+   
+    @objc func singleTapGestureCaptured(gesture: UITapGestureRecognizer){
+        self.view.endEditing(true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        let touch = UITapGestureRecognizer(target: self, action: #selector(singleTapGestureCaptured(gesture:)))
+        scrVw.addGestureRecognizer(touch)
     }
     override func viewDidAppear(_ animated: Bool) {
         txtContrasena.text = ""
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+        scrVw.endEditing(true)
+        view2.endEditing(true)
     }
     @IBAction func btnLogIn(_ sender: Any) {
         let email:String = txtUsuario.text!

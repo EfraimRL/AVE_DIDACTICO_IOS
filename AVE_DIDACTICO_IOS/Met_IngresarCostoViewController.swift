@@ -94,8 +94,14 @@ class Met_IngresarCostoViewController: UIViewController,UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
+        let screenHeight = screenSize.height - 100
         let cellwidth:CGFloat = screenWidth / CGFloat(cantColumnas)
-        let cellHieght:CGFloat = screenWidth / CGFloat(cantFilas)
+        let cellHieght:CGFloat = screenHeight / CGFloat(cantFilas)
+        if ((cantColumnas + 2) > 7) || ((cantFilas + 2) > 7){
+            let cellwidth1:CGFloat = screenWidth / CGFloat(5)
+            let cellHieght1:CGFloat = screenHeight / CGFloat(5)
+            return CGSize(width: cellwidth1, height: cellHieght1)
+        }
         //print("Aqui esta el tamaño")
         return CGSize(width: cellwidth, height: cellHieght)
     }

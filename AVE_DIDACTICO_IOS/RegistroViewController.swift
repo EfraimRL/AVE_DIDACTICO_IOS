@@ -11,7 +11,8 @@ import Alamofire
 import SwiftyJSON
 
 class RegistroViewController: UIViewController {
-
+    @IBOutlet weak var scrVw: UIView!
+    
     @IBOutlet weak var imgFotoPerfil: UIImageView!
     @IBOutlet weak var txtNombre: UITextField!
     @IBOutlet weak var txtApellido: UITextField!
@@ -22,10 +23,14 @@ class RegistroViewController: UIViewController {
     @IBOutlet weak var txtContrasena1: UITextField!
     @IBOutlet weak var txtContrasena2: UITextField!
     @IBOutlet weak var swTipoUsuario: UISwitch! //Selecciona en caso de ser maestro o alumno
-    
+    @objc func singleTapGestureCaptured(gesture: UITapGestureRecognizer){
+        self.view.endEditing(true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         swTipoUsuario.setOn(false, animated: false)
+        let touch = UITapGestureRecognizer(target: self, action: #selector(singleTapGestureCaptured(gesture:)))
+        scrVw.addGestureRecognizer(touch)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
