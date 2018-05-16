@@ -576,8 +576,8 @@ func contarAsignaciones(){
     }
     RN = []
     CN = []
-    for _ in 0 ..< cantColumnas {RN.append(-999)}
-    for _ in 0 ..< cantFilas {CN.append(-999)}
+    for _ in 0 ..< cantColumnas {CN.append(-999)}
+    for _ in 0 ..< cantFilas {RN.append(-999)}
     
     //Agrega la tabla antes para validar la comparacion
     if true {
@@ -688,9 +688,11 @@ func DespejeRyC(){
         var aux = false
         repeat {
             //Despeja las C# que pueda
+            print("Count de arrMatriz (\(arrMatriz.count)\(arrMatriz[0].count)), RN\(RN.count), CN\(CN.count)")
             for i in 0 ..< CN.count{
                 if CN[i] == -999{
                     for j in 0 ..< arrMatriz.count{
+                        print("Va la posicion \(j),\(i)---- De CN[\(i)]")
                         if CN[i] != -999{break}
                         if arrMatriz[j][i].asignado && RN[j] != -999{
                             CN[i] = DespejarX(n: RN[j], costo: arrMatriz[j][i].costo)

@@ -31,11 +31,18 @@ class Met_IteracionDePasosViewController: UIViewController,UICollectionViewDataS
     
 //Llenado del collectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        step = []
+        pasos[iteracionActual].reiniciarDatos()
+        for i in 0 ..< (pasos[iteracionActual].filas + 2) * (pasos[iteracionActual].columnas + 2){
+            let dupla = pasos[iteracionActual].getCelda(indice: i)
+            step.append(dupla)
+        }
         return (pasos[iteracionActual].filas + 2) * (pasos[iteracionActual].columnas + 2)
     }
+    var step:[(Any,Int)] = []
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellIteracion", for: indexPath) as! Met_IteracionDePasosCollectionViewCell
-        let dupla = pasos[iteracionActual].getCelda()
+        let dupla = step[indexPath.row]
         //print(dupla.1)
         if dupla.1 == 0{
             cell.lblValor.text = (dupla.0 as! String)
@@ -81,11 +88,12 @@ class Met_IteracionDePasosViewController: UIViewController,UICollectionViewDataS
         let screenHeight = screenSize.height - 100
         let cellwidth:CGFloat = screenWidth / CGFloat(pasos[iteracionActual].columnas + 2)
         let cellHieght:CGFloat = screenHeight / CGFloat(pasos[iteracionActual].filas + 2)
-        if ((pasos[iteracionActual].columnas + 2) > 7) || ((pasos[iteracionActual].filas + 2) > 7){
+        /*if ((pasos[iteracionActual].columnas + 2) > 7) || ((pasos[iteracionActual].filas + 2) > 7){
             let cellwidth1:CGFloat = screenWidth / CGFloat(5)
             let cellHieght1:CGFloat = screenHeight / CGFloat(5)
             return CGSize(width: cellwidth1, height: cellHieght1)
         }
+        */
         return CGSize(width: cellwidth, height: cellHieght)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

@@ -90,60 +90,69 @@ class Paso {
     func setComentario(comentario:String) {
         self.comentario = comentario
     }
-    func getCelda() -> (Any,Int){
-        
+    func getCelda(indice: Int) -> (Any,Int){
+        print("Indice:\(indice)")
         //Titulos de las columnas
-        if index <= (columnas+1) {
+        if indice <= (columnas+1) {
             indexNomCol = indexNomCol+1
-            //print("Titulo: [\(indexNomCol-1)]")
+            
+            print("Titulo: [\(indexNomCol-1)]")
             self.index = self.index + 1
             return (NombresColumnas[indexNomCol-1],0)
         }
         //Titulos de las filas
-        else if esMultiplo(i: index, y: 0){
+        else if esMultiplo(i: indice, y: 0){
             indexNomFil = indexNomFil+1
             self.index = self.index + 1
-            //print("Nombre filas: \(NombresFilas[indexNomFil-1])")
+            print("Nombre filas: \(NombresFilas[indexNomFil-1])")
             return (NombresFilas[indexNomFil-1],0)
         }
         //Valores de las demandas
-        else if esMultiplo(i: index, y: 1){
+        else if esMultiplo(i: indice, y: 1){
             indexDemandas = indexDemandas + 1
             self.index = self.index + 1
-            //print("Demanda: \(demandas[indexDemandas-1])")
+            print("Demanda: \(demandas[indexDemandas-1])")
             return ("\(demandas[indexDemandas-1])",0)
         }
         //Valores de las ofertas
-        else if esUltimoRenglon(i: index){
+        else if esUltimoRenglon(i: indice){
             indexOfertas = indexOfertas+1
             self.index = self.index + 1
-            //print("Oferta: \(ofertas[indexOfertas-1])")
+        print("Oferta: \(ofertas[indexOfertas-1])")
             return ("\(ofertas[indexOfertas-1])",0)
         }
         //Ultima casilla
-        else if index == (totalDeCasillas - 1){
+        else if indice == (totalDeCasillas - 1){
             self.index = self.index + 1
-            //print("Celda final: \(final)")
+            print("Celda final: \(final)")
             return (final,0)
         }
         //Si se pasa reinicia los index
-        else if index == totalDeCasillas{
+        else if indice == totalDeCasillas{
             index = 1
             indexNomCol = 1
             indexNomFil = 0
             indexDemandas = 0
             indexOfertas = 0
             indexCeldas = 0
-            //print("Titulo: [\(indexNomCol-1)]")
+            print("ReinicioNoEntrar: [\(indexNomCol-1)]")
             return (NombresColumnas[indexNomCol-1],0)
         }
         //Celda de valores
         else{
             indexCeldas = indexCeldas + 1
             self.index = self.index + 1
-            //print("celda \(indexCeldas-1)")
+            print("celda \(indexCeldas-1)")
             return (celdas[indexCeldas-1],1)
         }
+    }
+    func reiniciarDatos(){
+        index = 0
+        indexNomCol = 0
+        indexNomFil = 0
+        indexDemandas = 0
+        indexOfertas = 0
+        indexCeldas = 0
     }
 }
 
