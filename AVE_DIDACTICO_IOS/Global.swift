@@ -7,6 +7,12 @@
 //
 
 import Foundation
+import UIKit
+enum MyError: Error {
+    case RuntimeError(String)
+}
+var conteoParaErrorIteracion = 0
+
 
 //Datos que se usan para crear el objeto 'Paso'
 var cantColumnas:Int = 0
@@ -118,50 +124,62 @@ func GenerarPasos(metodo: Metodo){
             print("Despeje")
             imprimir()
             DespejeRyC()
-            //(coordenadas,valorResultado)
-            var arrCeldasVacias:[((Int,Int),Double)] = celdasVacias()
+            if conteoParaErrorIteracion != 21{
+                //(coordenadas,valorResultado)
+                var arrCeldasVacias:[((Int,Int),Double)] = celdasVacias()
 //Se verifica que no haya valores negativos
-            recorrido = [] //Se limpia el recorrido
-            var valorMasNegativo:Double = 0.0
-            var coordenadasNegativo:(Int,Int) = (-1,-1)
-            hayNegativos = false
-            for x in arrCeldasVacias{
-                print("celdas vacias = \(x.1):\(valorMasNegativo)")
-                if x.1 < valorMasNegativo{
-                    coordenadasNegativo = x.0
-                    valorMasNegativo = x.1
-                    hayNegativos = true
-//Print
-                    print("Nuevo Negativo: (\(coordenadasNegativo)), \(valorMasNegativo)")
+                recorrido = [] //Se limpia el recorrido
+                var valorMasNegativo:Double = 0.0
+                var coordenadasNegativo:(Int,Int) = (-1,-1)
+                hayNegativos = false
+                for x in arrCeldasVacias{
+                    print("celdas vacias = \(x.1):\(valorMasNegativo)")
+                    if x.1 < valorMasNegativo{
+                        coordenadasNegativo = x.0
+                        valorMasNegativo = x.1
+                        hayNegativos = true
+    //Print
+                        print("Nuevo Negativo: (\(coordenadasNegativo)), \(valorMasNegativo)")
+                    }
                 }
-            }
-            if hayNegativos{
-                hacerRecorrido(coordenadasNegativo: coordenadasNegativo)
-                
-                //Se va a repetir el proceso
-                if true {
-                    let arMa = arrMatriz
-                    let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
-                    newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-                    newPaso.setComentario(comentario: "Se repite el proceso desde el conteo de asignaciones")
-                    newPaso.setCeldasValores(matrizValores: arMa)
-                    pasos.append(newPaso)
+                if hayNegativos{
+                    hacerRecorrido(coordenadasNegativo: coordenadasNegativo)
+                    
+                    //Se va a repetir el proceso
+                    if true {
+                        let arMa = arrMatriz
+                        let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+                        newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+                        newPaso.setComentario(comentario: "Se repite el proceso desde el conteo de asignaciones")
+                        newPaso.setCeldasValores(matrizValores: arMa)
+                        pasos.append(newPaso)
+                    }
+                }
+                else{
+                    //Imprime tabla final
+                    if true {
+                        let arMa = arrMatriz
+                        let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
+                        newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
+                        newPaso.setComentario(comentario: "Ya no hay valores negativos, es óptimo.")
+                        newPaso.setCeldasValores(matrizValores: arMa)
+                        pasos.append(newPaso)
+                    }
+                    //Imprime Z
+                    obtenerZ()
                 }
             }
             else{
-                //Imprime tabla final
                 if true {
                     let arMa = arrMatriz
                     let newPaso = Paso(filas: cantFilas, columnas: cantColumnas)
                     newPaso.setOfertaYDemanda(ofertas: precioColumnasConstante, demandas: precioFilasConstante)
-                    newPaso.setComentario(comentario: "Ya no hay valores negativos, es óptimo.")
+                    newPaso.setComentario(comentario: "No hay forma de obtener todas las R´s ni las C´s. \nSe detiene el proceso")
                     newPaso.setCeldasValores(matrizValores: arMa)
                     pasos.append(newPaso)
                 }
-                //Imprime Z
-                obtenerZ()
+                hayNegativos = false
             }
-        
         }
     }while(hayNegativos)
     iteracionActual = 0
@@ -611,6 +629,8 @@ func DespejeRyC(){
         //Prueba while
         var aux = false//Verifica que no quede alguno sin despejar
         
+        conteoParaErrorIteracion = 0
+        var faltantesAnteriores = -1
         repeat {
             //Despeja las R# que pueda
             for i in 0 ..< RN.count{
@@ -642,15 +662,25 @@ func DespejeRyC(){
             }
             aux = false
             //Validacion
+            var conteoParaError = 0
             for x in RN{
                 if x == -999{
+                    conteoParaError = conteoParaError + 1
                     aux = true
                 }
             }
             for x in CN{
                 if x == -999{
+                    conteoParaError = conteoParaError + 1
                     aux = true
                 }
+            }
+            if conteoParaError == faltantesAnteriores{
+                conteoParaErrorIteracion = conteoParaErrorIteracion + 1
+            }
+            faltantesAnteriores = conteoParaError
+            if conteoParaErrorIteracion == 21{
+                aux = false
             }
         }while(aux)
         //Termina prueba while
