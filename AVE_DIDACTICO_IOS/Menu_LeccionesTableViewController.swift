@@ -66,14 +66,14 @@ class Menu_LeccionesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellLeccion", for: indexPath) as! Menu_LeccionTableViewCell
         let cell_data = lista[indexPath.row]
         
-        cell.LlenarCelda(id:cell_data[0] as! Int,name:cell_data[1] as! String, available:cell_data[2] as! Bool, price:cell_data[3] as! Double)
+        cell.LlenarCelda(id:cell_data[0] as! Int,name:cell_data[1] as! String, available:cell_data[2] as! Int, price:cell_data[3] as! Double, algorithm_id:cell_data[4] as! Int)
 
         return cell
     }
     //Al seleccionar una leccion se manda el id y muestra la informacion
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! Menu_LeccionTableViewCell
-        if cell.available {
+        if cell.available != 0 {
             performSegue(withIdentifier: "cellMenu_Lecciones-A-Leccion", sender: cell.id)
         }
         else{

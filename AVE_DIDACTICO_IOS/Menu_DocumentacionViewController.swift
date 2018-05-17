@@ -58,7 +58,7 @@ class Menu_DocumentacionViewController: UIViewController,UITableViewDelegate,UIT
         let cell = tableView.dequeueReusableCell(withIdentifier:"cellDocumento", for: indexPath) as! Menu_DocumentoTableViewCell
         let cell_data = lista[indexPath.row]
         
-        cell.LlenarCelda(nombre: cell_data[1] as! String, id: cell_data[0] as! Int, reference: cell_data[2] as! String, link: cell_data[3] as! String)
+        cell.LlenarCelda(nombre: cell_data[1] as! String, id: cell_data[0] as! Int, reference: cell_data[2] as! String, link: cell_data[3] as! String, sessionID: cell_data[4] as! Int)
         
         return cell
     }

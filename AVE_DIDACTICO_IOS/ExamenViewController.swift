@@ -27,7 +27,12 @@ class ExamenViewController: UIViewController,UITableViewDataSource,UITableViewDe
         tvExamenes.delegate = self
         TraerPreguntas()
     }
-
+    override func viewDidDisappear(_ animated: Bool) {
+        if timerRunning{
+            timer.invalidate()
+            timerRunning = false
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         

@@ -18,6 +18,7 @@ class LeccionTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 2000
         tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         if session_id != -1{
             getLeccion(session_id: session_id)
         }

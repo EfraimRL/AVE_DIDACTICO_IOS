@@ -65,7 +65,7 @@ class Menu_ExamenesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellExamen", for: indexPath) as! Menu_ExamenTableViewCell
         //Validar que este desbloqueada y asignar la imagen
         let cell_data = lista[indexPath.row]
-        cell.LlenarCelda(id:cell_data[0] as! Int,descripcion:cell_data[1] as! String, approved:cell_data[2] as! Int, available:cell_data[3] as! Int)
+        cell.LlenarCelda(id:cell_data[0] as! Int,descripcion:cell_data[1] as! String, approved:cell_data[2] as! Int, available:cell_data[3] as! Int, sessionID:cell_data[4] as! Int)
 
         return cell
     }

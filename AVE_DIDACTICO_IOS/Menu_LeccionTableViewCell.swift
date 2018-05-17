@@ -13,20 +13,22 @@ class Menu_LeccionTableViewCell: UITableViewCell {
     @IBOutlet weak var imgLock: UIImageView!
     @IBOutlet weak var lblLeccion: UILabel!
     var id = 0
-    var available:Bool = false
+    var available:Int = 0
     var price = 0.0
-    func LlenarCelda(id:Int,name:String, available:Bool, price:Double) -> Void {
+    var algorithm_id:Int = 0
+    func LlenarCelda(id:Int,name:String, available:Int, price:Double, algorithm_id:Int) -> Void {
         self.id = id
         lblLeccion.text = name
         self.available = available
         self.price = price
         imgLock.contentMode = UIViewContentMode.scaleToFill
-        if available {
+        if available != 0 {
             imgLock.image = UIImage(named: "Unlock")//Use unlock image
         }
         else {
             imgLock.image = UIImage(named: "Lock")//Use lock image
         }
+        self.algorithm_id = algorithm_id
     }
     /*lessons
     //sessions

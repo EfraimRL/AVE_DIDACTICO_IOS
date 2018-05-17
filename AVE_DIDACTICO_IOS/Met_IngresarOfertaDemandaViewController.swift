@@ -175,8 +175,8 @@ class Met_IngresarOfertaDemandaViewController: UIViewController,UITableViewDeleg
             
             let itemCount = collectionOfertas.count
             for row in 0 ..< itemCount {
-                if valoresX[row] != -999.9{
-                    columnas.append(valoresX[row])
+                if valoresY[row] != -999.9{
+                    columnas.append(valoresY[row])
                 }
                 else{
                     correcto = false
@@ -188,8 +188,8 @@ class Met_IngresarOfertaDemandaViewController: UIViewController,UITableViewDeleg
             
             let rowCount = tablaDemandas.count
             for row in 0 ..< rowCount {
-                if valoresY[row] != -999.9{
-                    filas.append(valoresY[row])
+                if valoresX[row] != -999.9{
+                    filas.append(valoresX[row])
                 }
                 else{
                     correcto = false

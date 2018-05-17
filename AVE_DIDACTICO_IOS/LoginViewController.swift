@@ -27,6 +27,9 @@ class LoginViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         txtContrasena.text = ""
+        
+        txtUsuario.text = "efraruiz94@hotmail.com"
+        txtContrasena.text = "123456"
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)

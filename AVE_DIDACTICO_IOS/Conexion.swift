@@ -50,23 +50,26 @@ class conexion {
                         {
                             if let jsonDict = item.dictionary //jsonDict : [String : JSON]?
                             {
-                                var elemento:[Any] = [0 ,"" ,false ,"" ]
+                                var elemento:[Any] = [0 ,"" ,false ,"",0]
                                 switch tipo {
                                 case 1://Lecciones
                                     elemento[0] = jsonDict["id"]?.intValue as Any
                                     elemento[1] = jsonDict["name"]?.stringValue as Any
-                                    elemento[2] = jsonDict["avaible"]?.boolValue as Any
+                                    elemento[2] = jsonDict["avaible"]?.intValue as Any
                                     elemento[3] = jsonDict["price"]?.double as Any
+                                    elemento[4] = 0 //jsonDict["algorithm_id"]?.intValue as Any
                                 case 2://Examenes
                                     elemento[0] = jsonDict["id"]?.intValue as Any
                                     elemento[1] = jsonDict["description"]?.stringValue as Any
                                     elemento[2] = jsonDict["approved"]?.intValue as Any
                                     elemento[3] = jsonDict["avaible"]?.intValue as Any
+                                    elemento[4] = 0//jsonDict["session_id"]?.intValue as Any
                                 case 3://Documentos
                                     elemento[0] = jsonDict["id"]?.intValue as Any
                                     elemento[1] = jsonDict["books"]?.stringValue as Any
                                     elemento[2] = jsonDict["references"]?.stringValue as Any
                                     elemento[3] = jsonDict["links"]?.stringValue as Any
+                                    elemento[4] = 0//jsonDict["session_id"]?.intValue as Any
                                 default:
                                     print("Ningun tipo")
                                 }

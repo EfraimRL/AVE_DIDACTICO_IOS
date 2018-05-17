@@ -14,14 +14,16 @@ class Menu_DocumentoTableViewCell: UITableViewCell {
     @IBOutlet weak var lblDocumento: UILabel!
     @IBOutlet weak var lblReferences: UILabel!
     @IBOutlet weak var lblLinks: UILabel!
+    var session_id:Int = 0
     var id = 0
-    func LlenarCelda(nombre:String,id:Int,reference:String,link:String) -> Void {
+    func LlenarCelda( nombre:String, id:Int, reference:String, link:String, sessionID:Int) -> Void {
         imgTipoDoc.contentMode = UIViewContentMode.scaleToFill
         lblDocumento.text = nombre
         self.id = id
         lblReferences.text = reference
         lblLinks.text = link
         imgTipoDoc.image = UIImage(named: "Books2")
+        self.session_id = sessionID
     }
 
     override func awakeFromNib() {
