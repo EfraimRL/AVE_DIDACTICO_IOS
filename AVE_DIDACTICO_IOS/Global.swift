@@ -13,12 +13,15 @@ enum MyError: Error {
 }
 var conteoParaErrorIteracion = 0
 
+//valores minimos y maximos para tamaño de tabla
+var minimoValor = 2
+var maximoValor = 6
 
 //Datos que se usan para crear el objeto 'Paso'
 var cantColumnas:Int = 0
 var cantFilas:Int = 0
 
-var arrMatriz:[[Celda]] = []//Cambiar Double por Celda'
+var arrMatriz:[[Celda]] = []
 var arrCostos:[Double] = []  //Quitar al usar Celda'
 var arrValores:[Celda] = []
     //Crear una copia auxiliar de estos dos precios
@@ -29,7 +32,7 @@ var precioFilasConstante:[Double] = []
 
 var maximizar = false
 //Para otras cosas
-var iteracionActual:Int = 0
+var iteracionActual:Int = 0//Variable para saber que paso mostrar
 
 //Guarda los Pasos ....Cambiar [[Double]] por [Paso]'
 var pasos:[Paso] = []
@@ -56,16 +59,6 @@ func reiniciarDatos(){
     arrCostos = []
     listaPasos = []
     pasos = []
-}
-
-func establecerValores() {
-    /*arrValores = []
-    for x in 0..<cantFilas{
-        for y in 0..<cantColumnas{
-            let valor :Double = arrMatriz[x][y]
-            arrValores.append(valor)
-        }
-    }*/
 }
 
 //Llamado a los metodos de solucion

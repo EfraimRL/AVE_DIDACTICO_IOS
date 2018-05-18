@@ -12,6 +12,7 @@ class ExamenPreguntaTableViewCell: UITableViewCell {
 
     var correctAnswer = 0
     
+    @IBOutlet weak var viewPregunta: UIView!
     @IBOutlet weak var txtPregunta: UILabel!
     var pregunta_Id:Int = -1
     var pregunta = Pregunta()
@@ -22,6 +23,9 @@ class ExamenPreguntaTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        let screenSize = UIScreen.main.bounds
+        viewPregunta.frame.size.width = screenSize.width-2
+        
     }
 
     func getCheched() -> Int {

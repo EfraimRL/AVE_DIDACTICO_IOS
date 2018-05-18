@@ -79,10 +79,16 @@ class Met_IngresarOfertaDemandaViewController: UIViewController,UITableViewDeleg
     //Funciones y diseño de la coleccion
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = cvOfertas.cellForItem(at: IndexPath(row: indexPath.row, section: 0)) as! Met_IngresarOfertasCollectionViewCell
-        cell.txt.text = "a"
+        indeX = indexPath.row
+        lblElementoActual.text = "Oferta \(indeX + 1)"
+        txtValor.text = "\(valoresX[indeX])"
+        if valoresX[indeX] == -999.9 {
+            txtValor.text = ""
+        }
+        btnSalirIngresarValor.alpha = 1
+        viewIngresarValor_X.constant = 0
+        
     }
-
     @IBAction func SuigienteDato(_ sender: Any) {
         var doble = -999.9
         if Double(txtValor.text!) != nil{

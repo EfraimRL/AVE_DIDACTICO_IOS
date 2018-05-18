@@ -26,6 +26,7 @@ class ExamenViewController: UIViewController,UITableViewDataSource,UITableViewDe
         tvExamenes.dataSource = self
         tvExamenes.delegate = self
         TraerPreguntas()
+        
     }
     override func viewDidDisappear(_ animated: Bool) {
         if timerRunning{

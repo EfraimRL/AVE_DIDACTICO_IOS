@@ -23,11 +23,14 @@ class RegistroViewController: UIViewController {
     @IBOutlet weak var txtContrasena1: UITextField!
     @IBOutlet weak var txtContrasena2: UITextField!
     @IBOutlet weak var swTipoUsuario: UISwitch! //Selecciona en caso de ser maestro o alumno
+    @IBOutlet var viewCompleta: UIView!
     @objc func singleTapGestureCaptured(gesture: UITapGestureRecognizer){
         self.view.endEditing(true)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        let screenSize = UIScreen.main.bounds
+        viewCompleta.frame.size.width = screenSize.width
         swTipoUsuario.setOn(false, animated: false)
         let touch = UITapGestureRecognizer(target: self, action: #selector(singleTapGestureCaptured(gesture:)))
         scrVw.addGestureRecognizer(touch)

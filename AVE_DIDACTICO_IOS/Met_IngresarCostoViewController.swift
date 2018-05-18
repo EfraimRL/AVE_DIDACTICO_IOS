@@ -22,7 +22,7 @@ class Met_IngresarCostoViewController: UIViewController,UICollectionViewDelegate
     @IBOutlet weak var cvIngresarCostos: UICollectionView!
 //Metodos y botones con funciones simples..Inicializadores, botones de continuar, etc.
     override func viewDidLoad() {
-        establecerValores()
+        //establecerValores()
         super.viewDidLoad()
         cvIngresarCostos.delegate = self
         cvIngresarCostos.dataSource = self

@@ -17,11 +17,14 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var view2: UIView!
     @IBOutlet weak var scrVw: UIScrollView!
    
+    @IBOutlet var viewCompleta: UIView!
     @objc func singleTapGestureCaptured(gesture: UITapGestureRecognizer){
         self.view.endEditing(true)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        let screenSize = UIScreen.main.bounds
+        viewCompleta.frame.size.width = screenSize.width
         let touch = UITapGestureRecognizer(target: self, action: #selector(singleTapGestureCaptured(gesture:)))
         scrVw.addGestureRecognizer(touch)
     }
