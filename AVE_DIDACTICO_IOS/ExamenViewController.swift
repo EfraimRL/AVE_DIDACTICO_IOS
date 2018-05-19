@@ -134,7 +134,7 @@ class ExamenViewController: UIViewController,UITableViewDataSource,UITableViewDe
     */
     //var quest:[Pregunta] = []
     func getPreguntas(quiz_id:Int){//Page es un enumerator -> [Pregunta]
-        Alamofire.request("\(localhost)/preguntas/\(quiz_id).json", headers: user_headers).responseJSON{ response in
+        Alamofire.request("\(localhost)/quizzes/\(quiz_id).json", headers: user_headers).responseJSON{ response in
             if response.result.value != nil {
                 
                 var listaElementos:[Pregunta] = []
