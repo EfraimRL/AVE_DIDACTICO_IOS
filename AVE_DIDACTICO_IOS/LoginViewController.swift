@@ -87,8 +87,8 @@ class LoginViewController: UIViewController {
                         "X-User-Email":user_email,
                         "Content-Type":"application/json",
                         "X-User-Token":user_token]
-                    if json["rol"] == "student"{maestro = false}
-                    else if json["rol"] == "teacher"{maestro = true}
+                    if json["rol"] == "t"{maestro = true}
+                    else{maestro = false}
                     self.performSegue(withIdentifier: "segLogAMenu", sender: nil)
                 }
             }
