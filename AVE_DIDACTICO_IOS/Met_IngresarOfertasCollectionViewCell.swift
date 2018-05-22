@@ -11,5 +11,4 @@ import UIKit
 class Met_IngresarOfertasCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblNombre: UILabel!
     @IBOutlet weak var txt: UITextField!
-    
 }

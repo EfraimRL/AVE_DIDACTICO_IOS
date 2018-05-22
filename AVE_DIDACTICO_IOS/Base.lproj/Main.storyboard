@@ -1253,7 +1253,7 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="Metodo" id="Qm2-or-afY">
-                                        <barButtonItem key="leftBarButtonItem" title="&lt;" id="fJX-yk-zio">
+                                        <barButtonItem key="leftBarButtonItem" title="Inicio" id="fJX-yk-zio">
                                             <connections>
                                                 <segue destination="N4U-YW-S6W" kind="unwind" unwindAction="unwindTo_MenuMetodoWithSegue:" id="pN0-cH-3oG"/>
                                             </connections>
@@ -1788,6 +1788,10 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="M7s-JK-ycT" id="eNL-d0-3MZ"/>
+                                    <outlet property="delegate" destination="M7s-JK-ycT" id="vVW-Zv-145"/>
+                                </connections>
                             </collectionView>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oLW-fj-G6M">
                                 <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -1839,6 +1843,17 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RZp-R1-ZlX">
+                                        <rect key="frame" x="31" y="150" width="77" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="WW1-MX-196"/>
+                                            <constraint firstAttribute="width" constant="77" id="nYZ-dn-Mcu"/>
+                                        </constraints>
+                                        <state key="normal" title="Anterior"/>
+                                        <connections>
+                                            <action selector="AnteriorDato:" destination="M7s-JK-ycT" eventType="touchUpInside" id="y4r-Qv-TTk"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -1847,7 +1862,9 @@
                                     <constraint firstItem="kdo-Im-AKD" firstAttribute="centerX" secondItem="EXx-AS-6v9" secondAttribute="centerX" id="MIj-Mi-yQM"/>
                                     <constraint firstAttribute="bottom" secondItem="MnL-Mb-lKJ" secondAttribute="bottom" id="MY4-7t-1N1"/>
                                     <constraint firstItem="kdo-Im-AKD" firstAttribute="top" secondItem="buU-v4-060" secondAttribute="bottom" constant="19" id="bhM-kx-H30"/>
+                                    <constraint firstItem="RZp-R1-ZlX" firstAttribute="centerX" secondItem="EXx-AS-6v9" secondAttribute="centerX" id="c8I-D3-Ua4"/>
                                     <constraint firstAttribute="height" constant="360" id="e76-am-orH"/>
+                                    <constraint firstItem="RZp-R1-ZlX" firstAttribute="top" secondItem="kdo-Im-AKD" secondAttribute="bottom" constant="8" id="mB6-nj-92H"/>
                                     <constraint firstAttribute="width" constant="140" id="qo5-hW-6fq"/>
                                     <constraint firstItem="fpL-fZ-Qx7" firstAttribute="top" secondItem="EXx-AS-6v9" secondAttribute="top" constant="25" id="sR3-2Z-QDg"/>
                                     <constraint firstAttribute="trailing" secondItem="MnL-Mb-lKJ" secondAttribute="trailing" id="tKL-Sa-Sra"/>

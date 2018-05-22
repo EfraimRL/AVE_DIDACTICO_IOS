@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Met_IngresarOfertaDemandaViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource {
+class Met_IngresarOfertaDemandaViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var tvDemandas: UITableView!
     @IBOutlet weak var cvOfertas: UICollectionView!
     var tablaDemandas:[UITableViewCell] = []
@@ -89,6 +89,45 @@ class Met_IngresarOfertaDemandaViewController: UIViewController,UITableViewDeleg
         viewIngresarValor_X.constant = 0
         
     }
+    @IBAction func AnteriorDato(_ sender: Any) {
+        //Toma el valor del txt
+        var doble = -999.9
+        if Double(txtValor.text!) != nil{
+            doble = Double(txtValor.text!)!
+        }
+        
+        if indeX < cantFilas{
+            valoresX[indeX] = doble
+            
+        }
+        else{
+            valoresY[indeX - cantFilas] = doble
+        }
+        if indeX == 0 {
+            indeX = (cantFilas + cantColumnas - 1)
+            
+        }
+        else{
+            indeX = indeX - 1
+            
+        }
+        //Anterior
+        
+        if indeX < cantFilas{
+            txtValor.text =  "\(valoresX[indeX])"
+            if valoresX[indeX] == -999.9{
+                txtValor.text = ""
+            }
+            lblElementoActual.text = "Demanda \(indeX + 1)"
+        }
+        else{
+            lblElementoActual.text = "Oferta \(indeX - cantFilas + 1)"
+            txtValor.text = "\(valoresY[indeX - cantFilas])"
+            if valoresY[indeX - cantFilas] == -999.9{
+                txtValor.text = ""
+            }
+        }
+    }
     @IBAction func SuigienteDato(_ sender: Any) {
         var doble = -999.9
         if Double(txtValor.text!) != nil{
@@ -152,10 +191,10 @@ class Met_IngresarOfertaDemandaViewController: UIViewController,UITableViewDeleg
     @IBOutlet weak var viewIngresarValor_X: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-        tvDemandas.delegate = self
-        tvDemandas.dataSource = self
         cvOfertas.delegate = self
         cvOfertas.dataSource = self
+        tvDemandas.delegate = self
+        tvDemandas.dataSource = self
         btnSalirIngresarValor.alpha = 0
         viewIngresarValor_X.constant = viewIngresarValor_X.constant - CGFloat(300)
         for _ in 0 ..< cantFilas{
@@ -170,7 +209,6 @@ class Met_IngresarOfertaDemandaViewController: UIViewController,UITableViewDeleg
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func btnSiguiente(_ sender: Any) {
@@ -215,14 +253,5 @@ class Met_IngresarOfertaDemandaViewController: UIViewController,UITableViewDeleg
             print(error.localizedDescription)
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
