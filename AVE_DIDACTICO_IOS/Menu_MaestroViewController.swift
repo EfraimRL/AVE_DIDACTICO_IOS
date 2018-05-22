@@ -13,6 +13,7 @@ import SwiftyJSON
 class Menu_MaestroViewController: UIViewController {
     @IBOutlet weak var lblAlumnos: UILabel!
     @IBOutlet weak var lblPromedio: UILabel!
+    @IBOutlet weak var lblcantAlumnos: UILabel!
     @IBOutlet weak var height: NSLayoutConstraint!
     @IBOutlet weak var width: NSLayoutConstraint!
     @IBOutlet weak var viewContenedora: UIView!
@@ -38,11 +39,13 @@ class Menu_MaestroViewController: UIViewController {
                     alerta(titulo:"Informaciòn", mensaje:json["message"].stringValue, cantidad_Botones:1, estilo_controller:.alert, estilo_boton:.default, sender: self)
                 }
                 else{
-                    let str = json[0]["description"].stringValue
-                    let ave = json[0]["average"].floatValue
-                    print("\(str), \(ave)")
+                    let str = json["description"].stringValue
+                    let ave = json["average"].floatValue
+                    let cal = json["cantalumnos"].intValue
+                    print("\(str), \(ave), \(cal)")
                     self.lblAlumnos.text = str
                     self.lblPromedio.text = "Promedio: \(ave)"
+                    self.lblcantAlumnos.text = "Cantidad de alumnos: \(cal)"
                     print("Antes: \(self.viewContenida.frame.size.height)")
                     self.viewContenida.frame.size.height = CGFloat(Float(self.viewContenedora.frame.size.height) * (ave/100))
                     print("Despues: \(self.viewContenida.frame.size.height)")

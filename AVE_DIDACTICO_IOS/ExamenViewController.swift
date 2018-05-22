@@ -84,7 +84,7 @@ class ExamenViewController: UIViewController,UITableViewDataSource,UITableViewDe
         revisar()
     }
     func revisar(){
-        var suma = 0
+        var suma:Double = 0.0
         if timerRunning{
             timer.invalidate()
             timerRunning = false
@@ -98,10 +98,37 @@ class ExamenViewController: UIViewController,UITableViewDataSource,UITableViewDe
         
         for cc in cells{
             let cell1 = cc as! ExamenPreguntaTableViewCell
-            suma = suma + cell1.getCheched()
+            suma = suma + Double(cell1.getCheched())
         }
-        alerta(titulo: "Terminado", mensaje: "Calificaciòn: \(suma)", cantidad_Botones: 1, estilo_controller: .alert, estilo_boton: .default, sender: self,i:1)
+        let promedio = (suma*100.0)/Double(cells.count)
+        enviarCalificacion(score: promedio)
+        alerta(titulo: "Terminado", mensaje: "Calificaciòn: \(promedio)", cantidad_Botones: 1, estilo_controller: .alert, estilo_boton: .default, sender: self,i:1)
         
+    }
+    func enviarCalificacion(score:Double){
+        print("Score = \(score)")
+        let dataSend = ["userquizz":["user_id":user_id, "quiz_id":quizz_id, "score":score]] as [String:Any]
+        print(dataSend)
+        Alamofire.request("\(localhost)/UserQuiz.json",method: .post, parameters: dataSend, encoding: JSONEncoding(options: [])).responseJSON{ response in
+            print(response)
+            if response.result.value != nil {
+                let json = JSON(response.result.value!)
+                print(json)
+                if json["message"].exists() {
+                    alerta(titulo:"Mensaje",mensaje:json["message"].string!,cantidad_Botones:1,estilo_controller:.alert,estilo_boton:.default, sender: self)
+                    print("Nulo: ",json["message"].string!)
+                }
+                else{
+                    
+                    alerta(titulo:"Mensaje",mensaje:"Datos guardados",cantidad_Botones:1,estilo_controller:.alert,estilo_boton:.default, sender: self)
+                    self.unWind()
+                }
+            }
+            else{
+                alerta(titulo: "Error", mensaje: "No hay conexión con el servidor", cantidad_Botones: 1, estilo_controller: UIAlertControllerStyle.alert, estilo_boton: UIAlertActionStyle.default, sender: self)
+                print("No hay respuesta del servidor")
+            }
+        }
     }
     func unWind(){
         performSegue(withIdentifier: "unWindTo_ExamenesListWithSegue", sender: nil)

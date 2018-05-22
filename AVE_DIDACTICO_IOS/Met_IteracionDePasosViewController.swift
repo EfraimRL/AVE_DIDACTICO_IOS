@@ -47,7 +47,7 @@ class Met_IteracionDePasosViewController: UIViewController,UICollectionViewDataS
         if dupla.1 == 0{
             cell.lblValor.text = (dupla.0 as! String)
             if (Double(dupla.0 as! String) == nil){
-                cell.lblValor.backgroundColor = #colorLiteral(red: 0.5058823824, green: 0.3372549117, blue: 0.06666667014, alpha: 1)
+                cell.lblValor.backgroundColor = #colorLiteral(red: 0.2254115045, green: 0.7712759376, blue: 0.6908344626, alpha: 1)
                 cell.lblValor.adjustsFontSizeToFitWidth = true
             }
             else{

@@ -55,6 +55,7 @@
 		0A1BBA9D20ADFD8600DBED94 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A1BBA9C20ADFD8600DBED94 /* settings.png */; };
 		0A1BBA9F20ADFF7100DBED94 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1BBA9E20ADFF7100DBED94 /* InfoViewController.swift */; };
 		0A1F010D208FC91A000F1593 /* Paso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1F010C208FC91A000F1593 /* Paso.swift */; };
+		0A23FF3A20B4AF770071F516 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A23FF3920B4AF760071F516 /* refresh.png */; };
 		0A2E10DD209CD60700AE1D8B /* LeccionDetalleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2E10DC209CD60700AE1D8B /* LeccionDetalleTableViewCell.swift */; };
 		0A33102C2087B92300A7BD8F /* NewTestJavaScriptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A33102B2087B92300A7BD8F /* NewTestJavaScriptViewController.swift */; };
 		0A3310302087BA9800A7BD8F /* jssource.js in Resources */ = {isa = PBXBuildFile; fileRef = 0A33102F2087BA9800A7BD8F /* jssource.js */; };
@@ -146,6 +147,7 @@
 		0A1BBA9C20ADFD8600DBED94 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		0A1BBA9E20ADFF7100DBED94 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		0A1F010C208FC91A000F1593 /* Paso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paso.swift; sourceTree = "<group>"; };
+		0A23FF3920B4AF760071F516 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		0A2E10DC209CD60700AE1D8B /* LeccionDetalleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeccionDetalleTableViewCell.swift; sourceTree = "<group>"; };
 		0A33102B2087B92300A7BD8F /* NewTestJavaScriptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTestJavaScriptViewController.swift; sourceTree = "<group>"; };
 		0A33102F2087BA9800A7BD8F /* jssource.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jssource.js; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				0A1BBA9220ADFAF300DBED94 /* small-outline (1).png */,
 				0A1BBA9620ADFB6100DBED94 /* exam-a-plus (1).png */,
 				0A1BBA9A20ADFC5E00DBED94 /* line-chart.png */,
+				0A23FF3920B4AF760071F516 /* refresh.png */,
 				0A1BBA9820ADFBBD00DBED94 /* file.png */,
 				0A1BBA9420ADFB4700DBED94 /* icon (1).png */,
 				0A1BBA8E20ADFA9A00DBED94 /* boy-reading-study-book-to-learn-the-lesson-for-next-day-class.png */,
@@ -436,6 +439,7 @@
 				0A1BBA7E20ADE70300DBED94 /* Icon-512.png in Resources */,
 				0A1BBA7520ADE70300DBED94 /* Icon-180.png in Resources */,
 				0A1BBA7F20ADE70300DBED94 /* Icon-80.png in Resources */,
+				0A23FF3A20B4AF770071F516 /* refresh.png in Resources */,
 				0AA9C4B8207C0AB5009F55F9 /* candado.png in Resources */,
 				0A1BBA7D20ADE70300DBED94 /* Icon-256.png in Resources */,
 				0A1BBA7C20ADE70300DBED94 /* Icon-57.png in Resources */,

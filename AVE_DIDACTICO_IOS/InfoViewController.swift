@@ -17,7 +17,8 @@ class InfoViewController: UIViewController {
         txtDireccionServer.text = "\(localhost)"
         txtMax.text = "\(maximoValor)"
         txtMin.text = "\(minimoValor)"
-        lblLicencias.text = "Icons made Freepik from https://www.flaticon.com/\n Creative Commons BY 3.0 \nMatrix icon made by Stephen Hutchings from https://www.flaticon.com/ \nGraph icon made by Gregor Cresnar from https://www.flaticon.com/\nEngine icon made by Smashicons from https://www.flaticon.com/\nis licensed by CC 3.0 BY (http://creativecommons.org/licenses/by/3.0/)"
+        lblLicencias.text = "Icons made Freepik from https://www.flaticon.com/\n Creative Commons BY 3.0 \nMatrix icon made by Stephen Hutchings from https://www.flaticon.com/ \nGraph icon made by Gregor Cresnar from https://www.flaticon.com/\nEngine icon made by Smashicons from https://www.flaticon.com/\nRefresh icon made by Pixel Buddha from www.flaticon.com\nis licensed by CC 3.0 BY (http://creativecommons.org/licenses/by/3.0/)"
+        
     }
 
     override func didReceiveMemoryWarning() {

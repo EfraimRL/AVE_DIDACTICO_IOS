@@ -20,6 +20,7 @@ class Menu_DocumentacionViewController: UIViewController,UITableViewDelegate,UIT
     }
     override func viewDidLoad() {
         runTimer()
+        btnRefresh.alpha = 1
         super.viewDidLoad()
         tvDocumentos.delegate = self
         tvDocumentos.dataSource = self
@@ -43,6 +44,7 @@ class Menu_DocumentacionViewController: UIViewController,UITableViewDelegate,UIT
         lista = doc
         tvDocumentos.reloadData()
         if !lista.isEmpty {
+            btnRefresh.alpha = 0
             timer.invalidate()
         }
         
@@ -65,7 +67,20 @@ class Menu_DocumentacionViewController: UIViewController,UITableViewDelegate,UIT
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 191
     }
-    func getBooks(){
-        
+    @IBAction func btnActualizar(_ sender: Any) {
+        Refresh()
+    }
+    @IBAction func Actualizar(_ sender: Any) {
+        Refresh()
+    }
+    func Refresh(){
+        btnRefresh.alpha = 1
+        runTimer()
+        let con = conexion()
+        self.lista = con.listar(page: Page.Documentos.rawValue, tipo: 3, completion: true)
+    }
+    @IBOutlet weak var btnRefresh: UIButton!
+    @IBAction func btnRefreshing(_ sender: Any) {
+        Refresh()
     }
 }

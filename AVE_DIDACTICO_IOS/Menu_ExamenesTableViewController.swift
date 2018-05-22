@@ -10,14 +10,17 @@ import UIKit
 
 class Menu_ExamenesTableViewController: UITableViewController {
 
-
+    let imageView = UIImageView(image: UIImage(named: "refresh.png"))
+    
     var lista:[[Any]] = []
     override func viewDidLoad() {
         runTimer()
+        self.tableView.backgroundView = imageView
+        imageView.contentMode = .scaleAspectFit
         super.viewDidLoad()
         self.tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
-        var con = conexion()
-        self.lista = con.listar(page: Page.Examenes.rawValue, tipo: 2, completion: true)
+        let con = conexion()
+        self.lista = con.listarExamenes(page: Page.Examenes.rawValue, tipo: 2, completion: true)
         /*if let listar = listar(page: Page.Examenes.rawValue,tipo: 2){
             lista = listar
         }*/
@@ -39,6 +42,7 @@ class Menu_ExamenesTableViewController: UITableViewController {
         self.tableView.reloadData()
         if !lista.isEmpty {
             timer.invalidate()
+            self.tableView.backgroundView = UIImageView()
         }
         
     }
@@ -140,5 +144,14 @@ class Menu_ExamenesTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func Actualizar(_ sender: Any) {
+        runTimer()
+        lista = []
+        self.tableView.reloadData()
+        self.tableView.backgroundView = imageView
+        imageView.contentMode = .scaleAspectFit
+        let con = conexion()
+        self.lista = con.listarExamenes(page: Page.Examenes.rawValue, tipo: 2, completion: true)
+    }
+    
 }

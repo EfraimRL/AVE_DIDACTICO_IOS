@@ -22,6 +22,7 @@ class Menu_LeccionTableViewCell: UITableViewCell {
         self.available = available
         self.price = price
         imgLock.contentMode = UIViewContentMode.scaleToFill
+        print("Available \(available)")
         if available != 0 {
             imgLock.image = UIImage(named: "Unlock")//Use unlock image
         }

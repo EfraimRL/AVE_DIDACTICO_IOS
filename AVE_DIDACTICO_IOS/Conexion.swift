@@ -75,7 +75,7 @@ class conexion {
                                 }
                                 listaElementos.append(elemento)
                                 print(listaElementos)
-                                
+                                print("DISPONIBILIDAD leccion \(String(describing: jsonDict["avaible"]))")
                             }
                         }
                         switch tipo{
@@ -89,6 +89,55 @@ class conexion {
             }
             else{
                 //alerta(titulo: "Error", mensaje: "No hubo resultados del servidor\n\nno hay conexiòn", cantidad_Botones: 1, estilo_controller: UIAlertControllerStyle.alert, estilo_boton: UIAlertActionStyle.default, sender: self)
+            }
+        }
+        
+        return listaElementos
+    }
+    ////////////////
+    
+    func listarExamenes(page: String,tipo:Int, completion: Bool) -> [[Any]]{//Page es un enumerator
+        var rol = "s"
+        if esMaestro(){
+            rol = "t"
+        }
+        let dataSend = ["id":user_id, "rol":rol] as [String:Any]
+        var listaElementos:[[Any]] = []
+        Alamofire.request("\(localhost)/listexam.json",method: .post, parameters: dataSend, encoding: JSONEncoding(options: [])).responseJSON{ response in
+            if response.result.value != nil {
+                let json = JSON(response.result.value!)
+                if json == JSON.null {
+                    let result = json["message"]
+                    print(result)
+                    //Mandar mensaje de Error.
+                }
+                else{
+                    if let jsonArray = json.array
+                    {
+                        //it is an array, each array contains a dictionary
+                        for item in jsonArray
+                        {
+                            if let jsonDict = item.dictionary
+                            {
+                                var elemento:[Any] = [0 ,"" ,false ,"",0]
+                                //Examenes
+                                elemento[0] = jsonDict["id"]?.intValue as Any
+                                elemento[1] = jsonDict["description"]?.stringValue as Any
+                                elemento[2] = jsonDict["approved"]?.intValue as Any
+                                elemento[3] = jsonDict["avaible"]?.intValue as Any
+                                elemento[4] = 0//jsonDict["session_id"]?.intValue as Any
+                            listaElementos.append(elemento)
+                                print(listaElementos)
+                                print("DISPONIBILIDAD \(String(describing: jsonDict["avaible"]))")
+                                
+                            }
+                        }
+                        exa = listaElementos
+                    }
+                }
+            }
+            else{
+                
             }
         }
         
