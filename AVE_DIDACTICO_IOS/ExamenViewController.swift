@@ -143,7 +143,7 @@ class ExamenViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     @objc func contador(){
         print("\(timer.timeInterval)")
-        if seconds == 10 {
+        if seconds == 600 {
             timer.invalidate()
             revisar()
         }
