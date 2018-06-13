@@ -72,10 +72,10 @@ class RegistroViewController: UIViewController {
         user.grade = txtEdad.text!
         user.control_number = txtNumControl.text!
         if swTipoUsuario.isOn{
-            user.rol = "teacher"
+            user.rol = "t"
         }
         else{
-            user.rol = "student"
+            user.rol = "s"
         }
         return user
     }
